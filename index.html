@@ -1,0 +1,1972 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>فانوس مطالعاتی</title>
+<style>
+:root{
+  --ink:#1D2350; --ink2:#2B3470; --paper:#F2F4FA; --card:#FFFFFF; --line:#DDE1EF;
+  --amber:#F0A32F; --amber-d:#B97500; --amber-bg:#FFF3DC; --mint:#2E9C8A; --rose:#CF4B4B;
+  --text:#1B1F3A; --muted:#6A708F;
+  color-scheme: light;
+}
+@media (prefers-color-scheme: dark){
+  :root{ --ink:#0F1330; --ink2:#232A5E; --paper:#0E1126; --card:#181D3D; --line:#2A3060;
+    --amber:#F5B04A; --amber-d:#F5B04A; --amber-bg:#3A2D12; --mint:#52C2AE; --rose:#F0807F;
+    --text:#E9ECFA; --muted:#9AA1C7; color-scheme: dark; }
+}
+*{box-sizing:border-box;margin:0;-webkit-tap-highlight-color:transparent}
+body{font-family:Vazirmatn,"Vazir",Tahoma,"Segoe UI",sans-serif;background:var(--paper);color:var(--text);line-height:1.7;font-size:15px}
+button,input,select,textarea{font:inherit;color:inherit}
+button{cursor:pointer;border:0;background:none}
+:focus-visible{outline:3px solid var(--amber);outline-offset:2px;border-radius:8px}
+#app{max-width:520px;margin:0 auto;min-height:100vh;padding-bottom:96px;position:relative}
+header.top{background:var(--ink);color:#fff;padding:18px 18px 22px;border-radius:0 0 28px 28px;position:sticky;top:0;z-index:5}
+.brand{display:flex;align-items:center;gap:10px}
+.brand svg{width:34px;height:34px;flex:none}
+.brand b{font-size:18px;letter-spacing:0}
+.brand small{display:block;opacity:.7;font-size:12px;margin-top:-4px}
+.roles{display:flex;gap:6px;margin-top:14px;background:rgba(255,255,255,.1);padding:4px;border-radius:14px}
+.roles button{flex:1;padding:8px;border-radius:10px;color:#fff;opacity:.75;font-weight:600}
+.roles button[aria-pressed=true]{background:var(--amber);color:#2A1A00;opacity:1}
+main{padding:18px}
+h2{font-size:19px;margin-bottom:4px}
+.sub{color:var(--muted);font-size:13px;margin-bottom:14px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:14px;margin-bottom:12px}
+.row{display:flex;align-items:center;gap:10px}
+.grow{flex:1;min-width:0}
+.btn{padding:11px 16px;border-radius:12px;font-weight:700;background:var(--amber);color:#2A1A00}
+.btn.sec{background:transparent;border:1.5px solid var(--line);color:var(--text)}
+.btn.danger{background:transparent;color:var(--rose);border:1.5px solid var(--rose)}
+.btn.sm{padding:6px 12px;font-size:13px;border-radius:10px}
+.btn.block{width:100%}
+.chip{display:inline-block;padding:2px 10px;border-radius:99px;font-size:12px;font-weight:600;background:var(--amber-bg);color:var(--amber-d)}
+.chip.ok{background:rgba(46,156,138,.15);color:var(--mint)}
+.chip.no{background:rgba(207,75,75,.14);color:var(--rose)}
+.avatar{width:44px;height:44px;border-radius:14px;background:var(--ink2);color:#fff;display:grid;place-items:center;font-weight:800;flex:none}
+.days{display:flex;gap:6px;overflow-x:auto;padding:2px 0 12px;scrollbar-width:none}
+.days button{flex:none;padding:8px 14px;border-radius:12px;border:1.5px solid var(--line);background:var(--card);font-weight:600}
+.days button[aria-pressed=true]{background:var(--ink);color:#fff;border-color:var(--ink)}
+.days small{display:block;font-size:11px;opacity:.7;font-weight:400}
+.tl{position:relative;padding-right:22px}
+.tl:before{content:"";position:absolute;right:7px;top:6px;bottom:6px;width:2px;background:var(--line)}
+.part{position:relative;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:12px;margin-bottom:10px}
+.part:before{content:"";position:absolute;right:-20px;top:18px;width:12px;height:12px;border-radius:50%;background:var(--c,var(--amber));border:3px solid var(--paper)}
+.part.done{opacity:.6}
+.part.done .ptitle{text-decoration:line-through}
+.time{font-size:13px;color:var(--muted);font-variant-numeric:tabular-nums}
+.ptitle{font-weight:700}
+.tags{display:flex;flex-wrap:wrap;gap:5px;margin-top:6px}
+.tag{font-size:12px;padding:1px 9px;border-radius:8px;background:var(--paper);border:1px solid var(--line)}
+label.f{display:block;font-size:13px;color:var(--muted);margin:10px 0 4px}
+input[type=text],input[type=time],select,textarea{width:100%;padding:10px 12px;border-radius:12px;border:1.5px solid var(--line);background:var(--card)}
+.opts{display:flex;flex-wrap:wrap;gap:6px}
+.opt{padding:6px 12px;border-radius:10px;border:1.5px solid var(--line);background:var(--card);font-size:13px}
+.opt[aria-pressed=true]{background:var(--ink);color:#fff;border-color:var(--ink)}
+nav.tabs{position:fixed;bottom:0;right:0;left:0;background:var(--card);border-top:1px solid var(--line);z-index:6;padding-bottom:env(safe-area-inset-bottom)}
+nav.tabs div{max-width:520px;margin:0 auto;display:flex}
+nav.tabs button{flex:1;padding:10px 4px 12px;font-size:12px;color:var(--muted);font-weight:600}
+nav.tabs button[aria-current=page]{color:var(--ink2)}
+nav.tabs button[aria-current=page] span{background:var(--amber-bg)}
+nav.tabs span{display:block;width:46px;margin:0 auto 2px;border-radius:99px;font-size:17px;padding:2px 0}
+.sheet-bg{position:fixed;inset:0;background:rgba(10,12,35,.55);z-index:20;display:flex;align-items:flex-end;justify-content:center}
+.sheet{background:var(--card);width:100%;max-width:520px;max-height:88vh;overflow:auto;border-radius:24px 24px 0 0;padding:18px}
+.sheet h3{font-size:17px;margin-bottom:6px}
+.tree details{margin:4px 0}
+.tree summary{padding:8px 10px;border-radius:10px;cursor:pointer;font-weight:600;list-style:none;background:var(--paper)}
+.tree summary::-webkit-details-marker{display:none}
+.tree .leaf{display:flex;width:100%;text-align:right;padding:8px 14px;border-radius:10px;font-size:14px}
+.tree .leaf:hover,.tree .leaf[aria-pressed=true]{background:var(--amber-bg)}
+.tree .lvl{padding-right:12px}
+.bar{height:8px;border-radius:99px;background:var(--line);overflow:hidden}
+.bar i{display:block;height:100%;background:var(--c,var(--mint));border-radius:99px}
+table.wk{width:100%;border-collapse:collapse;font-size:13px}
+table.wk th,table.wk td{border:1px solid var(--line);padding:6px 8px;text-align:right;vertical-align:top}
+table.wk th{background:var(--paper)}
+.empty{text-align:center;color:var(--muted);padding:28px 10px}
+.toast{position:fixed;bottom:84px;left:50%;transform:translateX(-50%);background:var(--ink);color:#fff;padding:10px 18px;border-radius:12px;z-index:30;font-size:14px;max-width:90%}
+.warn{background:rgba(207,75,75,.12);color:var(--rose);padding:10px 12px;border-radius:12px;font-size:13px;margin-bottom:12px}
+
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;text-align:center}
+.stats b{display:block;font-variant-numeric:tabular-nums;font-size:16px}
+.stats span{font-size:12px;color:var(--muted)}
+.cal{display:grid;grid-template-columns:repeat(7,1fr);gap:5px;text-align:center}
+.cal .h{font-size:12px;color:var(--muted)}
+.cal button{aspect-ratio:1;border-radius:10px;font-size:13px;background:var(--paper);border:1.5px solid transparent;font-variant-numeric:tabular-nums}
+.cal button[aria-pressed=true]{border-color:var(--ink);font-weight:800}
+.l1{background:#D3EEE8!important}.l2{background:#A8DDD1!important}.l3{background:#7CCBBB!important}.l4{background:#4DB3A0!important;color:#fff}.l5{background:#1F7F6F!important;color:#fff}
+.legend{display:flex;gap:0;margin-top:10px;font-size:11px;text-align:center}.legend i{flex:1;padding:3px 0;font-style:normal}
+.timer{background:var(--ink);color:#fff;border-radius:16px;padding:14px;margin-bottom:12px}
+.timer .t{font-size:30px;font-weight:800;font-variant-numeric:tabular-nums;letter-spacing:1px;text-align:center}
+.seg{display:flex;background:var(--paper);border-radius:12px;padding:3px;gap:3px}
+.seg button{flex:1;padding:7px 4px;border-radius:9px;font-size:13px;font-weight:600;color:var(--muted)}
+.seg button[aria-pressed=true]{background:var(--card);color:var(--text);box-shadow:0 1px 3px rgba(0,0,0,.12)}
+.hbar{height:22px;background:var(--paper);border-radius:8px;overflow:hidden;flex:1}.hbar i{display:block;height:100%;background:var(--mint)}
+
+.steps{display:flex;gap:6px;margin:0 0 4px}
+.steps button{flex:1;display:flex;flex-direction:column;align-items:center;gap:4px;font-size:12px;color:var(--muted);font-weight:600;padding:6px 2px;border-bottom:3px solid var(--line)}
+.steps i{font-style:normal;width:26px;height:26px;border-radius:50%;display:grid;place-items:center;background:var(--line);color:var(--text)}
+.steps button[aria-current=step]{color:var(--text);border-color:var(--amber)}
+.steps button[aria-current=step] i{background:var(--amber);color:#2A1A00}
+.tbrow{display:flex;gap:6px;overflow-x:auto;padding:2px 0 10px;scrollbar-width:none}
+.tbb{flex:1;min-width:52px;display:flex;flex-direction:column;align-items:center;gap:2px;font-size:12px;font-weight:600;padding:8px 4px;border-radius:12px;background:var(--card);border:1px solid var(--line)}
+.tbb span{font-size:18px}
+.badge{display:inline-grid;place-items:center;min-width:44px;padding:2px 10px;border-radius:99px;background:var(--c,var(--mint));color:#fff;font-size:13px;font-weight:700;font-variant-numeric:tabular-nums}
+.scard{border-right:6px solid var(--c)}
+.icard .row{gap:8px}
+.chipbtn{padding:3px 12px;border-radius:99px;font-size:12px;font-weight:600;background:rgba(47,120,181,.16);color:#2F78B5}
+.chipbtn.ok{background:rgba(46,156,138,.15);color:var(--mint)}
+.num{display:inline-grid;place-items:center;width:18px;height:18px;border-radius:50%;background:var(--mint);color:#fff;font-size:11px;margin-right:4px}
+.opt[aria-pressed=true]:has(.num){background:rgba(46,156,138,.18);color:var(--text);border-color:var(--mint)}
+.opt.dashed{border-style:dashed;color:var(--mint)}
+.sum{margin-top:10px;padding-top:8px;border-top:1px solid var(--line);color:var(--mint);font-weight:700;font-size:14px}
+.leaf.row{align-items:center}
+
+.sub-row{padding:12px 0;border-top:1px solid var(--line)}
+.subsec{margin:14px 0 2px;font-weight:700;color:var(--muted);font-size:13px}
+.dot{width:10px;height:10px;border-radius:50%;flex:none;display:inline-block}
+.fg{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}.fg .w2{grid-column:1/-1}.fg input{padding:8px 6px;text-align:center}.fg .w2 input{text-align:right;padding:8px 12px}
+.gn{width:26px;height:26px;border-radius:50%;background:var(--amber);color:#2A1A00;display:grid;place-items:center;font-weight:800;font-size:13px;flex:none}
+.slotc{margin-top:12px}
+.msg{padding:10px 12px;border-radius:12px;background:var(--paper);margin-top:8px}.msg.unread{border-right:4px solid var(--amber);background:var(--amber-bg)}
+.cols{display:flex;gap:6px;align-items:flex-end;height:150px;margin-top:12px}
+.col{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;height:100%;gap:4px}
+.col i{display:block;width:100%;min-height:2px;background:var(--mint);border-radius:6px 6px 0 0}.col .cv{font-size:11px;font-variant-numeric:tabular-nums}.col .cl{font-size:11px;color:var(--muted)}
+.donut{width:130px;height:130px;border-radius:50%;position:relative;flex:none;margin-left:14px}
+.donut:after{content:"";position:absolute;inset:26px;border-radius:50%;background:var(--card)}.donut span{position:absolute;inset:0;display:grid;place-items:center;z-index:1;font-weight:800}
+
+.clrow{padding:10px 0;border-top:1px solid var(--line)}.clrow.okrow{background:rgba(46,156,138,.07);border-radius:10px;padding:10px 8px}
+.ck2{flex:1;display:flex;gap:8px;align-items:center;padding:8px 10px;border-radius:10px;border:1.5px solid var(--line);font-size:13px;cursor:pointer;background:var(--card)}
+.ck2 input{width:18px;height:18px;flex:none}.ck2.on{border-color:var(--mint);background:rgba(46,156,138,.12)}
+nav.tabs button{font-size:11px;padding-left:2px;padding-right:2px}nav.tabs span{width:40px}
+.clbook summary{list-style:none}.clbook summary::-webkit-details-marker{display:none}
+@media (prefers-reduced-motion: no-preference){ .sheet{animation:up .18s ease-out} @keyframes up{from{transform:translateY(24px);opacity:.6}} }
+</style>
+</head>
+<body>
+<div id="app"></div>
+<script>
+// status: official = از PDF رسمی کتاب | doc = از سند سرفصل‌های ارسالی (نیازمند تطبیق نهایی) | empty = خالی
+const SUBJECTS = [
+  { id: 'zist', name: 'زیست‌شناسی', color: '#2E9C6A' },
+  { id: 'fizik', name: 'فیزیک', color: '#E0A526' },
+  { id: 'shimi', name: 'شیمی', color: '#8A5CC2' },
+  { id: 'riazi', name: 'ریاضی', color: '#E07B39' },
+  { id: 'zamin', name: 'زمین‌شناسی', color: '#2F78B5' },
+  { id: 'farsi', name: 'فارسی', color: '#C94B6D' },
+  { id: 'din', name: 'دین و زندگی', color: '#8C6246' },
+  { id: 'arabi', name: 'عربی', color: '#2A8FA8' },
+  { id: 'english', name: 'زبان انگلیسی', color: '#5B6BC0' }
+];
+
+// هر خط با # یک فصل است و خط‌های بعدی درس/گفتار/بخش همان فصل
+function B(id, name, grade, status, text){
+  const chapters = [];
+  (text || '').trim().split('\n').map(s => s.trim()).filter(Boolean).forEach(line => {
+    if(line[0] === '#') chapters.push({ t: line.slice(1).trim(), l: [] });
+    else if(chapters.length) chapters[chapters.length - 1].l.push(line);
+  });
+  return { id, name, grade, status, chapters };
+}
+
+const DEFAULT_CURRICULUM = {
+  zist: [
+    B('zist1', 'زیست‌شناسی ۱', 'دهم', 'doc', `
+# فصل ۱: دنیای زنده
+گفتار ۱: زیست‌شناسی چیست؟
+گفتار ۲: گستره حیات
+گفتار ۳: یاخته و بافت در بدن انسان
+# فصل ۲: گوارش و جذب مواد
+گفتار ۱: ساختار و عملکرد لوله گوارش
+گفتار ۲: جذب مواد و تنظیم فعالیت دستگاه گوارش
+گفتار ۳: تنوع گوارش در جانداران
+# فصل ۳: تبادلات گازی
+گفتار ۱: سازوکار دستگاه تنفس در انسان
+گفتار ۲: تهویه ششی
+گفتار ۳: تنوع تبادلات گازی
+# فصل ۴: گردش مواد در بدن
+گفتار ۱: قلب
+گفتار ۲: رگ‌ها
+گفتار ۳: خون
+گفتار ۴: تنوع گردش مواد در جانداران
+# فصل ۵: تنظیم اسمزی و دفع مواد زائد
+گفتار ۱: همایستایی و کلیه‌ها
+گفتار ۲: تشکیل ادرار و تخلیه آن
+گفتار ۳: تنوع دفع و تنظیم اسمزی در جانداران
+# فصل ۶: از یاخته تا گیاه
+گفتار ۱: ویژگی‌های یاخته گیاهی
+گفتار ۲: سامانه‌های بافتی
+گفتار ۳: ساختار گیاهان
+# فصل ۷: جذب و انتقال مواد در گیاهان
+گفتار ۱: تغذیه گیاهی
+گفتار ۲: جانداران مؤثر در تغذیه گیاهی
+گفتار ۳: انتقال مواد در گیاهان`),
+    B('zist2', 'زیست‌شناسی ۲', 'یازدهم', 'doc', `
+# فصل ۱: تنظیم عصبی
+گفتار ۱: یاخته‌های بافت عصبی
+گفتار ۲: ساختار دستگاه عصبی
+# فصل ۲: حواس
+گفتار ۱: گیرنده‌های حسی
+گفتار ۲: حواس ویژه
+گفتار ۳: گیرنده‌های حسی جانوران
+# فصل ۳: دستگاه حرکتی
+گفتار ۱: استخوان‌ها و اسکلت
+گفتار ۲: ماهیچه و حرکت
+# فصل ۴: تنظیم شیمیایی
+گفتار ۱: ارتباط شیمیایی
+گفتار ۲: غده‌های درون‌ریز
+# فصل ۵: ایمنی
+گفتار ۱: نخستین خط دفاعی: ورود ممنوع
+گفتار ۲: دومین خط دفاعی: واکنش‌های عمومی اما سریع
+گفتار ۳: سومین خط دفاعی: دفاع اختصاصی
+# فصل ۶: تقسیم یاخته
+گفتار ۱: فامتن (کروموزوم)
+گفتار ۲: رشتمان (میتوز) و چرخه یاخته‌ای
+گفتار ۳: کاستمان (میوز) و تولید مثل جنسی
+# فصل ۷: تولید مثل
+گفتار ۱: دستگاه تولید مثل در مرد
+گفتار ۲: دستگاه تولید مثل در زن
+گفتار ۳: رشد و نمو جنین
+گفتار ۴: تولید مثل در جانوران
+# فصل ۸: تولید مثل نهاندانگان
+گفتار ۱: تولید مثل غیرجنسی
+گفتار ۲: تولید مثل جنسی
+گفتار ۳: از یاخته تخم تا گیاه
+# فصل ۹: پاسخ گیاهان به محرک‌ها
+گفتار ۱: تنظیم‌کننده‌های رشد در گیاهان
+گفتار ۲: پاسخ به محیط`),
+    B('zist3', 'زیست‌شناسی ۳', 'دوازدهم', 'doc', `
+# فصل ۱: مولکول‌های اطلاعاتی
+گفتار ۱: نوکلئیک اسیدها
+گفتار ۲: همانندسازی دنا
+گفتار ۳: پروتئین‌ها
+# فصل ۲: جریان اطلاعات در یاخته
+گفتار ۱: رونویسی
+گفتار ۲: به سوی پروتئین
+گفتار ۳: تنظیم بیان ژن
+# فصل ۳: انتقال اطلاعات در نسل‌ها
+گفتار ۱: مفاهیم پایه
+گفتار ۲: انواع صفات
+# فصل ۴: تغییر در اطلاعات وراثتی
+گفتار ۱: تغییر در ماده وراثتی جانداران
+گفتار ۲: تغییر در جمعیت‌ها
+گفتار ۳: تغییر در گونه‌ها
+# فصل ۵: از ماده به انرژی
+گفتار ۱: تأمین انرژی
+گفتار ۲: اکسایش بیشتر
+گفتار ۳: زیستن مستقل از اکسیژن
+# فصل ۶: از انرژی به ماده
+گفتار ۱: فتوسنتز: تبدیل انرژی نور به انرژی شیمیایی
+گفتار ۲: واکنش‌های فتوسنتزی
+گفتار ۳: فتوسنتز در شرایط دشوار
+# فصل ۷: فناوری‌های نوین زیستی
+گفتار ۱: زیست‌فناوری و مهندسی ژنتیک
+گفتار ۲: فناوری مهندسی پروتئین و بافت
+گفتار ۳: کاربردهای زیست‌فناوری
+# فصل ۸: رفتارهای جانوران
+گفتار ۱: اساس رفتار
+گفتار ۲: انتخاب طبیعی و رفتار
+گفتار ۳: ارتباط و زندگی گروهی`)
+  ],
+  fizik: [
+    B('fizik1', 'فیزیک ۱', 'دهم', 'doc', `
+# فصل ۱: فیزیک و اندازه‌گیری
+۱-۱ فیزیک: دانش بنیادی
+۱-۲ مدل‌سازی در فیزیک
+۱-۳ اندازه‌گیری و کمیت‌های فیزیکی
+۱-۴ اندازه‌گیری و دستگاه بین‌المللی یکاها (SI)
+۱-۵ اندازه‌گیری و دقت وسیله‌های اندازه‌گیری
+۱-۶ چگالی
+# فصل ۲: ویژگی‌های فیزیکی مواد
+۲-۱ حالت‌های ماده
+۲-۲ نیروهای بین مولکولی
+۲-۳ فشار در شاره‌ها
+۲-۴ شناوری
+۲-۵ شاره در حرکت و اصل برنولی
+# فصل ۳: کار، انرژی و توان
+۳-۱ انرژی جنبشی
+۳-۲ کار انجام شده توسط نیروی ثابت
+۳-۳ کار و انرژی جنبشی
+۳-۴ کار و انرژی پتانسیل
+۳-۵ پایستگی انرژی مکانیکی
+۳-۶ کار و انرژی درونی
+۳-۷ توان
+# فصل ۴: دما و گرما
+۴-۱ دما و دماسنجی
+۴-۲ انبساط گرمایی
+۴-۳ گرما
+۴-۴ تغییر حالت‌های ماده
+۴-۵ روش‌های انتقال گرما`),
+    B('fizik2', 'فیزیک ۲', 'یازدهم', 'doc', `
+# فصل ۱: الکتریسیته ساکن
+۱-۱ بار الکتریکی
+۱-۲ پایستگی و کوانتیده بودن بار الکتریکی
+۱-۳ قانون کولن
+۱-۴ و ۱-۵ میدان الکتریکی و میدان حاصل از یک ذره باردار
+۱-۶ خطوط میدان الکتریکی
+۱-۷ انرژی پتانسیل الکتریکی
+۱-۸ پتانسیل الکتریکی
+۱-۹ توزیع بار الکتریکی در اجسام رسانا
+۱-۱۰ خازن
+۱-۱۱ انرژی خازن
+# فصل ۲: جریان الکتریکی و مدارهای جریان مستقیم
+۲-۱ جریان الکتریکی
+۲-۲ مقاومت الکتریکی و قانون اهم
+۲-۳ عوامل مؤثر بر مقاومت الکتریکی
+۲-۴ نیروی محرکه الکتریکی و مدارها
+۲-۵ توان در مدارهای الکتریکی
+۲-۶ ترکیب مقاومت‌ها
+# فصل ۳: مغناطیس و القای الکترومغناطیسی
+۳-۱ مغناطیس و قطب‌های مغناطیسی
+۳-۲ میدان مغناطیسی
+۳-۳ نیروی مغناطیسی وارد بر ذره باردار متحرک
+۳-۴ نیروی مغناطیسی وارد بر سیم حامل جریان
+۳-۵ میدان مغناطیسی حاصل از جریان الکتریکی
+۳-۶ ویژگی‌های مغناطیسی مواد
+۳-۷ پدیده القای الکترومغناطیسی
+۳-۸ قانون القای الکترومغناطیسی فاراده
+۳-۹ قانون لنز
+۳-۱۰ القاگرها
+۳-۱۱ جریان متناوب`),
+    B('fizik3', 'فیزیک ۳', 'دوازدهم', 'doc', `
+# فصل ۱: حرکت بر خط راست
+۱-۱ شناخت حرکت
+۱-۲ حرکت با سرعت ثابت
+۱-۳ حرکت با شتاب ثابت
+# فصل ۲: دینامیک
+۲-۱ قوانین حرکت نیوتون
+۲-۲ نیروی اصطکاک
+۲-۳ نیروهای تکمیلی
+۲-۴ نیروی گرانشی
+# فصل ۳: نوسان و امواج
+۳-۱ نوسان دوره‌ای
+۳-۲ حرکت هماهنگ ساده
+۳-۳ انرژی در حرکت هماهنگ ساده
+۳-۴ تشدید
+۳-۵ موج و انواع آن
+۳-۶ مشخصه‌های موج
+۳-۷ بازتاب موج
+۳-۸ شکست موج
+# فصل ۴: آشنایی با فیزیک اتمی و هسته‌ای
+۴-۱ اثر فوتوالکتریک و فوتون
+۴-۲ طیف خطی
+۴-۳ مدل اتمی رادرفورد-بور
+۴-۴ لیزر
+۴-۵ ساختار هسته
+۴-۶ پرتوزایی طبیعی و نیمه‌عمر`)
+  ],
+  shimi: [
+    B('shimi1', 'شیمی ۱', 'دهم', 'doc', `
+# فصل ۱: کیهان زادگاه الفبای هستی
+پیدایش عنصرها و کیهان‌شناسی
+ایزوتوپ‌ها و جرم اتمی
+شمارش ذره‌ها و مفهوم مول
+آرایش الکترونی اتم
+پیوند یونی و پیوند کووالانسی
+# فصل ۲: ردپای گازها در زندگی
+هواکره و ساختار آن
+واکنش‌های شیمیایی گازها
+قوانین گازها و محاسبات حجم
+آلودگی هوا و شیمی سبز
+# فصل ۳: آب، آهنگ زندگی
+مفاهیم اولیه آب و انحلال
+سنجش غلظت محلول‌ها
+نیروهای بین مولکولی و انحلال‌پذیری
+آب سخت و تصفیه آب`),
+    B('shimi2', 'شیمی ۲', 'یازدهم', 'doc', `
+# فصل ۱: قدر هدایای زمینی را بدانیم
+بخش اول: بهره‌برداری از منابع زمین و توسعه پایدار
+بخش دوم: عنصرها و الگوی رفتار آن‌ها
+بخش سوم: استخراج فلزها
+بخش چهارم: نفت خام و هیدروکربن‌ها
+بخش پنجم: پالایش نفت خام و پتروشیمی
+# فصل ۲: در پی غذای سالم
+بخش اول: غذا، ماده و انرژی (گرماشیمی)
+بخش دوم: آنتالپی و تغییرات انرژی در واکنش‌ها
+بخش سوم: سینتیک شیمیایی و سرعت واکنش
+بخش چهارم: ماندگاری مواد غذایی و ردپای غذا
+# فصل ۳: پوشاک، نیازی پایان‌ناپذیر
+بخش اول: الیاف و پلیمرها
+بخش دوم: پلیمرشدن افزایشی
+بخش سوم: گروه‌های عاملی در ترکیب‌های آلی
+بخش چهارم: پلیمرشدن تراکمی`),
+    B('shimi3', 'شیمی ۳', 'دوازدهم', 'doc', `
+# فصل ۱: مولکول‌ها در خدمت تندرستی
+بخش اول: بهداشت و پاک‌کننده‌ها
+بخش دوم: انواع صابون‌ها و پاک‌کننده‌های غیرصابونی
+بخش سوم: اسیدها و بازها و مقیاس pH
+# فصل ۲: آسایش و رفاه در سایه شیمی
+بخش اول: الکتروشیمی و واکنش‌های اکسایش-کاهش
+بخش دوم: سلول‌های گالوانی
+بخش سوم: باتری‌ها و سلول‌های سوختی
+بخش چهارم: خوردگی فلزات و سلول‌های الکترولیتی
+# فصل ۳: شیمی جلوه‌ای از هنر، زیبایی و ماندگاری
+بخش اول: ساختار جامدها و جامدهای بلوری
+بخش دوم: جامدهای کووالانسی
+بخش سوم: جامدهای یونی و انرژی شبکه
+بخش چهارم: جامدهای فلزی و آلیاژها
+# فصل ۴: شیمی، راهی به سوی آینده‌ای روشن‌تر
+بخش اول: انرژی فعال‌سازی و سرعت واکنش
+بخش دوم: کاتالیزگرها و مبدل‌های کاتالیستی
+بخش سوم: صنایع شیمیایی و توسعه پایدار`)
+  ],
+  riazi: [
+    B('riazi1', 'ریاضی ۱', 'دهم', 'doc', `
+# فصل ۱: مجموعه، الگو و دنباله
+درس ۱: مجموعه‌های متناهی و نامتناهی
+درس ۲: متمم یک مجموعه
+درس ۳: الگو و دنباله
+درس ۴: دنباله‌های حسابی و هندسی
+# فصل ۲: مثلثات
+درس ۱: نسبت‌های مثلثاتی
+درس ۲: دایره مثلثاتی
+درس ۳: روابط بین نسبت‌های مثلثاتی
+# فصل ۳: توان‌های گویا و عبارت‌های جبری
+درس ۱: ریشه و توان
+درس ۲: ریشه n‌ام
+درس ۳: توان‌های گویا
+درس ۴: عبارت‌های جبری
+# فصل ۴: معادله‌ها و نامعادله‌ها
+درس ۱: معادله درجه دوم و روش‌های حل آن
+درس ۲: سهمی
+درس ۳: تعیین علامت
+# فصل ۵: تابع
+درس ۱: مفهوم تابع و بازنمایی‌های آن
+درس ۲: دامنه و برد توابع
+درس ۳: انواع تابع
+# فصل ۶: شمارش، بدون شمردن
+درس ۱: شمارش
+درس ۲: جایگشت
+درس ۳: ترکیب
+# فصل ۷: آمار و احتمال
+درس ۱: احتمال یا اندازه‌گیری شانس
+درس ۲: مقدمه‌ای بر علم آمار، جامعه و نمونه
+درس ۳: متغیر و انواع آن`),
+    B('riazi2', 'ریاضی ۲', 'یازدهم', 'doc', `
+# فصل ۱: هندسه تحلیلی و جبر
+درس ۱: هندسه تحلیلی
+درس ۲: معادله درجه دوم و تابع درجه ۲
+درس ۳: معادلات گویا و معادلات رادیکالی
+# فصل ۲: هندسه
+درس ۱: ترسیم‌های هندسی
+درس ۲: استدلال و قضیه تالس
+درس ۳: تشابه مثلث‌ها
+# فصل ۳: تابع
+درس ۱: آشنایی با برخی از انواع توابع
+درس ۲: وارون یک تابع و تابع یک‌به‌یک
+درس ۳: اعمال جبری روی توابع
+# فصل ۴: مثلثات
+درس ۱: واحدهای اندازه‌گیری زاویه
+درس ۲: روابط تکمیلی بین نسبت‌های مثلثاتی
+درس ۳: توابع مثلثاتی
+# فصل ۵: توابع نمایی و لگاریتمی
+درس ۱: تابع نمایی و ویژگی‌های آن
+درس ۲: تابع لگاریتمی و ویژگی‌های آن
+درس ۳: نمودارها و کاربردهای توابع نمایی و لگاریتمی
+# فصل ۶: حد و پیوستگی
+درس ۱: فرایندهای حدی
+درس ۲: محاسبه حد توابع
+درس ۳: پیوستگی
+# فصل ۷: آمار و احتمال
+درس ۱: احتمال شرطی و پیشامدهای مستقل
+درس ۲: آمار توصیفی`),
+    B('riazi3', 'ریاضی ۳ (تجربی)', 'دوازدهم', 'official', `
+# فصل ۱: تابع
+درس ۱: توابع چندجمله‌ای ـ توابع صعودی و نزولی
+درس ۲: ترکیب توابع
+درس ۳: تابع وارون
+# فصل ۲: مثلثات
+درس ۱: تناوب و تانژانت
+درس ۲: معادلات مثلثاتی
+# فصل ۳: حد بی‌نهایت و حد در بی‌نهایت
+درس ۱: حد بی‌نهایت
+درس ۲: حد در بی‌نهایت
+# فصل ۴: مشتق
+درس ۱: آشنایی با مفهوم مشتق
+درس ۲: مشتق‌پذیری و پیوستگی
+درس ۳: آهنگ تغییر
+# فصل ۵: کاربرد مشتق
+درس ۱: اکسترمم‌های تابع
+درس ۲: بهینه‌سازی
+# فصل ۶: هندسه
+درس ۱: تفکر تجسمی و آشنایی با مقاطع مخروطی
+درس ۲: دایره
+# فصل ۷: احتمال
+قانون احتمال کل`)
+  ],
+  zamin: [ B('zamin2', 'زمین‌شناسی', 'یازدهم', 'empty', '') ],
+  farsi: [
+    B('farsi1', 'فارسی ۱', 'دهم', 'empty', ''),
+    B('farsi2', 'فارسی ۲', 'یازدهم', 'empty', ''),
+    B('farsi3', 'فارسی ۳', 'دوازدهم', 'doc', `
+# نیایش
+لطف تو (عطار نیشابوری)
+# فصل ۱: ادبیات تعلیمی
+درس ۱: شکر نعمت
+درس ۲: مست و هشیار
+شعرخوانی: در مکتب حقایق
+# فصل ۲: ادبیات پایداری
+درس ۳: آزادی
+گنج حکمت: خاکریز
+درس ۴: درس آزاد (ادبیات بومی ۱)
+درس ۵: دماوندیه
+روان‌خوانی: جاسوسی که الاغ بود!
+# فصل ۳: ادبیات غنایی
+درس ۶: نی‌نامه
+گنج حکمت: آفتاب جمال حق
+درس ۷: در حقیقت عشق
+شعرخوانی: صبح ستاره‌باران
+# فصل ۴: ادبیات سفر و زندگی
+درس ۸: از پاریز تا پاریس
+گنج حکمت: سه مرکب زندگی
+درس ۹: کویر
+روان‌خوانی: بوی جوی مولیان
+# فصل ۵: ادبیات انقلاب اسلامی
+درس ۱۰: فصل شکوفایی
+گنج حکمت: تیرانا!
+درس ۱۱: آن شب عزیز
+شعرخوانی: شکوه چشمان تو
+# فصل ۶: ادبیات حماسی
+درس ۱۲: گذر سیاوش از آتش
+گنج حکمت: به جوانمردی کوش
+درس ۱۳: خوان هشتم
+شعرخوانی: ای میهن!
+# فصل ۷: ادبیات داستانی
+درس ۱۴: سی مرغ و سیمرغ
+گنج حکمت: کلان‌تر و اولی‌تر
+درس ۱۵: درس آزاد (ادبیات بومی ۲)
+درس ۱۶: کباب غاز
+روان‌خوانی: ارمیا
+# فصل ۸: ادبیات جهان
+درس ۱۷: خنده تو
+گنج حکمت: مسافر
+درس ۱۸: عشق جاودانی
+روان‌خوانی: آخرین درس`)
+  ],
+  din: [
+    B('din1', 'دین و زندگی ۱', 'دهم', 'empty', ''),
+    B('din2', 'دین و زندگی ۲', 'یازدهم', 'empty', ''),
+    B('din3', 'دین و زندگی ۳', 'دوازدهم', 'doc', `
+# بخش اول: تفکر و اندیشه
+درس ۱: هستی‌بخش
+درس ۲: یگانه بی‌همتا
+درس ۳: توحید و سبک زندگی
+درس ۴: فقط برای تو
+درس ۵: قدرت پرواز
+درس ۶: سنت‌های خداوند در زندگی
+# بخش دوم: در مسیر
+درس ۷: بازگشت
+درس ۸: زندگی در دنیای امروز و عمل به احکام الهی
+درس ۹: پایه‌های استوار
+درس ۱۰: تمدن جدید و مسئولیت ما`)
+  ],
+  arabi: [
+    B('arabi1', 'عربی ۱', 'دهم', 'empty', ''),
+    B('arabi2', 'عربی ۲', 'یازدهم', 'empty', ''),
+    B('arabi3', 'عربی، زبان قرآن ۳', 'دوازدهم', 'doc', `
+# درس‌ها
+درس ۱: الدِّینُ وَ التَّدَیُّنُ (حروف مشبهة بالفعل، لا نفی جنس)
+درس ۲: مَکَّةُ الْمُکَرَّمَةُ وَ الْمَدینَةُ الْمُنَوَّرَةُ (حال)
+درس ۳: کُتُبُ الْعُقولِ طَعامُ الْفِکْرِ (استثناء)
+درس ۴: الْفَرَزْدَقُ (مفعول مطلق)`)
+  ],
+  english: [
+    B('english1', 'زبان انگلیسی ۱', 'دهم', 'empty', ''),
+    B('english2', 'زبان انگلیسی ۲', 'یازدهم', 'empty', ''),
+    B('english3', 'زبان انگلیسی ۳ (Vision 3)', 'دوازدهم', 'doc', `
+# Lesson 1: Sense of Appreciation
+Conversation
+Reading: Respect Your Parents
+Vocabulary Development: Collocations
+Grammar: Passive Voice, Tag Questions
+Listening & Speaking
+Writing: Compound Sentences
+# Lesson 2: Look it Up!
+Conversation
+Reading: How to Use a Dictionary
+Vocabulary Development: Word Part Families
+Grammar: Relative Clauses, Conditional Sentences Type II
+Listening & Speaking
+Writing: Paragraph Structure
+# Lesson 3: Renewable Energy
+Conversation
+Reading: Earth for Our Children
+Vocabulary Development: Proverbs
+Grammar: Passive Voice with Modals, Past Perfect
+Listening & Speaking
+Writing: Supporting & Concluding Sentences`)
+  ]
+};
+
+const STATUS_LABEL = {
+  official: 'تطبیق‌شده با PDF رسمی کتاب',
+  doc: 'از سند سرفصل‌های ارسالی؛ با کتاب تطبیق بده',
+  empty: 'خالی؛ فهرست را وارد کن'
+};
+const DEFAULT_ROUTINES = [
+  ['لغات زبان', 'all', 15], ['لغات فارسی', 'all', 10], ['لغات عربی', 'all', 10],
+  ['آرایه ادبی', 'odd', 15], ['دستور زبان', 'even', 15],
+  ['عبارت درست و نادرست زیست', 'all', 15], ['عبارت درست و نادرست شیمی', 'all', 15],
+  ['مسائل شیمی', 'even', 20], ['حفظ شعر', 'odd', 10]
+];
+
+
+const DAYS = ['شنبه','یکشنبه','دوشنبه','سه‌شنبه','چهارشنبه','پنجشنبه','جمعه'];
+const TASKS = ['درسنامه','کتاب درسی','حل تست آموزشی','حل تست تمرینی','حل سوال تشریحی','کلاس آموزشی','مرور جزوه کلاس','مرور کتاب درسی','مرور درسنامه'];
+const GRADES = ['دهم','یازدهم','دوازدهم','فارغ‌التحصیل'];
+const FREQ = { all: 'هر روز', even: 'زوج', odd: 'فرد', none: 'غیرفعال' };
+const fa = n => String(n).replace(/\d/g, d => '۰۱۲۳۴۵۶۷۸۹'[d]);
+const uid = () => Math.random().toString(36).slice(2, 9);
+const subj = id => SUBJECTS.find(s => s.id === id) || SUBJECTS[0];
+const pad = n => String(n).padStart(2, '0');
+
+// ---------- تاریخ شمسی ----------
+const iso = d => d.getFullYear() + '-' + pad(d.getMonth() + 1) + '-' + pad(d.getDate());
+const fromIso = s => { const [y, m, d] = s.split('-').map(Number); return new Date(y, m - 1, d); };
+const addDays = (d, n) => { const x = new Date(d); x.setDate(x.getDate() + n); return x; };
+const pdf = new Intl.DateTimeFormat('en-US-u-ca-persian-nu-latn', { year: 'numeric', month: 'numeric', day: 'numeric' });
+const pparts = d => { const o = {}; pdf.formatToParts(d).forEach(p => { if(p.type !== 'literal') o[p.type] = parseInt(p.value, 10); }); return o; };
+const fullFa = d => new Intl.DateTimeFormat('fa-IR-u-ca-persian', { day: 'numeric', month: 'long', year: 'numeric' }).format(d);
+const monthFa = d => new Intl.DateTimeFormat('fa-IR-u-ca-persian', { month: 'long', year: 'numeric' }).format(d);
+const dayIdx = d => (d.getDay() + 1) % 7; // شنبه = ۰
+const weekStart = d => addDays(d, -dayIdx(d));
+
+// ---------- سرور (Google Apps Script) ----------
+const API_URL = 'https://script.google.com/macros/s/AKfycbz9pvx4Z-CS0-cfGL0WOHPyvEOalSTGrnt4ZRQjiFo6HOHsNCrlFrBqolBcd8KNphzX/exec'; // آدرس Web App را اینجا بگذار
+const LSK = 'fanous-v3';
+const LS = { get(k){ try{ return localStorage.getItem(k); }catch(e){ return null; } }, set(k, v){ try{ localStorage.setItem(k, v); }catch(e){} }, del(k){ try{ localStorage.removeItem(k); }catch(e){} } };
+const ERR = { bad_credentials: 'نام کاربری یا رمز عبور درست نیست.', locked: 'تلاش‌های ناموفق زیاد بود؛ ۱۵ دقیقه بعد دوباره امتحان کن.', unauth: 'نشست تمام شد؛ دوباره وارد شو.',
+  forbidden: 'اجازهٔ این کار را نداری.', username_taken: 'این نام کاربری قبلاً استفاده شده.', weak_password: 'رمز عبور باید حداقل ۸ کاراکتر باشد.',
+  bad_input: 'اطلاعات واردشده کامل یا معتبر نیست (نام کاربری فقط حروف انگلیسی، عدد و _ . - و حداقل ۳ نویسه).', setup_done: 'راه‌اندازی اولیه قبلاً انجام شده.', not_found: 'پیدا نشد.', too_big: 'حجم داده بیش از حد است.' };
+const errMsg = e => ERR[e.message] || (e.message === 'network' ? 'ارتباط با سرور برقرار نشد؛ اینترنت را بررسی کن.' : e.message === 'no_url' ? 'آدرس سرور در فایل تنظیم نشده است.' : 'خطای سرور؛ دوباره امتحان کن.');
+// ---------- state ----------
+const fresh = () => ({
+  user: null, token: null, ready: false, needsSetup: false, bootErr: '',
+  role: 'consultant', view: 'students', studentId: null, day: 0, loggedStudent: null,
+  defaults: { start: '09:00', dur: 90, brk: 15 },
+  curriculum: JSON.parse(JSON.stringify(DEFAULT_CURRICULUM)),
+  students: [], plans: {}, sessions: [], active: null, outbox: [],
+  rep: { mode: 'day', date: iso(new Date()), st: null },
+  beVersion: 0, week: iso(weekStart(new Date())), step: 1, subjStep: null, entry: LS.get(LSK + '-entry'),
+  cl: {}, cls: {}, clGrade: null, logs: {}, clogs: {}, cmsgs: {}, ccontent: undefined, msgs: null, content: null, rank: null, unread: 0, cname: '', rdate: iso(new Date()), rtab: 'daily', crtab: 'daily'
+});
+let S = fresh();
+const defaultRoutines = () => DEFAULT_ROUTINES.map(([title, freq, dur]) => ({ id: uid(), title, freq, dur }));
+const mergeDone = (pl, done) => Object.values(pl.days).flat().forEach(p => { p.done = !!(done && done[p.id]); });
+
+// ---------- همگام‌سازی با شیت ----------
+const synced = {}; let syncTimer = null, syncing = false, syncMsg = '', syncErr = false;
+function markSynced(){ Object.keys(synced).forEach(k => delete synced[k]); const m = sections(); for(const k in m) synced[k] = JSON.stringify(m[k].payload); }
+const isDirty = () => { const m = sections(); return Object.keys(m).some(k => synced[k] !== JSON.stringify(m[k].payload)); };
+function persistLocal(){ if(S.user) LS.set(LSK + '-local-' + S.user.id, JSON.stringify({ active: S.active, outbox: S.outbox })); }
+function restoreLocal(){
+  try{ const o = JSON.parse(LS.get(LSK + '-local-' + S.user.id) || '{}');
+    S.outbox = Array.isArray(o.outbox) ? o.outbox : []; S.active = o.active && S.students.some(s => s.id === o.active.st) ? o.active : null; }catch(e){}
+}
+async function refresh(quiet){
+  if(!S.user || document.getElementById('sheet')) return;
+  await flush(); if(S.outbox.length || isDirty()) return;
+  try{ await loadData(false); render(); if(!quiet) toast('به‌روزرسانی شد'); }catch(e){ if(!quiet) toast(errMsg(e)); }
+}
+document.addEventListener('visibilitychange', () => { if(document.visibilityState === 'visible') refresh(true); });
+window.addEventListener('online', () => flush());
+function pushSession(sess, stId){
+  S.sessions.push(sess);
+  S.outbox.push({ action: 'addSession', payload: S.user.role === 'consultant' ? { studentId: stId, session: sess } : { session: sess } });
+}
+
+// ---------- ورود و خروج ----------
+function startSession(r){
+  S.token = r.token; LS.set(LSK + '-token', r.token); S.user = r.user; S.role = r.user.role; S.beVersion = r.version || 0;
+  S.view = r.user.role === 'student' ? 'mine' : 'students'; S.day = 0;
+}
+function doLogout(){
+  clearTimeout(syncTimer); persistLocal(); LS.del(LSK + '-token');
+  const keep = { rep: S.rep }; S = Object.assign(fresh(), keep, { ready: true });
+  S.needsSetup = false; render();
+}
+async function boot(){
+  S.token = LS.get(LSK + '-token');
+  if(S.token){
+    try{ S.user = await api('me'); S.beVersion = S.user.version || 0; S.role = S.user.role; S.view = S.role === 'student' ? 'mine' : 'students'; await loadData(true); }
+    catch(e){ if(e.message !== 'unauth') S.bootErr = errMsg(e); S.user = e.message === 'unauth' ? null : S.user; }
+  }
+  if(!S.user && !S.bootErr){ try{ S.needsSetup = (await api('status')).needsSetup; }catch(e){ S.bootErr = errMsg(e); } }
+  S.ready = true; render();
+}
+function genPass(){
+  const a = 'abcdefghjkmnpqrstuvwxyzABCDEFGHJKLMNPQRSTUVWXYZ23456789', r = new Uint32Array(10); crypto.getRandomValues(r);
+  return [...r].map(x => a[x % a.length]).join('');
+}
+function addStudentSheet(){
+  openSheet(`<h3>دانش‌آموز جدید</h3>
+    <label class="f">نام و نام خانوادگی</label><input type="text" id="an">
+    <label class="f">پایه</label><select id="ag">${GRADES.map(g => `<option>${g}</option>`).join('')}</select>
+    <label class="f">نام کاربری (انگلیسی، بدون فاصله)</label><input type="text" id="au" dir="ltr" autocapitalize="none" autocomplete="off">
+    <label class="f">رمز عبور (حداقل ۸ کاراکتر)</label><input type="text" id="ap" dir="ltr" value="${genPass()}" autocomplete="off">
+    <button class="btn block" id="aok" style="margin-top:14px">ساخت حساب</button>`, el => {
+    el.querySelector('#aok').onclick = async () => {
+      const p = { name: el.querySelector('#an').value.trim(), grade: el.querySelector('#ag').value, username: el.querySelector('#au').value.trim(), password: el.querySelector('#ap').value };
+      if(!p.name || !p.username) return toast('نام و نام کاربری را وارد کن.');
+      try{
+        const u = await api('createStudent', p); closeSheet();
+        set(() => { S.students.push({ id: u.id, name: u.name, grade: u.grade, username: u.username, routines: defaultRoutines(), res: {}, rdone: {} }); });
+        credsSheet(u.name, u.username, p.password);
+      }catch(e){ toast(errMsg(e)); }
+    };
+  });
+}
+
+function toast(msg){
+  const t = document.createElement('div'); t.className = 'toast'; t.setAttribute('role','status'); t.textContent = msg;
+  document.body.appendChild(t); setTimeout(() => t.remove(), 2800);
+}
+function set(fn){ fn(); save(); render(); }
+const LANTERN = '<svg viewBox="0 0 40 40" aria-hidden="true"><rect x="15" y="2" width="10" height="4" rx="2" fill="#F0A32F"/><path d="M12 8h16l3 6v14l-3 6H12l-3-6V14z" fill="#F0A32F" opacity=".25" stroke="#F0A32F" stroke-width="2"/><ellipse cx="20" cy="22" rx="4.5" ry="6.5" fill="#F0A32F"/><rect x="14" y="36" width="12" height="3" rx="1.5" fill="#F0A32F"/></svg>';
+const stOf = id => S.students.find(s => s.id === id);
+const toMin = t => { const [h, m] = t.split(':').map(Number); return h * 60 + m; };
+const toTime = m => { m = (m + 1440) % 1440; return pad(Math.floor(m / 60)) + ':' + pad(m % 60); };
+const endOf = p => toTime(toMin(p.start) + p.dur);
+const hms = s => { s = Math.max(0, Math.round(s)); return fa(pad(Math.floor(s / 3600)) + ':' + pad(Math.floor(s % 3600 / 60)) + ':' + pad(s % 60)); };
+const hm = s => { const m = Math.round(s / 60); return fa(Math.floor(m / 60)) + ' ساعت و ' + fa(m % 60) + ' دقیقه'; };
+const routineOn = (r, idx) => r.freq === 'all' || (r.freq === 'even' && idx % 2 === 0) || (r.freq === 'odd' && idx % 2 === 1);
+const dateOfIdx = i => iso(addDays(weekStart(new Date()), i));
+
+// ---------- sheets ----------
+function openSheet(html, onMount){
+  closeSheet();
+  const bg = document.createElement('div'); bg.className = 'sheet-bg'; bg.id = 'sheet';
+  bg.innerHTML = `<div class="sheet" role="dialog" aria-modal="true">${html}</div>`;
+  bg.addEventListener('click', e => { if(e.target === bg) closeSheet(); });
+  document.body.appendChild(bg); onMount && onMount(bg.firstChild);
+}
+function closeSheet(){ const s = document.getElementById('sheet'); if(s) s.remove(); }
+function ask(title, initial, cb){
+  openSheet(`<h3>${title}</h3><input type="text" id="askin" value="${(initial||'').replace(/"/g,'&quot;')}">
+  <div class="row" style="margin-top:14px"><button class="btn grow" id="askok">ثبت</button><button class="btn sec" id="askno">انصراف</button></div>`, el => {
+    const i = el.querySelector('#askin'); i.focus(); i.select();
+    el.querySelector('#askno').onclick = closeSheet;
+    const ok = () => { const v = i.value.trim(); if(v){ closeSheet(); cb(v); } };
+    el.querySelector('#askok').onclick = ok; i.onkeydown = e => { if(e.key === 'Enter') ok(); };
+  });
+}
+
+// ---------- انتخاب مبحث ----------
+// ---------- فرم پارت ----------
+// ---------- منابع دانش‌آموز (کتاب / دبیر) ----------
+function resourcesSheet(stId, tab){
+  const st = stOf(stId); st.res = st.res || {}; tab = tab || 'books';
+  const kind = tab === 'books' ? 'کتاب' : 'دبیر';
+  openSheet(`<h3>تنظیم منابع ${st.name}</h3>
+    <div class="seg" role="group"><button data-tab="books" aria-pressed="${tab === 'books'}">کتاب</button><button data-tab="teachers" aria-pressed="${tab === 'teachers'}">دبیر</button></div>
+    ${SUBJECTS.map(s => { const list = (st.res[s.id] && st.res[s.id][tab]) || [];
+      return `<div class="card" style="margin-top:10px;border-right:5px solid ${s.color}"><div class="row"><b class="grow">${s.name}</b>
+      <button class="btn sec sm" data-add="${s.id}">افزودن ${kind} دلخواه</button></div>
+      <div class="tags">${list.length ? list.map((n, i) => `<span class="tag">${n} <button data-rm="${s.id}|${i}" aria-label="حذف ${n}" style="color:var(--rose)">✕</button></span>`).join('') : '<span class="sub" style="margin:0">در حال حاضر ' + kind + 'ی برای نمایش وجود ندارد.</span>'}</div></div>`; }).join('')}
+    <button class="btn block" id="rsdone" style="margin-top:12px">ثبت</button>`, el => {
+    el.querySelectorAll('[data-tab]').forEach(b => b.onclick = () => resourcesSheet(stId, b.dataset.tab));
+    el.querySelectorAll('[data-add]').forEach(b => b.onclick = () => ask(`نام ${kind} (${subj(b.dataset.add).name})`, '', v => { const sid = b.dataset.add; st.res[sid] = st.res[sid] || { books: [], teachers: [] }; st.res[sid][tab].push(v); save(); resourcesSheet(stId, tab); }));
+    el.querySelectorAll('[data-rm]').forEach(b => b.onclick = () => { const [sid, i] = b.dataset.rm.split('|'); st.res[sid][tab].splice(+i, 1); save(); resourcesSheet(stId, tab); });
+    el.querySelector('#rsdone').onclick = () => { closeSheet(); render(); };
+  });
+}
+
+// ---------- روتین روزانه ----------
+function routinesSheet(stId){
+  const st = stOf(stId);
+  openSheet(`<h3>روتین روزانهٔ ${st.name}</h3>
+    <p class="sub">زوج یعنی شنبه، دوشنبه، چهارشنبه و جمعه؛ فرد یعنی یکشنبه، سه‌شنبه و پنجشنبه.</p>
+    ${st.routines.map(r => `<div class="card"><div class="row"><b class="grow">${r.title}</b><button class="btn sm danger" data-rrm="${r.id}" aria-label="حذف ${r.title}">✕</button></div>
+      <div class="row" style="margin-top:8px"><div class="seg grow">${Object.entries(FREQ).map(([k, v]) => `<button data-rf="${r.id}|${k}" aria-pressed="${r.freq === k}">${v}</button>`).join('')}</div>
+      <select data-rd="${r.id}" style="width:86px" aria-label="مدت">${[5,10,15,20,30,45].map(d => `<option value="${d}" ${d === r.dur ? 'selected' : ''}>${fa(d)} د</option>`).join('')}</select></div></div>`).join('')}
+    <div class="row" style="margin-top:8px"><button class="btn sec grow" id="radd">افزودن روتین دلخواه</button><button class="btn grow" id="rok">ثبت تغییرات</button></div>`, el => {
+    el.querySelectorAll('[data-rf]').forEach(b => b.onclick = () => { const [id, k] = b.dataset.rf.split('|'); st.routines.find(r => r.id === id).freq = k; save(); routinesSheet(stId); });
+    el.querySelectorAll('[data-rd]').forEach(s => s.onchange = () => { st.routines.find(r => r.id === s.dataset.rd).dur = +s.value; save(); });
+    el.querySelectorAll('[data-rrm]').forEach(b => b.onclick = () => { st.routines = st.routines.filter(r => r.id !== b.dataset.rrm); save(); routinesSheet(stId); });
+    el.querySelector('#radd').onclick = () => ask('عنوان روتین', '', v => { st.routines.push({ id: uid(), title: v, freq: 'all', dur: 15 }); save(); routinesSheet(stId); });
+    el.querySelector('#rok').onclick = () => { closeSheet(); render(); toast('روتین ذخیره شد'); };
+  });
+}
+
+// ---------- تایمر مطالعه ----------
+const elapsed = a => ((a.usefulMs || 0) + (a.runSince ? Date.now() - a.runSince : 0)) / 1000;
+function startStudy(stId, part, topic){
+  if(S.active) return toast('یک مطالعه در حال انجام است؛ اول آن را پایان بده.');
+  set(() => { S.active = { st: stId, partId: part ? part.id : null, subject: part ? part.subject : 'zist', topic: topic || '', startTs: Date.now(), usefulMs: 0, runSince: Date.now() }; });
+}
+function pauseStudy(){ set(() => { const a = S.active; if(a.runSince){ a.usefulMs += Date.now() - a.runSince; a.runSince = null; } else a.runSince = Date.now(); }); }
+function finishStudy(){
+  const a = S.active; if(!a) return;
+  if(a.runSince){ a.usefulMs += Date.now() - a.runSince; a.runSince = null; }
+  openSheet(`<h3>پایان مطالعه</h3><p class="sub">مطالعهٔ مفید: ${hms(a.usefulMs / 1000)}</p>
+    <div class="row"><div class="grow"><label class="f">سوال تستی</label><input type="text" inputmode="numeric" id="tq" value="0"></div>
+    <div class="grow"><label class="f">سوال تشریحی</label><input type="text" inputmode="numeric" id="dq" value="0"></div></div>
+    <div class="row" style="margin-top:14px"><button class="btn grow" id="fok">ثبت گزارش</button><button class="btn danger" id="fno">دور بینداز</button></div>`, el => {
+    el.querySelector('#fok').onclick = () => {
+      const end = new Date(), start = new Date(a.startTs); closeSheet();
+      set(() => { pushSession({ id: uid(), st: a.st, date: iso(start), subject: a.subject, topic: a.topic, start: pad(start.getHours()) + ':' + pad(start.getMinutes()), end: pad(end.getHours()) + ':' + pad(end.getMinutes()),
+        total: Math.round((end - start) / 1000), useful: Math.round(a.usefulMs / 1000), tests: +el.querySelector('#tq').value || 0, desc: +el.querySelector('#dq').value || 0 }, a.st); S.active = null; });
+      toast('گزارش مطالعه ثبت شد');
+    };
+    el.querySelector('#fno').onclick = () => { closeSheet(); set(() => { S.active = null; }); };
+  });
+}
+function manualSheet(stId){
+  openSheet(`<h3>ثبت دستی مطالعه</h3>
+    <label class="f">درس</label><select id="ms">${SUBJECTS.map(s => `<option value="${s.id}">${s.name}</option>`).join('')}</select>
+    <label class="f">مبحث</label><input type="text" id="mt">
+    <div class="row"><div class="grow"><label class="f">ساعت شروع</label><input type="time" id="mst" value="09:00"></div>
+    <div class="grow"><label class="f">مدت (دقیقه)</label><input type="text" inputmode="numeric" id="mdu" value="60"></div></div>
+    <button class="btn block" id="mok" style="margin-top:14px">ثبت</button>`, el => {
+    el.querySelector('#mok').onclick = () => {
+      const dur = +el.querySelector('#mdu').value; if(!dur) return toast('مدت را وارد کن.');
+      const stt = el.querySelector('#mst').value; closeSheet();
+      set(() => pushSession({ id: uid(), st: stId, date: S.rep.date, subject: el.querySelector('#ms').value, topic: el.querySelector('#mt').value.trim(), start: stt, end: toTime(toMin(stt) + dur), total: dur * 60, useful: dur * 60, tests: 0, desc: 0 }, stId));
+      toast('ثبت شد');
+    };
+  });
+}
+
+// ---------- گزارش کار (مشترک مشاور و دانش‌آموز) ----------
+const lvl = h => h <= 0 ? '' : h < 3 ? 'l1' : h < 6 ? 'l2' : h < 9 ? 'l3' : h < 12 ? 'l4' : 'l5';
+function viewReport(stId, canAdd){
+  const mode = S.rep.mode, sel = fromIso(S.rep.date);
+  const mine = S.sessions.filter(x => x.st === stId);
+  const byDay = {}; mine.forEach(x => byDay[x.date] = (byDay[x.date] || 0) + x.useful);
+  const dayTotal = k => byDay[k] || 0;
+  // ماه جاری شمسی
+  const pm = pparts(sel); let first = new Date(sel); while(pparts(addDays(first, -1)).day < pparts(first).day && pparts(addDays(first, -1)).month === pm.month) first = addDays(first, -1);
+  while(pparts(first).day !== 1) first = addDays(first, -1);
+  const cells = []; for(let d = new Date(first); pparts(d).month === pm.month; d = addDays(d, 1)) cells.push(new Date(d));
+  const lead = dayIdx(first);
+  const cal = `<div class="cal">${['ش','ی','د','س','چ','پ','ج'].map(h => `<span class="h">${h}</span>`).join('')}${Array(lead).fill('<span></span>').join('')}
+    ${cells.map(d => { const k = iso(d); return `<button data-rd="${k}" class="${lvl(dayTotal(k) / 3600)}" aria-pressed="${k === S.rep.date}" aria-label="${fullFa(d)}">${fa(pparts(d).day)}</button>`; }).join('')}</div>
+    <div class="legend"><i class="l1">۰–۳</i><i class="l2">۳–۶</i><i class="l3">۶–۹</i><i class="l4">۹–۱۲</i><i class="l5">+۱۲</i></div>`;
+  // آمار بالا
+  const last7 = Array.from({ length: 7 }, (_, i) => dayTotal(iso(addDays(new Date(), -i))));
+  const record = Math.max(0, ...Object.values(byDay));
+  const todays = mine.filter(x => x.date === iso(new Date())).sort((a, b) => a.start.localeCompare(b.start));
+  const top = `<div class="card"><div class="stats"><div><b>${todays.length ? fa(todays[0].start) : '—'}</b><span>شروع امروز</span></div><div><b>${todays.length ? fa(todays[todays.length - 1].end) : '—'}</b><span>پایان امروز</span></div>
+    <div><b>${hms(record)}</b><span>رکورد مطالعه</span></div></div><div class="row" style="margin-top:10px"><span class="grow sub" style="margin:0">میانگین مطالعات هفتگی</span><b>${hms(last7.reduce((a, b) => a + b, 0) / 7)}</b></div></div>`;
+  let mid = '';
+  if(mode === 'day'){
+    const k = S.rep.date, rows = mine.filter(x => x.date === k).sort((a, b) => a.start.localeCompare(b.start));
+    const tot = rows.reduce((a, x) => a + x.total, 0), use = rows.reduce((a, x) => a + x.useful, 0);
+    mid = `<div class="card">${cal}</div>
+    <div class="card"><h2 style="text-align:center;font-size:16px">${fullFa(sel)}</h2><div class="stats" style="margin-top:8px"><div><b>${rows.length ? fa(rows[0].start) : '۰۰:۰۰:۰۰'}</b><span>شروع</span></div><div><b>${rows.length ? fa(rows[rows.length - 1].end) : '۰۰:۰۰:۰۰'}</b><span>پایان</span></div><div><b>${hms(tot)}</b><span>مطالعه کل</span></div></div></div>
+    <div class="card"><b>گزارش دروس مطالعه‌شده</b>
+    ${rows.length ? `<div style="overflow:auto;margin-top:8px"><table class="wk"><tr><th>درس</th><th>مبحث</th><th>مدت</th><th>مفید</th><th>شروع</th><th>پایان</th><th>تستی</th><th>تشریحی</th></tr>
+      ${rows.map(x => `<tr><td>${subj(x.subject).name}</td><td>${esc(x.topic) || '—'}</td><td>${hms(x.total)}</td><td>${hms(x.useful)}</td><td>${fa(x.start)}</td><td>${fa(x.end)}</td><td>${fa(x.tests)}</td><td>${fa(x.desc)}</td></tr>`).join('')}</table></div>
+      <p class="sub" style="margin-top:8px">مطالعهٔ مفید ${hms(use)} از ${hms(tot)}</p>` : '<div class="empty">هیچ درسی در این روز مطالعه نشده است.</div>'}</div>`;
+  } else if(mode === 'week'){
+    const ws = weekStart(sel), days = Array.from({ length: 7 }, (_, i) => addDays(ws, i)), max = Math.max(1, ...days.map(d => dayTotal(iso(d))));
+    const tot = days.reduce((a, d) => a + dayTotal(iso(d)), 0);
+    mid = `<div class="card"><b>هفتهٔ ${fullFa(ws)}</b>${days.map((d, i) => `<div class="row" style="margin-top:10px"><span style="width:70px;font-size:13px">${DAYS[i]}</span><div class="hbar"><i style="width:${dayTotal(iso(d)) / max * 100}%"></i></div><span style="width:88px;font-size:12px;text-align:left">${hms(dayTotal(iso(d)))}</span></div>`).join('')}
+    <p class="sub" style="margin-top:12px">جمع هفته: ${hm(tot)}</p></div>`;
+  } else {
+    const days = cells.map(d => dayTotal(iso(d))), tot = days.reduce((a, b) => a + b, 0), act = days.filter(x => x > 0).length;
+    mid = `<div class="card"><b>${monthFa(sel)}</b><div style="margin-top:10px">${cal}</div></div>
+    <div class="card stats"><div><b>${hm(tot)}</b><span>جمع ماه</span></div><div><b>${fa(act)} روز</b><span>روز مطالعه</span></div><div><b>${act ? hm(tot / act) : '—'}</b><span>میانگین روز فعال</span></div></div>`;
+  }
+  return `${top}<div class="seg" role="group" style="margin-bottom:12px">${[['day','روز'],['week','هفته'],['month','ماه']].map(([k, v]) => `<button data-rm="${k}" aria-pressed="${mode === k}">${v}</button>`).join('')}</div>${mid}
+    ${canAdd ? '<button class="btn sec block" id="manual">ثبت دستی مطالعه</button>' : ''}`;
+}
+
+// ---------- viewها ----------
+function viewBooks(){
+  const bookHtml = sid => (S.curriculum[sid] || []).map(b => `
+    <div class="card"><div class="row"><div class="grow"><b>${b.name}</b> <span class="chip">${b.grade}</span><br>
+      <span class="chip ${b.status === 'official' ? 'ok' : 'no'}">${STATUS_LABEL[b.status]}</span></div>
+      <button class="btn sec sm" data-addch="${b.id}">افزودن فصل</button></div>
+      ${b.chapters.map((c, ci) => `<details style="margin-top:8px"><summary style="font-weight:600;cursor:pointer">${c.t}</summary>
+        <div style="padding-right:12px">${c.l.map((l, li) => `<div class="row" style="padding:3px 0"><span class="grow">${l}</span><button class="btn sm danger" data-rml="${b.id}|${ci}|${li}" aria-label="حذف">✕</button></div>`).join('')}
+        <div class="row" style="margin-top:6px"><button class="btn sec sm" data-addl="${b.id}|${ci}">افزودن گفتار / درس</button><button class="btn sm danger" data-rmc="${b.id}|${ci}">حذف فصل</button></div></div></details>`).join('')}
+      ${b.status !== 'official' ? `<button class="btn sec sm" style="margin-top:10px" data-verify="${b.id}">با کتاب رسمی تطبیق دادم</button>` : ''}</div>`).join('');
+  return `<h2>کتاب‌ها و سرفصل‌ها</h2><p class="sub">سرفصل‌ها از سندهای دهم تا دوازدهمی که فرستادی آمده. اگر جایی با کتاب فرق داشت همین‌جا اصلاحش کن.</p>
+  ${SUBJECTS.map(s => `<details style="margin-bottom:8px"><summary style="font-weight:700;padding:10px 12px;background:var(--card);border:1px solid var(--line);border-radius:12px;cursor:pointer;border-right:6px solid ${s.color}">${s.name}</summary><div style="padding-top:8px">${bookHtml(s.id)}</div></details>`).join('')}
+  <button class="btn sec block" id="exp" style="margin-top:12px">دریافت پشتیبان (JSON)</button>`;
+}
+// ---------- shell ----------
+setInterval(() => { const t = document.getElementById('tick'); if(t && S.active) t.textContent = hms(elapsed(S.active)); }, 1000);
+
+// ================= ابزارهای پایه =================
+const esc = s => String(s == null ? '' : s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+const curWeekKey = () => iso(weekStart(new Date()));
+const newPlan = () => ({ published: false, days: { 0: [], 1: [], 2: [], 3: [], 4: [], 5: [], 6: [] }, items: [], exam: null });
+const planRO = (stId, week) => (S.plans[stId] && S.plans[stId][week]) || newPlan();
+const planRW = (stId, week) => { S.plans[stId] = S.plans[stId] || {}; return S.plans[stId][week] = S.plans[stId][week] || newPlan(); };
+const stDef = st => Object.assign({ endDay: 5, start: '09:00', dur: 90, brk: 15, showTime: true }, (st && st.defaults) || {});
+const weekDate = (week, i) => addDays(fromIso(week), i);
+const dayShort = (week, i) => new Intl.DateTimeFormat('fa-IR-u-ca-persian', { day: 'numeric', month: 'long' }).format(weekDate(week, i));
+const dayLabel = (week, i) => DAYS[i] + ' ' + dayShort(week, i);
+const shiftWeek = (week, n) => iso(addDays(fromIso(week), n * 7));
+const weekTitle = (week, endDay) => fullFa(weekDate(week, 0)) + ' تا ' + fullFa(weekDate(week, endDay));
+const flatParts = pl => Object.entries(pl.days).flatMap(([d, arr]) => arr.map(p => ({ ...p, d: +d })));
+const partLabel = p => DAYS[p.d] + ' • ' + fa(p.start) + ' تا ' + fa(endOf(p));
+const itemsOfPart = (pl, pid) => pl.items.filter(it => it.partIds.includes(pid));
+const totalCount = (pl, sid) => flatParts(pl).filter(p => p.subject === sid).length;
+const assignedCount = (pl, sid) => flatParts(pl).filter(p => p.subject === sid && pl.items.some(it => it.partIds.includes(p.id))).length;
+const itemSummary = it => it.tasks.join(' + ');
+const leafOf = path => path.split(' › ').pop();
+const locked = pl => { if(pl.published){ toast('برنامهٔ این هفته منتشر شده است؛ برای تغییر آن باید اول بازگشایی شود.'); return true; } return false; };
+function nextStart(parts, d){
+  if(!parts.length) return d.start;
+  const last = parts.reduce((a, b) => toMin(a.start) > toMin(b.start) ? a : b);
+  return toTime(toMin(last.start) + last.dur + d.brk);
+}
+function pathOf(sid, key){
+  const [bi, ci, li] = key.split('|').map(Number), b = S.curriculum[sid][bi], c = b.chapters[ci];
+  return li < 0 ? b.name + ' › ' + c.t : b.name + ' › ' + c.t + ' › ' + c.l[li];
+}
+function treeChecks(sid, checked){
+  const books = S.curriculum[sid] || [];
+  if(!books.length) return '<div class="empty">برای این درس هنوز فهرستی نیست؛ از تب «کتاب‌ها» اضافه کن یا عنوان دلخواه بنویس.</div>';
+  return books.map((b, bi) => `<details class="tree"><summary>${esc(b.name)} <span class="chip" style="margin-right:6px">${esc(b.grade)}</span></summary><div class="lvl">
+    ${b.chapters.map((c, ci) => `<div class="row" style="align-items:flex-start"><input type="checkbox" class="ck" data-k="${bi}|${ci}|-1" ${checked.includes(pathOf(sid, bi + '|' + ci + '|-1')) ? 'checked' : ''} aria-label="کل ${esc(c.t)}">
+      <details class="grow"><summary>${esc(c.t)}</summary><div class="lvl">${c.l.map((l, li) => `<label class="leaf row"><input type="checkbox" class="ck" data-k="${bi}|${ci}|${li}" ${checked.includes(pathOf(sid, bi + '|' + ci + '|' + li)) ? 'checked' : ''}> <span>${esc(l)}</span></label>`).join('')}</div></details></div>`).join('')}</div></details>`).join('');
+}
+const checkedPaths = (el, sid) => [...el.querySelectorAll('.ck:checked')].map(c => pathOf(sid, c.dataset.k));
+
+// ================= مرحله ۱: تنظیم ساعت =================
+function partSheet(stId, partId){
+  const st = stOf(stId), pl0 = planRO(stId, S.week), d = stDef(st);
+  if(locked(pl0)) return;
+  const parts = pl0.days[S.day] || [];
+  const ex = parts.find(p => p.id === partId);
+  const p = ex ? { ...ex } : { id: uid(), start: nextStart(parts, d), dur: d.dur, subject: parts.length ? parts[parts.length - 1].subject : SUBJECTS[0].id };
+  const draw = () => openSheet(`<h3>${ex ? 'ویرایش پارت' : 'پارت جدید'} · ${dayLabel(S.week, S.day)}</h3>
+    <label class="f">درس</label><div class="opts" id="subs">${SUBJECTS.map(s => `<button class="opt" data-s="${s.id}" aria-pressed="${p.subject === s.id}">${s.name}</button>`).join('')}</div>
+    <div class="row"><div class="grow"><label class="f">ساعت شروع</label><input type="time" id="st" value="${p.start}"></div>
+    <div class="grow"><label class="f">مدت (دقیقه)</label><select id="du">${[30, 45, 60, 75, 90, 105, 120, 150, 180].map(x => `<option value="${x}" ${x === p.dur ? 'selected' : ''}>${fa(x)}</option>`).join('')}</select></div></div>
+    <div class="row" style="margin-top:16px"><button class="btn grow" id="ok">ذخیره پارت</button>${ex ? '<button class="btn danger" id="del">حذف</button>' : ''}</div>`, el => {
+    const keep = () => { p.start = el.querySelector('#st').value || p.start; p.dur = +el.querySelector('#du').value; };
+    el.querySelectorAll('#subs .opt').forEach(b => b.onclick = () => { keep(); p.subject = b.dataset.s; draw(); });
+    el.querySelector('#ok').onclick = () => {
+      keep();
+      const clash = parts.find(o => o.id !== p.id && toMin(o.start) < toMin(p.start) + p.dur && toMin(p.start) < toMin(o.start) + o.dur);
+      if(clash && !confirm('این پارت با یکی از پارت‌های همین روز هم‌پوشانی دارد. ذخیره شود؟')) return;
+      closeSheet();
+      set(() => {
+        const pl = planRW(stId, S.week), arr = pl.days[S.day], i = arr.findIndex(x => x.id === p.id);
+        if(i >= 0){ const was = arr[i].subject; arr[i] = { id: p.id, start: p.start, dur: p.dur, subject: p.subject }; if(was !== p.subject) pl.items.forEach(it => { it.partIds = it.partIds.filter(x => x !== p.id); }); }
+        else arr.push({ id: p.id, start: p.start, dur: p.dur, subject: p.subject });
+        arr.sort((a, b) => toMin(a.start) - toMin(b.start));
+      });
+      toast('پارت ذخیره شد');
+    };
+    const del = el.querySelector('#del');
+    if(del) del.onclick = () => { closeSheet(); set(() => { const pl = planRW(stId, S.week); pl.days[S.day] = pl.days[S.day].filter(x => x.id !== p.id); pl.items.forEach(it => { it.partIds = it.partIds.filter(x => x !== p.id); }); }); toast('پارت حذف شد'); };
+  });
+  draw();
+}
+function viewStep1(st, pl, d){
+  if(S.day > d.endDay) S.day = 0;
+  const tabs = Array.from({ length: d.endDay + 1 }, (_, i) => `<button data-day="${i}" aria-pressed="${S.day === i}">${DAYS[i]}<small>${dayShort(S.week, i)} · ${fa(pl.days[i].length)} پارت</small></button>`).join('');
+  const cards = pl.days[S.day].map(p => { const s = subj(p.subject), its = itemsOfPart(pl, p.id);
+    return `<button class="part block" style="--c:${s.color};width:100%;text-align:right" data-pe="${p.id}"><span class="time">${fa(p.start)} تا ${fa(endOf(p))}</span>
+    <div class="ptitle">${s.name}</div>${its.length ? `<div class="tags">${its.map(it => `<span class="tag">${esc(it.title)}</span>`).join('')}</div>` : ''}</button>`; }).join('');
+  return `<h2 style="font-size:16px">انتخاب روز</h2><div class="days">${tabs}</div>
+    <div class="tl">${cards || '<div class="empty">این روز پارتی ندارد.</div>'}</div>
+    <button class="btn sec block" id="addp">+ افزودن پارت جدید</button>`;
+}
+
+// ================= مرحله ۲: تنظیم پیشروی =================
+function addTopicsSheet(stId, sid){
+  const s = subj(sid); let mode = 'single';
+  openSheet(`<h3>افزودن مبحث ${s.name}</h3>
+    <div class="seg" role="group"><button data-m="single" aria-pressed="true">تکی</button><button data-m="combo" aria-pressed="false">تجمیعی</button></div>
+    <p class="sub" id="mh" style="margin-top:8px">هر مبحث تیک‌خورده یک مورد جدا می‌شود. کادر کنار هر فصل یعنی کل آن فصل.</p>
+    <div class="tree">${treeChecks(sid, [])}</div>
+    <label class="f">یا عنوان دلخواه (مثلاً «جلسهٔ اول کلاس دکتر فرهمندنیا»)</label>
+    <div class="row"><input type="text" id="ct"><button class="btn sec sm" id="cadd">افزودن</button></div>
+    <button class="btn block" id="tok" style="margin-top:14px">ثبت مباحث انتخاب‌شده</button>`, el => {
+    el.querySelectorAll('[data-m]').forEach(b => b.onclick = () => { mode = b.dataset.m; el.querySelectorAll('[data-m]').forEach(x => x.setAttribute('aria-pressed', x === b));
+      el.querySelector('#mh').textContent = mode === 'single' ? 'هر مبحث تیک‌خورده یک مورد جدا می‌شود. کادر کنار هر فصل یعنی کل آن فصل.' : 'همهٔ مباحث تیک‌خورده در یک مورد تجمیعی قرار می‌گیرند.'; });
+    el.querySelector('#cadd').onclick = () => { const v = el.querySelector('#ct').value.trim(); if(!v) return;
+      set(() => { planRW(stId, S.week).items.push({ id: uid(), subject: sid, kind: 'custom', title: v, topics: [], tasks: [], customTasks: [], partIds: [], copy: false, exam: null }); }); el.querySelector('#ct').value = ''; toast('عنوان دلخواه اضافه شد'); };
+    el.querySelector('#tok').onclick = () => {
+      const paths = checkedPaths(el, sid); if(!paths.length) return toast('حداقل یک مبحث را تیک بزن.');
+      closeSheet();
+      set(() => { const pl = planRW(stId, S.week);
+        if(mode === 'single') paths.forEach(p => pl.items.push({ id: uid(), subject: sid, kind: 'single', title: leafOf(p), topics: [p], tasks: [], customTasks: [], partIds: [], copy: false, exam: null }));
+        else pl.items.push({ id: uid(), subject: sid, kind: 'combo', title: 'تجمیعی: ' + paths.map(leafOf).join(' + ').slice(0, 200), topics: paths, tasks: [], customTasks: [], partIds: [], copy: false, exam: null }); });
+      toast('اضافه شد');
+    };
+  });
+}
+function partsPickSheet(stId, itemId){
+  const pl = planRO(stId, S.week), it = pl.items.find(x => x.id === itemId); if(!it) return;
+  const parts = flatParts(pl).filter(p => p.subject === it.subject), taken = new Set(pl.items.filter(x => x.id !== it.id).flatMap(x => x.partIds));
+  openSheet(`<h3>انتخاب پارت‌های «${esc(it.title)}»</h3><p class="sub">برای این مورد، یک یا چند پارت ${subj(it.subject).name} را انتخاب کن.</p>
+    ${parts.length ? parts.map(p => `<label class="card row pk" style="${taken.has(p.id) ? 'opacity:.5' : ''}"><input type="checkbox" data-pid="${p.id}" ${it.partIds.includes(p.id) ? 'checked' : ''} ${taken.has(p.id) ? 'disabled' : ''} style="width:20px;height:20px">
+      <span class="grow">${partLabel(p)}</span>${taken.has(p.id) ? '<span class="chip">برای مورد دیگر</span>' : ''}</label>`).join('') : '<div class="empty">برای این درس در مرحلهٔ «تنظیم ساعت» پارتی نساخته‌ای.</div>'}
+    <button class="btn block" id="pok" style="margin-top:8px">تایید</button>`, el => {
+    el.querySelector('#pok').onclick = () => { const ids = [...el.querySelectorAll('[data-pid]:checked')].map(c => c.dataset.pid); closeSheet(); set(() => { planRW(stId, S.week).items.find(x => x.id === itemId).partIds = ids; }); };
+  });
+}
+function examTopicSheet(stId, itemId){
+  const pl = planRO(stId, S.week), it = pl.items.find(x => x.id === itemId); if(!it) return;
+  const cur = it.exam && it.exam.mode === 'topics' ? it.exam.topics : [];
+  openSheet(`<h3>تعیین مبحث آزمون</h3><p class="sub">این مورد در برنامه‌ی دانش‌آموز می‌ماند؛ اما تا مبحث آزمون تعیین نشود در آزمون شخصی او لحاظ نمی‌شود.</p>
+    <div class="tree">${treeChecks(it.subject, cur)}</div>
+    <div class="row" style="margin-top:12px"><button class="btn grow" id="xok">ثبت مباحث آزمون</button><button class="btn sec" id="xno">بدون افزودن به آزمون</button></div>`, el => {
+    el.querySelector('#xok').onclick = () => { const t = checkedPaths(el, it.subject); if(!t.length) return toast('مبحثی تیک نخورده است.'); closeSheet(); set(() => { planRW(stId, S.week).items.find(x => x.id === itemId).exam = { mode: 'topics', topics: t }; }); };
+    el.querySelector('#xno').onclick = () => { closeSheet(); set(() => { planRW(stId, S.week).items.find(x => x.id === itemId).exam = { mode: 'none' }; }); };
+  });
+}
+function historySheet(stId, sid){
+  const weeks = Object.keys(S.plans[stId] || {}).filter(w => w !== S.week).sort().reverse(), rows = [];
+  weeks.forEach(w => S.plans[stId][w].items.filter(it => it.subject === sid).forEach(it => rows.push({ w, it })));
+  openSheet(`<h3>تاریخچهٔ پیشروی ${subj(sid).name}</h3>${rows.length ? rows.map((r, i) => `<div class="card"><div class="sub" style="margin:0">${fullFa(fromIso(r.w))}${S.plans[stId][r.w].published ? ' · منتشرشده' : ''}</div>
+    <div class="row"><b class="grow">${esc(r.it.title)}</b><button class="btn sec sm" data-hadd="${i}">افزودن به این هفته</button></div></div>`).join('') : '<div class="empty">هنوز تاریخچه‌ای نداری.</div>'}`, el => {
+    el.querySelectorAll('[data-hadd]').forEach(b => b.onclick = () => { const r = rows[+b.dataset.hadd]; closeSheet();
+      set(() => planRW(stId, S.week).items.push({ ...JSON.parse(JSON.stringify(r.it)), id: uid(), partIds: [], tasks: [], exam: null, copy: false })); toast('اضافه شد'); });
+  });
+}
+function viewStep2(st, pl){
+  if(!S.subjStep){
+    const subs = SUBJECTS.filter(s => totalCount(pl, s.id) > 0);
+    return `<h2 style="font-size:16px">تنظیم پیشروی برنامه</h2><p class="sub">برای هر درس، مباحث و کارهای هفته را تعیین کن و به پارت‌ها بچسبان.</p>
+      ${subs.length ? subs.map(s => `<button class="card row block scard" style="width:100%;text-align:right;--c:${s.color}" data-subj="${s.id}"><span class="badge">${fa(assignedCount(pl, s.id))}/${fa(totalCount(pl, s.id))}</span><b class="grow">${s.name}</b></button>`).join('')
+        : '<div class="empty">اول در مرحلهٔ «تنظیم ساعت» پارت بساز.</div>'}`;
+  }
+  const sid = S.subjStep, s = subj(sid), its = pl.items.filter(it => it.subject === sid);
+  const cards = its.map(it => {
+    const parts = flatParts(pl).filter(p => it.partIds.includes(p.id)), all = TASKS.concat(it.customTasks || []);
+    const examChip = !it.exam ? 'مبحث آزمون تعیین نشده' : it.exam.mode === 'none' ? 'بدون آزمون' : 'آزمون: ' + fa(it.exam.topics.length) + ' مبحث';
+    const sub = it.kind === 'single' && it.topics[0] ? it.topics[0].split(' › ').slice(0, -1).join(' › ') : it.kind === 'combo' ? fa(it.topics.length) + ' مبحث' : '';
+    return `<div class="card icard" style="border-right:5px solid ${s.color}"><div class="row"><div class="grow"><b>${esc(it.title)}</b>${sub ? `<div class="sub" style="margin:0">${esc(sub)}</div>` : ''}</div>
+      <button class="btn sm danger" data-idel="${it.id}" aria-label="حذف ${esc(it.title)}">🗑</button></div>
+      <div class="tags">${it.kind === 'custom' ? '<span class="chip">دستی</span>' : it.kind === 'combo' ? '<span class="chip">تجمیعی</span>' : ''}${it.copy ? '<span class="chip ok">نسخهٔ تکثیرشده</span>' : ''}</div>
+      <div class="row" style="margin-top:8px;flex-wrap:wrap"><button class="btn sec sm" data-ipick="${it.id}">${parts.length ? fa(parts.length) + ' پارت' : 'انتخاب پارت'}</button><button class="btn sec sm" data-idup="${it.id}">تکثیر</button>
+        <button class="chipbtn ${it.exam ? 'ok' : ''}" data-iex="${it.id}">${examChip}</button></div>
+      ${parts.length ? `<div class="tags">${parts.map(p => `<span class="chip ok">${partLabel(p)}</span>`).join('')}</div>` : ''}
+      <div class="opts" style="margin-top:10px">${all.map((t, ti) => { const k = it.tasks.indexOf(t); return `<button class="opt" data-itask="${it.id}|${ti}" aria-pressed="${k >= 0}">${esc(t)}${k >= 0 ? ` <b class="num">${fa(k + 1)}</b>` : ''}</button>`; }).join('')}
+        <button class="opt dashed" data-inew="${it.id}">+ کار جدید</button></div>
+      ${it.tasks.length ? `<div class="sum">${esc(itemSummary(it))}</div>` : ''}</div>`; }).join('');
+  return `<div class="row"><button class="btn sec sm" id="subback">‹ درس‌ها</button><h2 class="grow" style="font-size:16px">اصلاح پیشروی ${s.name}</h2><span class="badge" style="--c:${s.color}">${fa(assignedCount(pl, sid))}/${fa(totalCount(pl, sid))}</span></div>
+    <div class="row" style="margin:12px 0"><button class="btn sec sm" id="hist">تاریخچه</button><button class="btn grow" id="addtop">+ افزودن مبحث</button></div>
+    ${cards || '<div class="empty">هنوز مبحثی برای این درس اضافه نکرده‌ای.</div>'}`;
+}
+
+// ================= مرحله ۳: پیش‌نمایش =================
+const totalQ = ex => Object.values(ex.counts || {}).reduce((a, b) => a + (+b || 0), 0);
+function planWarnings(pl){
+  const w = [], parts = flatParts(pl);
+  const empty = parts.filter(p => !itemsOfPart(pl, p.id).length).length; if(empty) w.push(fa(empty) + ' پارت هنوز مبحثی ندارد.');
+  const nop = pl.items.filter(it => !it.partIds.length).length; if(nop) w.push(fa(nop) + ' مورد به هیچ پارتی وصل نشده و در برنامه دیده نمی‌شود.');
+  const not = pl.items.filter(it => it.partIds.length && !it.tasks.length).length; if(not) w.push(fa(not) + ' مورد بدون کار (درسنامه، تست و…) است.');
+  return w;
+}
+function planPreviewHtml(st, week, pl){
+  const d = stDef(st), days = Array.from({ length: d.endDay + 1 }, (_, i) => i).filter(i => pl.days[i].length);
+  if(!days.length) return '<div class="empty">هنوز پارتی ساخته نشده.</div>';
+  const body = days.map(i => `<div class="card" style="overflow:auto"><b>${dayLabel(week, i)}</b><table class="wk" style="margin-top:8px"><tr>${d.showTime ? '<th>ساعت</th>' : ''}<th>درس</th><th>مبحث</th><th>مسیر مطالعه</th></tr>
+    ${pl.days[i].map(p => { const its = itemsOfPart(pl, p.id), s = subj(p.subject);
+      return `<tr>${d.showTime ? `<td>${fa(p.start)}–${fa(endOf(p))}</td>` : ''}<td style="color:${s.color};font-weight:700">${s.name}</td><td>${its.map(it => esc(it.title)).join('<br>') || '—'}</td><td>${its.map(it => esc(itemSummary(it)) || '—').join('<br>') || '—'}</td></tr>`; }).join('')}</table></div>`).join('');
+  const ex = pl.exam && pl.exam.registered ? `<div class="card"><b>آزمون هفته</b><p class="sub" style="margin:4px 0 0">${dayLabel(week, pl.exam.day)} · ساعت ${fa(pl.exam.time)} · ${fa(totalQ(pl.exam))} سوال</p></div>` : '';
+  const rt = (st.routines || []).filter(r => r.freq !== 'none');
+  return body + ex + (rt.length ? `<div class="card"><b>روتین‌های روزانه</b><div class="tags">${rt.map(r => `<span class="tag">${esc(r.title)} · ${FREQ[r.freq]} · ${fa(r.dur)} د</span>`).join('')}</div></div>` : '');
+}
+// ================= آرشیو، کپی، پیش‌فرض =================
+function copyWeek(stId, src){
+  const from = planRO(stId, src), cur = planRO(stId, S.week);
+  if(locked(cur)) return;
+  if(flatParts(cur).length && !confirm('برنامهٔ فعلی این هفته با برنامهٔ انتخابی جایگزین شود؟')) return;
+  const map = {}, pl = newPlan();
+  for(let i = 0; i < 7; i++) pl.days[i] = from.days[i].map(p => { const id = uid(); map[p.id] = id; return { id, start: p.start, dur: p.dur, subject: p.subject }; });
+  pl.items = from.items.map(it => ({ ...JSON.parse(JSON.stringify(it)), id: uid(), partIds: it.partIds.map(x => map[x]).filter(Boolean) }));
+  if(from.exam) pl.exam = { ...JSON.parse(JSON.stringify(from.exam)), registered: false };
+  set(() => { S.plans[stId][S.week] = pl; }); toast('برنامه کپی شد');
+}
+function archiveSheet(stId, pickMode){
+  const st = stOf(stId), weeks = Object.keys(S.plans[stId] || {}).filter(w => flatParts(S.plans[stId][w]).length && w !== S.week).sort().reverse();
+  openSheet(`<h3>${pickMode ? 'کپی از هفتهٔ دیگر' : 'آرشیو برنامه‌ها'}</h3>${weeks.length ? weeks.map(w => { const pl = S.plans[stId][w];
+    return `<div class="card"><div class="row"><b class="grow">${weekTitle(w, stDef(st).endDay)}</b><span class="chip ${pl.published ? 'ok' : ''}">${pl.published ? 'منتشرشده' : 'پیش‌نویس'}</span></div>
+    <div class="sub" style="margin:4px 0 8px">${fa(flatParts(pl).length)} پارت · ${fa(pl.items.length)} مبحث</div>
+    <div class="row"><button class="btn sec sm grow" data-aview="${w}">مشاهده</button><button class="btn sm grow" data-acopy="${w}">کپی به هفتهٔ انتخاب‌شده</button></div></div>`; }).join('') : '<div class="empty">هنوز برنامهٔ قبلی در آرشیو نیست.</div>'}`, el => {
+    el.querySelectorAll('[data-aview]').forEach(b => b.onclick = () => openSheet(`<h3>${weekTitle(b.dataset.aview, stDef(st).endDay)}</h3>${planPreviewHtml(st, b.dataset.aview, S.plans[stId][b.dataset.aview])}<button class="btn block" id="vok">بستن</button>`, e2 => { e2.querySelector('#vok').onclick = () => archiveSheet(stId, pickMode); }));
+    el.querySelectorAll('[data-acopy]').forEach(b => b.onclick = () => { closeSheet(); copyWeek(stId, b.dataset.acopy); });
+  });
+}
+function copyDaySheet(stId){
+  const st = stOf(stId), d = stDef(st);
+  openSheet(`<h3>کپی ${DAYS[S.day]} به روزهای دیگر</h3><p class="sub">فقط پارت‌های زمانی کپی می‌شوند، نه مباحث.</p>
+    <div class="opts">${Array.from({ length: d.endDay + 1 }, (_, i) => i === S.day ? '' : `<button class="opt" data-to="${i}" aria-pressed="false">${DAYS[i]}</button>`).join('')}</div>
+    <button class="btn block" id="cpok" style="margin-top:14px">کپی کن</button><button class="btn sec block" id="cpw" style="margin-top:8px">کپی از هفتهٔ دیگر…</button>`, el => {
+    el.querySelectorAll('[data-to]').forEach(b => b.onclick = () => b.setAttribute('aria-pressed', b.getAttribute('aria-pressed') !== 'true'));
+    el.querySelector('#cpw').onclick = () => archiveSheet(stId, true);
+    el.querySelector('#cpok').onclick = () => { const to = [...el.querySelectorAll('[data-to][aria-pressed=true]')].map(b => +b.dataset.to); if(!to.length) return toast('روزی انتخاب نشده.'); if(locked(planRO(stId, S.week))) return; closeSheet();
+      set(() => { const pl = planRW(stId, S.week); to.forEach(i => { const old = pl.days[i].map(p => p.id); pl.items.forEach(it => { it.partIds = it.partIds.filter(x => !old.includes(x)); }); pl.days[i] = pl.days[S.day].map(p => ({ id: uid(), start: p.start, dur: p.dur, subject: p.subject })); }); }); toast('کپی شد'); };
+  });
+}
+function defaultsSheet(stId){
+  const st = stOf(stId), d = stDef(st);
+  openSheet(`<h3>پیش‌فرض‌های برنامه‌ریزی</h3>
+    <label class="f">روز پایانی برنامه</label><div class="seg" id="ed"><button data-e="5" aria-pressed="${d.endDay === 5}">پنجشنبه</button><button data-e="6" aria-pressed="${d.endDay === 6}">جمعه</button></div>
+    <label class="f">ساعت شروع روز</label><input type="time" id="ds" value="${d.start}">
+    <label class="f">مدت هر بازه (دقیقه)</label><div class="opts" id="dd">${[30, 45, 60, 75, 90, 105, 120].map(x => `<button class="opt" data-v="${x}" aria-pressed="${d.dur === x}">${fa(x)}</button>`).join('')}</div>
+    <label class="f">استراحت بین بازه‌ها (دقیقه)</label><div class="opts" id="db">${[10, 15, 20, 30, 40, 60].map(x => `<button class="opt" data-v="${x}" aria-pressed="${d.brk === x}">${fa(x)}</button>`).join('')}</div>
+    <label class="row" style="margin-top:14px"><input type="checkbox" id="dt" ${d.showTime ? 'checked' : ''} style="width:20px;height:20px"> <span>نمایش زمان در برنامه</span></label>
+    <button class="btn block" id="dok" style="margin-top:14px">ثبت تغییرات</button>`, el => {
+    const one = (sel, attr) => el.querySelectorAll(sel + ' button').forEach(b => b.onclick = () => el.querySelectorAll(sel + ' button').forEach(x => x.setAttribute('aria-pressed', x === b)));
+    one('#ed'); one('#dd'); one('#db');
+    const val = (sel, a) => +(el.querySelector(sel + ' [aria-pressed=true]') || {}).dataset[a];
+    el.querySelector('#dok').onclick = () => { const nd = { endDay: val('#ed', 'e') || 5, start: el.querySelector('#ds').value || '09:00', dur: val('#dd', 'v') || 90, brk: val('#db', 'v') || 15, showTime: el.querySelector('#dt').checked };
+      closeSheet(); set(() => { stOf(stId).defaults = nd; }); toast('پیش‌فرض‌ها ذخیره شد'); };
+  });
+}
+
+// ================= قاب اصلی برنامه‌ریز =================
+function stepper(){
+  return `<div class="steps">${['تنظیم ساعت', 'تنظیم پیشروی', 'پیش‌نمایش'].map((t, i) => `<button data-step="${i + 1}" ${S.step === i + 1 ? 'aria-current="step"' : ''}><i>${S.step > i + 1 ? '✓' : fa(i + 1)}</i>${t}</button>`).join('')}</div>`;
+}
+function viewPlanner(){
+  const st = stOf(S.studentId); if(!st) return '<div class="empty">دانش‌آموز پیدا نشد.</div>';
+  const pl = planRO(st.id, S.week), d = stDef(st);
+  const tb = [['copy', '📄', 'کپی'], ['reset', '↺', 'ریست'], ['routines', '🗂️', 'روتین'], ['res', '📁', 'منابع'], ['archive', '🗃️', 'آرشیو'], ['dflt', '⚙️', 'پیش‌فرض']]
+    .map(([k, i, l]) => `<button class="tbb" data-tb="${k}"><span aria-hidden="true">${i}</span>${l}</button>`).join('');
+  let body = S.step === 1 ? viewStep1(st, pl, d) : S.step === 2 ? viewStep2(st, pl) : viewStep3(st, pl);
+  let foot;
+  if(S.step === 3) foot = pl.published ? `<button class="btn block" id="unpub">بازگشایی برای ویرایش</button>` : `<div class="row"><button class="btn sec grow" id="s2">بازگشت</button><button class="btn grow" id="pub">تایید نهایی و انتشار</button></div>`;
+  else foot = `<div class="row"><button class="btn sec grow" id="s3">پیش‌نمایش</button><button class="btn grow" id="next">مرحلهٔ بعد</button></div>`;
+  return `<div class="row"><div class="grow"><h2>${esc(st.name)}</h2><p class="sub" style="margin:0">${esc(st.grade)} · ${esc(st.username || '')}</p></div><button class="btn sec sm" id="back">بازگشت</button></div>
+    <div class="row" style="margin:10px 0"><button class="btn sec sm" data-wk="-1" aria-label="هفتهٔ قبل">›</button><b class="grow" style="text-align:center;font-size:14px">${weekTitle(S.week, d.endDay)}</b><button class="btn sec sm" data-wk="1" aria-label="هفتهٔ بعد">‹</button></div>
+    ${pl.published ? '<div class="warn">برنامهٔ این هفته منتشر شده است؛ برای تغییر آن باید اول بازگشایی شود.</div>' : ''}
+    <div class="tbrow">${tb}</div>${stepper()}<div style="margin:14px 0">${body}</div>${foot}
+    <details class="card" style="margin-top:16px"><summary style="cursor:pointer;font-weight:600">مدیریت حساب دانش‌آموز</summary><div class="row" style="margin-top:10px"><button class="btn sec sm grow" id="rpw">رمز جدید</button><button class="btn danger sm grow" id="delst">حذف دانش‌آموز</button></div></details>`;
+}
+
+// ================= طراحی آزمون =================
+const EX_COUNTS = { zist: 45, fizik: 30, shimi: 35, riazi: 30, zamin: 15, farsi: 0, din: 0, arabi: 0, english: 0 };
+const LEVELS = { easy: 'آسان', standard: 'استاندارد', hard: 'سخت' };
+const defaultExam = st => ({ day: Math.min(stDef(st).endDay, 6), time: '08:00', coeff: 1, level: 'standard', counts: { ...EX_COUNTS }, sel: {}, registered: false });
+const examTopics = (pl, sid) => [...new Set(pl.items.filter(it => it.subject === sid && it.exam && it.exam.mode === 'topics').flatMap(it => it.exam.topics))];
+function examSettingsSheet(stId){
+  const st = stOf(stId), ex = JSON.parse(JSON.stringify(planRO(stId, S.week).exam || defaultExam(st)));
+  openSheet(`<h3>پیش‌فرض‌های آزمون</h3>
+    <label class="f">روز برگزاری</label><select id="xd">${Array.from({ length: 7 }, (_, i) => `<option value="${i}" ${ex.day === i ? 'selected' : ''}>${dayLabel(S.week, i)}</option>`).join('')}</select>
+    <label class="f">ساعت</label><input type="time" id="xt" value="${ex.time}">
+    <label class="f">ضریب زمانی</label><div class="opts" id="xc">${[0.8, 1, 1.2, 1.5, 1.8, 2].map(c => `<button class="opt" data-c="${c}" aria-pressed="${ex.coeff === c}">${fa(c)}</button>`).join('')}</div>
+    <label class="f">سطح آزمون</label><div class="opts" id="xl">${Object.entries(LEVELS).map(([k, v]) => `<button class="opt" data-l="${k}" aria-pressed="${ex.level === k}">${v}</button>`).join('')}</div>
+    <label class="f">تعداد سوال هر درس</label>${SUBJECTS.map(s => `<div class="row" style="margin-bottom:6px"><span class="grow">${s.name}</span><input type="text" inputmode="numeric" data-n="${s.id}" value="${ex.counts[s.id] || 0}" style="width:80px;text-align:center"></div>`).join('')}
+    <button class="btn block" id="xok" style="margin-top:14px">ثبت تغییرات</button>`, el => {
+    el.querySelectorAll('#xc button').forEach(b => b.onclick = () => el.querySelectorAll('#xc button').forEach(x => x.setAttribute('aria-pressed', x === b)));
+    el.querySelectorAll('#xl button').forEach(b => b.onclick = () => el.querySelectorAll('#xl button').forEach(x => x.setAttribute('aria-pressed', x === b)));
+    el.querySelector('#xok').onclick = () => {
+      ex.day = +el.querySelector('#xd').value; ex.time = el.querySelector('#xt').value || '08:00';
+      ex.coeff = +(el.querySelector('#xc [aria-pressed=true]') || { dataset: { c: 1 } }).dataset.c; ex.level = (el.querySelector('#xl [aria-pressed=true]') || { dataset: { l: 'standard' } }).dataset.l;
+      el.querySelectorAll('[data-n]').forEach(i => { ex.counts[i.dataset.n] = Math.max(0, Math.min(500, parseInt(i.value, 10) || 0)); });
+      closeSheet(); set(() => { planRW(stId, S.week).exam = ex; }); toast('پیش‌فرض‌های آزمون ذخیره شد');
+    };
+  });
+}
+function viewExam(){
+  const st = stOf(S.studentId); if(!st) return '<div class="empty">دانش‌آموز پیدا نشد.</div>';
+  const pl = planRO(st.id, S.week), ex = pl.exam || defaultExam(st), d = stDef(st);
+  const subs = SUBJECTS.filter(s => (ex.counts[s.id] || 0) > 0);
+  const lists = subs.map(s => { const tp = examTopics(pl, s.id), sum = tp.reduce((a, t) => a + (+((ex.sel[s.id] || {})[t]) || 0), 0);
+    return `<details class="card" style="border-right:5px solid ${s.color}"><summary class="row" style="cursor:pointer"><b class="grow">${s.name}</b><span class="badge" data-xb="${s.id}" style="--c:${s.color}">${fa(sum)}/${fa(ex.counts[s.id])}</span></summary>
+      ${tp.length ? tp.map((t, i) => `<div class="row" style="margin-top:8px"><span class="grow" style="font-size:13px">${esc(leafOf(t))}<br><span class="sub" style="margin:0">${esc(t.split(' › ').slice(0, -1).join(' › '))}</span></span><input type="text" inputmode="numeric" data-xs="${s.id}|${i}" value="${(ex.sel[s.id] || {})[t] || 0}" style="width:64px;text-align:center"></div>`).join('')
+        : '<div class="sub" style="margin-top:8px">در مرحلهٔ «تنظیم پیشروی» برای این درس مبحث آزمون تعیین نشده است.</div>'}</details>`; }).join('');
+  return `<div class="row"><h2 class="grow">طراحی آزمون | ${esc(st.name)}</h2><button class="btn sec sm" id="back">بازگشت</button></div>
+    <div class="row" style="margin:10px 0"><button class="btn sec sm" data-wk="-1" aria-label="هفتهٔ قبل">›</button><b class="grow" style="text-align:center;font-size:14px">${weekTitle(S.week, d.endDay)}</b><button class="btn sec sm" data-wk="1" aria-label="هفتهٔ بعد">‹</button></div>
+    <div class="card"><div class="row"><b class="grow">پیش‌فرض‌های آزمون</b><button class="btn sec sm" id="xedit">ویرایش</button></div>
+      <div class="stats" style="margin-top:10px"><div><b>${DAYS[ex.day]}</b><span>روز</span></div><div><b>${fa(ex.time)}</b><span>ساعت</span></div><div><b>${ex.coeff === 1 ? 'نرمال (×۱)' : '×' + fa(ex.coeff)}</b><span>ضریب زمانی</span></div></div>
+      <div class="stats" style="margin-top:10px"><div><b>${fa(totalQ(ex))}</b><span>تعداد سوال</span></div><div><b>${LEVELS[ex.level]}</b><span>سطح</span></div><div><b>${ex.registered ? 'ثبت‌شده ✓' : 'ثبت نشده'}</b><span>وضعیت</span></div></div></div>
+    <h2 style="font-size:16px;margin-top:14px">انتخاب سوالات</h2><p class="sub">تعداد سوال هر مبحث را از مباحثی که در پیشروی برای آزمون تعیین کرده‌ای مشخص کن.</p>
+    ${lists || '<div class="empty">تعداد سوال هیچ درسی تعریف نشده؛ «ویرایش» را بزن.</div>'}
+    <button class="btn block" id="xreg" style="margin-top:6px">ثبت آزمون</button>`;
+}
+
+// ================= ورود جدا برای مشاور و دانش‌آموز =================
+function viewAuth(){
+  if(!S.ready) return '<div class="empty">در حال اتصال به سرور…</div>';
+  if(S.bootErr) return `<div class="warn">${esc(S.bootErr)}</div><button class="btn block" id="retry">تلاش دوباره</button>`;
+  if(!S.entry) return `<h2>خوش آمدی 👋</h2><p class="sub">نوع ورود را انتخاب کن.</p>
+    <button class="card row block" style="width:100%;text-align:right" data-entry="consultant"><span class="avatar">م</span><span class="grow"><b>ورود مشاور</b><br><span class="sub" style="margin:0">ساخت برنامه، آزمون و مدیریت دانش‌آموزها</span></span></button>
+    <button class="card row block" style="width:100%;text-align:right" data-entry="student"><span class="avatar" style="background:var(--amber);color:#2A1A00">د</span><span class="grow"><b>ورود دانش‌آموز</b><br><span class="sub" style="margin:0">دیدن برنامه و ثبت مطالعه</span></span></button>`;
+  const isC = S.entry === 'consultant', change = '<button class="btn sec block" id="chg" style="margin-top:10px">تغییر نوع ورود</button>';
+  if(S.needsSetup && isC) return `<h2>راه‌اندازی اولیه مشاور</h2><p class="sub">هنوز هیچ حسابی ساخته نشده. اولین حساب، حساب مشاور است و این فرم فقط یک‌بار نشان داده می‌شود.</p>
+    <label class="f">نام شما</label><input type="text" id="lname"><label class="f">نام کاربری (انگلیسی)</label><input type="text" id="luser" dir="ltr" autocapitalize="none">
+    <label class="f">رمز عبور (حداقل ۸ کاراکتر)</label><input type="password" id="lpass" dir="ltr" autocomplete="new-password">
+    <button class="btn block" id="lsetup" style="margin-top:14px">ساخت حساب مشاور</button>${change}`;
+  if(S.needsSetup) return `<div class="warn">هنوز حساب مشاور ساخته نشده؛ اول از بخش «ورود مشاور» راه‌اندازی کن.</div>${change}`;
+  return `<h2>ورود ${isC ? 'مشاور' : 'دانش‌آموز'}</h2><p class="sub">${isC ? 'با نام کاربری و رمز مشاور وارد شو.' : 'نام کاربری و رمزی که مشاورت به تو داده را وارد کن.'}</p>
+    <label class="f">نام کاربری</label><input type="text" id="luser" dir="ltr" autocapitalize="none" autocomplete="username">
+    <label class="f">رمز عبور</label><input type="password" id="lpass" dir="ltr" autocomplete="current-password">
+    <button class="btn block" id="llogin" style="margin-top:14px">ورود</button>${change}`;
+}
+async function doLogin(action, payload){
+  try{
+    const r = await api(action, payload);
+    if(S.entry && r.user.role !== S.entry){ toast(r.user.role === 'consultant' ? 'این حساب مشاور است؛ از «ورود مشاور» وارد شو.' : 'این حساب دانش‌آموز است؛ از «ورود دانش‌آموز» وارد شو.'); return; }
+    startSession(r); await loadData(true); render();
+  }catch(e){ S.token = null; S.user = null; LS.del(LSK + '-token'); toast(errMsg(e)); }
+}
+function credsSheet(name, username, password){
+  const text = 'فانوس مطالعاتی\nآدرس: ' + location.href.split('#')[0] + '\nنوع ورود: ورود دانش‌آموز\nنام کاربری: ' + username + '\nرمز عبور: ' + password;
+  openSheet(`<h3>اطلاعات ورود ${esc(name)}</h3><p class="sub">این اطلاعات را همین الان به دانش‌آموز بده؛ رمز بعداً دیده نمی‌شود و فقط می‌توانی رمز جدید بسازی. دانش‌آموز باید «ورود دانش‌آموز» را بزند.</p>
+    <div class="card"><div class="sub" style="margin:0">نام کاربری</div><b dir="ltr" style="display:block;text-align:right;user-select:all">${esc(username)}</b>
+    <div class="sub" style="margin:8px 0 0">رمز عبور</div><b dir="ltr" style="display:block;text-align:right;user-select:all">${esc(password)}</b></div>
+    <button class="btn sec block" id="ccopy">کپی اطلاعات ورود</button><button class="btn block" id="cdone" style="margin-top:8px">متوجه شدم</button>`, el => {
+    el.querySelector('#cdone').onclick = closeSheet;
+    el.querySelector('#ccopy').onclick = () => { try{ navigator.clipboard.writeText(text).then(() => toast('کپی شد')); }catch(e){ toast('کپی نشد؛ دستی بنویس.'); } };
+  });
+}
+
+// ================= لیست دانش‌آموزان و پنل دانش‌آموز =================
+function viewStudents(){
+  const wk = curWeekKey();
+  const list = S.students.map(st => { const pl = planRO(st.id, wk), n = flatParts(pl).length;
+    const chip = !n ? '<span class="chip no">بدون برنامه</span>' : pl.published ? '<span class="chip ok">منتشرشده</span>' : '<span class="chip">پیش‌نویس</span>';
+    return `<div class="card"><div class="row"><span class="avatar">${esc(st.name[0])}</span><span class="grow"><b>${esc(st.name)}</b><br><span class="sub" style="margin:0">${st.grade === 'فارغ‌التحصیل' ? st.grade : 'پایهٔ ' + esc(st.grade)} · ${fa(n)} پارت این هفته</span></span>${chip}</div>
+      <div class="row" style="margin-top:10px"><button class="btn sm grow" data-open="${st.id}">برنامه</button><button class="btn sec sm grow" data-exam="${st.id}">آزمون</button></div></div>`; }).join('');
+  return `<div class="row"><h2 class="grow">دانش‌آموزان من</h2><button class="btn sm" id="addst">+ دانش‌آموز جدید</button></div><p class="sub">برای هر دانش‌آموز نام کاربری و رمز می‌سازی و به خودش می‌دهی.</p>
+    ${list || '<div class="empty">هنوز دانش‌آموزی اضافه نکرده‌ای.</div>'}`;
+}
+const topicTextOf = (pl, p) => itemsOfPart(pl, p.id).map(it => it.title).join(' + ');
+// ================= قاب و رویدادها =================
+function bind(){
+  const $ = (s, f) => document.querySelectorAll(s).forEach(f), g = id => document.getElementById(id);
+  const sid = () => S.studentId, me = () => stOf(S.loggedStudent) || S.students[0];
+  const itemOf = id => planRW(sid(), S.week).items.find(x => x.id === id);
+  if(g('logout')) g('logout').onclick = () => { if((!S.outbox.length && !isDirty()) || confirm('بعضی تغییرات هنوز ذخیره نشده‌اند. با خروج از بین می‌روند. خارج شوم؟')) doLogout(); };
+  $('[data-view]', b => b.onclick = () => { set(() => { S.view = b.dataset.view; }); if(b.dataset.view === 'report') refresh(true); });
+  if(g('refresh')) g('refresh').onclick = () => refresh(false);
+  $('[data-day]', b => b.onclick = () => set(() => { S.day = +b.dataset.day; }));
+  $('[data-wk]', b => b.onclick = () => set(() => { S.week = shiftWeek(S.week, +b.dataset.wk); S.subjStep = null; }));
+  $('[data-open]', b => b.onclick = () => set(() => { S.studentId = b.dataset.open; S.view = 'planner'; S.step = 1; S.subjStep = null; S.week = curWeekKey(); S.day = Math.min(dayIdx(new Date()), stDef(stOf(b.dataset.open)).endDay); }));
+  $('[data-exam]', b => b.onclick = () => set(() => { S.studentId = b.dataset.exam; S.view = 'exam'; S.week = curWeekKey(); }));
+  if(g('addst')) g('addst').onclick = addStudentSheet;
+  if(g('back')) g('back').onclick = () => set(() => { S.view = 'students'; });
+  // برنامه‌ریز
+  $('[data-step]', b => b.onclick = () => set(() => { S.step = +b.dataset.step; S.subjStep = null; }));
+  if(g('next')) g('next').onclick = () => set(() => { S.step += 1; S.subjStep = null; });
+  if(g('s3')) g('s3').onclick = () => set(() => { S.step = 3; S.subjStep = null; });
+  if(g('s2')) g('s2').onclick = () => set(() => { S.step = 2; });
+  $('[data-tb]', b => b.onclick = () => { const k = b.dataset.tb, pl = planRO(sid(), S.week);
+    if(k === 'copy') copyDaySheet(sid());
+    else if(k === 'reset'){ if(locked(pl)) return; if(confirm('همهٔ پارت‌ها و مباحث این هفته پاک شود؟')) set(() => { S.plans[sid()] = S.plans[sid()] || {}; S.plans[sid()][S.week] = newPlan(); S.subjStep = null; }); }
+    else if(k === 'routines') routinesSheet(sid()); else if(k === 'res') resourcesSheet(sid());
+    else if(k === 'archive') archiveSheet(sid()); else if(k === 'dflt') defaultsSheet(sid()); });
+  if(g('addp')) g('addp').onclick = () => partSheet(sid());
+  $('[data-pe]', b => b.onclick = () => partSheet(sid(), b.dataset.pe));
+  $('[data-subj]', b => b.onclick = () => set(() => { S.subjStep = b.dataset.subj; }));
+  if(g('subback')) g('subback').onclick = () => set(() => { S.subjStep = null; });
+  if(g('addtop')) g('addtop').onclick = () => { if(!locked(planRO(sid(), S.week))) addTopicsSheet(sid(), S.subjStep); };
+  if(g('hist')) g('hist').onclick = () => historySheet(sid(), S.subjStep);
+  const ed = fn => (...a) => { if(locked(planRO(sid(), S.week))) return; fn(...a); };
+  $('[data-idel]', b => b.onclick = ed(() => { if(confirm('این مورد حذف شود؟')) set(() => { const pl = planRW(sid(), S.week); pl.items = pl.items.filter(x => x.id !== b.dataset.idel); }); }));
+  $('[data-idup]', b => b.onclick = ed(() => set(() => { const pl = planRW(sid(), S.week), it = pl.items.find(x => x.id === b.dataset.idup), i = pl.items.indexOf(it);
+    pl.items.splice(i + 1, 0, { ...JSON.parse(JSON.stringify(it)), id: uid(), partIds: [], tasks: [], exam: null, copy: true }); })));
+  $('[data-ipick]', b => b.onclick = ed(() => partsPickSheet(sid(), b.dataset.ipick)));
+  $('[data-iex]', b => b.onclick = ed(() => examTopicSheet(sid(), b.dataset.iex)));
+  $('[data-itask]', b => b.onclick = ed(() => { const [id, ti] = b.dataset.itask.split('|'); set(() => { const it = itemOf(id), t = TASKS.concat(it.customTasks || [])[+ti]; it.tasks = it.tasks.includes(t) ? it.tasks.filter(x => x !== t) : [...it.tasks, t]; }); }));
+  $('[data-inew]', b => b.onclick = ed(() => ask('عنوان کار جدید', '', v => set(() => { const it = itemOf(b.dataset.inew); it.customTasks = it.customTasks || []; if(!it.customTasks.includes(v) && !TASKS.includes(v)) it.customTasks.push(v); if(!it.tasks.includes(v)) it.tasks.push(v); }))));
+  if(g('pub')) g('pub').onclick = () => { const pl = planRO(sid(), S.week); if(!flatParts(pl).length) return toast('اول حداقل یک پارت بساز.');
+    const w = planWarnings(pl); if(w.length && !confirm('این هشدارها هنوز هست:\n' + w.join('\n') + '\nمنتشر شود؟')) return;
+    set(() => { planRW(sid(), S.week).published = true; }); toast('در حال ذخیره روی سرور…'); flushNow().then(ok => toast(ok ? 'برنامه منتشر و روی سرور ذخیره شد ✓' : 'ذخیره نشد! روی وضعیت بالای صفحه بزن و خطا را ببین.')); };
+  if(g('unpub')) g('unpub').onclick = () => { set(() => { planRW(sid(), S.week).published = false; }); toast('برنامه برای ویرایش باز شد'); };
+  if(g('rpw')) g('rpw').onclick = () => { const id = sid(), st = stOf(id); ask('رمز جدید برای ' + st.name + ' (حداقل ۸ کاراکتر)', genPass(), async v => { try{ await api('resetPassword', { studentId: id, password: v }); credsSheet(st.name, st.username, v); }catch(e){ toast(errMsg(e)); } }); };
+  if(g('delst')) g('delst').onclick = async () => { const id = sid(), st = stOf(id); if(!confirm('حساب ' + st.name + ' حذف شود؟ دانش‌آموز دیگر نمی‌تواند وارد شود.')) return;
+    try{ await api('deleteStudent', { studentId: id }); set(() => { S.students = S.students.filter(s => s.id !== id); delete S.plans[id]; S.sessions = S.sessions.filter(x => x.st !== id); S.view = 'students'; }); toast('حذف شد'); }catch(e){ toast(errMsg(e)); } };
+  // آزمون
+  if(g('xedit')) g('xedit').onclick = () => examSettingsSheet(sid());
+  $('[data-xs]', i => i.onchange = () => { const [s, idx] = i.dataset.xs.split('|'), pl = planRW(sid(), S.week); pl.exam = pl.exam || defaultExam(stOf(sid()));
+    const t = examTopics(pl, s)[+idx], n = Math.max(0, Math.min(500, parseInt(i.value, 10) || 0)); i.value = n; (pl.exam.sel[s] = pl.exam.sel[s] || {})[t] = n; save();
+    const sum = examTopics(pl, s).reduce((a, x) => a + (+pl.exam.sel[s][x] || 0), 0), bd = document.querySelector('[data-xb="' + s + '"]'); if(bd) bd.textContent = fa(sum) + '/' + fa(pl.exam.counts[s]); });
+  if(g('xreg')) g('xreg').onclick = () => { const pl = planRW(sid(), S.week); pl.exam = pl.exam || defaultExam(stOf(sid()));
+    const bad = SUBJECTS.filter(s => pl.exam.counts[s.id] > 0 && examTopics(pl, s.id).reduce((a, x) => a + (+(pl.exam.sel[s.id] || {})[x] || 0), 0) !== pl.exam.counts[s.id]).map(s => s.name);
+    if(bad.length && !confirm('جمع سوال‌های این درس‌ها با تعداد تعریف‌شده برابر نیست: ' + bad.join('، ') + '\nثبت شود؟')) return;
+    set(() => { pl.exam.registered = true; }); toast('آزمون ثبت شد'); };
+  // کتاب‌ها
+  const raw = id => { for(const k in S.curriculum){ const b = S.curriculum[k].find(x => x.id === id); if(b) return b; } };
+  $('[data-addch]', b => b.onclick = () => ask('عنوان فصل (مثلاً «فصل ۱: …»)', '', v => set(() => { raw(b.dataset.addch).chapters.push({ t: v, l: [] }); })));
+  $('[data-addl]', b => b.onclick = () => { const [id, ci] = b.dataset.addl.split('|'); ask('عنوان گفتار / درس', '', v => set(() => { raw(id).chapters[+ci].l.push(v); })); });
+  $('[data-rml]', b => b.onclick = () => { const [id, ci, li] = b.dataset.rml.split('|'); set(() => { raw(id).chapters[+ci].l.splice(+li, 1); }); });
+  $('[data-rmc]', b => b.onclick = () => { const [id, ci] = b.dataset.rmc.split('|'); if(confirm('این فصل حذف شود؟')) set(() => { raw(id).chapters.splice(+ci, 1); }); });
+  $('[data-verify]', b => b.onclick = () => { set(() => { raw(b.dataset.verify).status = 'official'; }); toast('تطبیق‌شده علامت خورد'); });
+  if(g('exp')) g('exp').onclick = () => { const blob = new Blob([JSON.stringify(S, null, 1)], { type: 'application/json' }); const a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = 'fanous-backup.json'; a.click(); };
+  // گزارش
+  $('[data-rm]', b => b.onclick = () => set(() => { S.rep.mode = b.dataset.rm; }));
+  $('[data-rd]', b => b.onclick = () => set(() => { S.rep.date = b.dataset.rd; }));
+  $('[data-rst]', b => b.onclick = () => set(() => { S.rep.st = b.dataset.rst; }));
+  if(g('manual')) g('manual').onclick = () => manualSheet(S.role === 'student' ? me().id : (S.rep.st || S.students[0].id));
+  // دانش‌آموز
+  const curPl = () => (S.plans[me().id] || {})[curWeekKey()];
+  $('[data-done]', b => b.onclick = () => set(() => { const p = curPl().days[S.day].find(x => x.id === b.dataset.done); p.done = !p.done; }));
+  $('[data-go]', b => b.onclick = () => { const pl = curPl(), p = pl.days[S.day].find(x => x.id === b.dataset.go); startStudy(me().id, p, topicTextOf(pl, p)); });
+  $('[data-rc]', c => c.onchange = () => set(() => { me().rdone[c.dataset.rc] = c.checked; }));
+  if(g('pause')) g('pause').onclick = pauseStudy;
+  if(g('finish')) g('finish').onclick = finishStudy;
+}
+
+// ================= داده و همگام‌سازی (نسخهٔ هفتگی) =================
+const stripPlan = pl => ({ published: !!pl.published, days: Object.fromEntries(Object.entries(pl.days).map(([k, v]) => [k, v.map(({ id, start, dur, subject }) => ({ id, start, dur, subject }))])), items: pl.items || [], exam: pl.exam || null, advisorNote: pl.advisorNote || '' });
+// ================= پنل دانش‌آموز (بر پایهٔ tracker) + پیام/محتوا + چاپ برنامه =================
+const GROUPS = [['📗 دروس اختصاصی', ['zist', 'fizik', 'shimi', 'riazi', 'zamin']], ['📘 دروس عمومی', ['farsi', 'din', 'arabi', 'english']]];
+const SLOTS = [['s1', '🌅 ۸ صبح تا ۱۲ ظهر'], ['s2', '☀️ ۱۲ ظهر تا ۴ عصر'], ['s3', '🌆 ۴ عصر تا ۸ شب'], ['s4', '🌙 ۸ شب تا ۱۲ شب']];
+const QUAL = { great: ['😊', 'عالی'], avg: ['😐', 'متوسط'], weak: ['😔', 'ضعیف'] };
+const CTYPES = { voice: '🎙️ ویس', video: '🎬 ویدیو', pdf: '📄 PDF', text: '📝 متن', link: '🔗 لینک' };
+const en = s => String(s == null ? '' : s).replace(/[۰-۹]/g, d => '۰۱۲۳۴۵۶۷۸۹'.indexOf(d)).replace(/٫/g, '.');
+const num = s => parseFloat(en(s)) || 0;
+const safeUrl = u => /^https?:\/\/[^\s"'<>]+$/i.test(String(u)) ? String(u) : '#';
+const wkOf = date => iso(weekStart(fromIso(date)));
+const dayHours = d => Object.values((d && d.subjects) || {}).reduce((a, s) => a + (+s.hours || 0), 0);
+const dayTests = d => Object.values((d && d.subjects) || {}).reduce((a, s) => a + (+s.total || 0), 0);
+const r1 = n => Math.round(n * 10) / 10;
+const streakEm = d => !d ? '○' : d.quality === 'great' ? '⭐' : d.quality === 'avg' ? '✅' : d.quality === 'weak' ? '⚠️' : dayHours(d) > 0 ? '✏️' : '○';
+const me = () => stOf(S.loggedStudent) || S.students[0];
+const dayRW = date => (S.logs[date] = S.logs[date] || {});
+const dateFa = date => fullFa(fromIso(date));
+function plannedHours(stId, date){
+  const pl = planRO(stId, wkOf(date)), out = {};
+  (pl.days[dayIdx(fromIso(date))] || []).forEach(p => { out[p.subject] = (out[p.subject] || 0) + p.dur / 60; });
+  Object.keys(out).forEach(k => { out[k] = Math.round(out[k] * 100) / 100; });
+  return out;
+}
+
+// ---------- بارگذاری و همگام‌سازی ----------
+async function loadData(first){
+  let cfgMissing = false;
+  const fix = (pl, done) => { pl.items = pl.items || []; pl.exam = pl.exam || null; pl.advisorNote = pl.advisorNote || ''; mergeDone(pl, done); return pl; };
+  if(S.user.role === 'consultant'){
+    const d = await api('getAll');
+    if(d.config.curriculum) S.curriculum = d.config.curriculum; else cfgMissing = true;
+    if(d.config.defaults) S.defaults = d.config.defaults;
+    S.students = d.students.map(s => { const m = d.meta[s.id] || {}, pr = d.prog[s.id] || {};
+      return { id: s.id, name: s.name, grade: s.grade, username: s.username, routines: m.routines || defaultRoutines(), res: m.res || {}, defaults: m.defaults || null, clGrades: m.clGrades || null, rdone: pr.rdone || {} }; });
+    S.cls = d.cl || {};
+    S.plans = {}; d.students.forEach(s => { S.plans[s.id] = {}; Object.entries(d.plans[s.id] || {}).forEach(([w, pl]) => { S.plans[s.id][w] = fix(pl, (d.prog[s.id] || {}).done); }); });
+    S.sessions = d.sessions;
+  } else {
+    const d = await api('getMine', { weeks: [curWeekKey(), shiftWeek(curWeekKey(), -1)] });
+    S.students = [{ id: d.me.id, name: d.me.name, grade: d.me.grade, routines: (d.meta || {}).routines || [], res: (d.meta || {}).res || {}, defaults: (d.meta || {}).defaults || null, clGrades: (d.meta || {}).clGrades || null, rdone: (d.prog || {}).rdone || {} }];
+    S.cl = d.checklist || {};
+    S.loggedStudent = d.me.id; S.plans = { [d.me.id]: {} };
+    Object.entries(d.plans || {}).forEach(([w, pl]) => { S.plans[d.me.id][w] = fix(pl, (d.prog || {}).done); });
+    S.sessions = d.sessions; S.logs = d.logs || {}; S.rank = d.rank || null; S.unread = d.unread || 0; S.cname = d.consultant || '';
+    S.day = dayIdx(new Date());
+  }
+  if(first) restoreLocal();
+  markSynced(); if(cfgMissing) delete synced.cfg;
+}
+function sections(){
+  const m = {};
+  if(!S.user) return m;
+  if(S.user.role === 'consultant'){
+    S.students.forEach(st => {
+      m['meta:' + st.id] = { action: 'saveMeta', payload: { studentId: st.id, meta: { routines: st.routines, res: st.res, defaults: st.defaults || null, clGrades: st.clGrades || null } } };
+      Object.entries(S.plans[st.id] || {}).forEach(([w, pl]) => { m['plan:' + st.id + ':' + w] = { action: 'savePlan', payload: { studentId: st.id, week: w, plan: stripPlan(pl) } }; });
+    });
+    m.cfg = { action: 'saveConfig', payload: { curriculum: S.curriculum, defaults: S.defaults } };   // آخر: برنامه‌ها اول ذخیره شوند
+  } else if(S.students[0]){
+    const st = S.students[0], pl = (S.plans[st.id] || {})[curWeekKey()], done = {}, scope = [], rdone = {}, cutoff = iso(addDays(new Date(), -90));
+    if(pl) flatParts(pl).forEach(p => { scope.push(p.id); if(p.done) done[p.id] = true; });
+    Object.entries(st.rdone || {}).forEach(([k, v]) => { if(v && k.split('|')[0] >= cutoff) rdone[k] = true; });
+    m.prog = { action: 'saveProgress', payload: { prog: { done, rdone }, scope } };
+    m.cl = { action: 'saveChecklist', payload: { items: S.cl } };
+    Object.keys(S.logs).forEach(d => { m['log:' + d] = { action: 'saveDay', payload: { date: d, day: S.logs[d] } }; });
+  }
+  return m;
+}
+
+// ---------- نوار هفته و روزها ----------
+function weekBar(){
+  const ws = fromIso(wkOf(S.rdate));
+  return `<div class="row" style="margin-bottom:8px"><button class="btn sec sm" data-rw="-1" aria-label="هفتهٔ قبل">›</button><b class="grow" style="text-align:center;font-size:14px">${fullFa(ws)} تا ${fullFa(addDays(ws, 6))}</b><button class="btn sec sm" data-rw="1" aria-label="هفتهٔ بعد">‹</button></div>`;
+}
+function dayTabs(logs){
+  const wk = wkOf(S.rdate), ws = fromIso(wk);
+  return `<div class="days">${DAYS.map((n, i) => { const k = iso(addDays(ws, i)); return `<button data-rdate="${k}" aria-pressed="${k === S.rdate}">${n}<small>${dayShort(wk, i)} ${streakEm(logs[k])}</small></button>`; }).join('')}</div>`;
+}
+
+// ---------- گزارش روزانه ----------
+function dayReportHtml(stId, date, ro, logs){
+  const day = logs[date] || {}, subs = day.subjects || {}, planned = plannedHours(stId, date), dis = ro ? 'disabled' : '';
+  const row = sid => { const s = subj(sid), v = subs[sid] || {}, tgt = planned[sid] || 0, act = +v.hours || 0, pct = tgt ? Math.min(100, act / tgt * 100) : 0;
+    return `<div class="sub-row"><div class="row"><span class="dot" style="background:${s.color}"></span><b class="grow">${s.name}</b>${tgt ? `<span class="time">هدف: ${fa(tgt)} ساعت</span>` : ''}</div>
+      <div class="fg"><div class="w2"><label class="f">مبحث</label><input type="text" data-df="${sid}|topic" value="${esc(v.topic || '')}" ${dis}></div>
+        <div><label class="f">ساعت</label><input type="text" inputmode="decimal" data-df="${sid}|hours" value="${v.hours || ''}" ${dis}></div>
+        <div><label class="f">تست</label><input type="text" inputmode="numeric" data-df="${sid}|total" value="${v.total || ''}" ${dis}></div>
+        <div><label class="f">نزده</label><input type="text" inputmode="numeric" data-df="${sid}|skip" value="${v.skip || ''}" ${dis}></div>
+        <div><label class="f">غلط</label><input type="text" inputmode="numeric" data-df="${sid}|wrong" value="${v.wrong || ''}" ${dis}></div></div>
+      ${tgt ? `<div class="bar" style="margin-top:8px;--c:${act >= tgt ? 'var(--mint)' : 'var(--amber)'}"><i style="width:${pct}%"></i></div>` : ''}</div>`; };
+  const goals = day.goals || ['', '', ''];
+  return `<div class="card"><b>📖 مطالعه ${dateFa(date)}</b>
+      ${GROUPS.map(([t, ids]) => `<div class="subsec">${t}</div>${ids.map(row).join('')}`).join('')}</div>
+    <div class="card"><b>🎯 اهداف امروز</b>${[0, 1, 2].map(i => `<div class="row" style="margin-top:8px"><span class="gn">${fa(i + 1)}</span><input type="text" data-dg="${i}" value="${esc(goals[i] || '')}" placeholder="هدف ${fa(i + 1)}…" ${dis}></div>`).join('')}</div>
+    <div class="card"><b>⭐ کیفیت روز</b><div class="row" style="margin:8px 0">${Object.entries(QUAL).map(([k, [e, l]]) => `<button class="opt grow" data-q="${k}" aria-pressed="${day.quality === k}" ${dis}>${e} ${l}</button>`).join('')}</div>
+      <textarea data-dn rows="3" placeholder="امروز چطور پیش رفت؟…" ${dis} style="width:100%;padding:10px 12px;border-radius:12px;border:1.5px solid var(--line);background:var(--card)">${esc(day.note || '')}</textarea></div>
+    <div class="card"><b>📊 خلاصه</b><div class="stats" style="margin-top:8px"><div><b id="sum-h">${fa(r1(dayHours(day)))}</b><span>ساعت مطالعه</span></div><div><b id="sum-t">${fa(dayTests(day))}</b><span>تست و تمرین</span></div></div>
+      ${ro ? '' : '<button class="btn sec block" id="prefill" style="margin-top:10px">پر کردن ساعت و تست از زمان‌سنج</button>'}</div>`;
+}
+
+// ---------- گزارش هفتگی ----------
+function weekReportHtml(stId, wk, logs){
+  const ws = fromIso(wk), days = Array.from({ length: 7 }, (_, i) => iso(addDays(ws, i)));
+  const subs = SUBJECTS.map(s => { let h = 0, t = 0, th = 0; days.forEach(k => { const v = ((logs[k] || {}).subjects || {})[s.id] || {}; h += +v.hours || 0; t += +v.total || 0; th += plannedHours(stId, k)[s.id] || 0; }); return { ...s, hours: h, tests: t, target: th }; }).filter(s => s.hours || s.tests || s.target);
+  const dh = days.map(k => dayHours(logs[k])), totH = dh.reduce((a, b) => a + b, 0), totT = subs.reduce((a, s) => a + s.tests, 0), great = days.filter(k => (logs[k] || {}).quality === 'great').length, max = Math.max(1, ...dh);
+  let acc = 0; const stops = subs.filter(s => s.hours > 0).map(s => { const a = acc / totH * 360; acc += s.hours; return `${s.color} ${a}deg ${acc / totH * 360}deg`; });
+  return `<div class="card stats"><div><b>${fa(r1(totH))}</b><span>کل ساعت هفته</span></div><div><b>${fa(totT)}</b><span>کل تست هفته</span></div><div><b>${fa(great)}</b><span>روز عالی 😊</span></div></div>
+    <div class="card" style="overflow:auto"><b>📋 جدول هفتگی</b>${subs.length ? `<table class="wk" style="margin-top:8px"><tr><th>درس</th><th>ساعت واقعی</th><th>ساعت هدف</th><th>تست</th></tr>
+      ${subs.map(s => `<tr><td><span class="dot" style="background:${s.color};display:inline-block;margin-left:6px"></span>${s.name}</td><td>${fa(r1(s.hours))}</td><td>${s.target ? fa(r1(s.target)) : '—'}</td><td>${fa(s.tests)}</td></tr>
+      ${s.target ? `<tr><td colspan="4" style="padding:2px 8px 8px"><div class="bar" style="--c:${s.hours >= s.target ? 'var(--mint)' : 'var(--amber)'}"><i style="width:${Math.min(100, s.hours / s.target * 100)}%"></i></div></td></tr>` : ''}`).join('')}</table>` : '<div class="empty">برای این هفته گزارشی ثبت نشده.</div>'}</div>
+    <div class="card"><b>📊 ساعت مطالعه روزانه</b><div class="cols">${dh.map((h, i) => `<div class="col"><span class="cv">${h ? fa(r1(h)) : ''}</span><i style="height:${h / max * 100}%"></i><span class="cl">${DAYS[i].slice(0, 3)}</span></div>`).join('')}</div></div>
+    ${stops.length ? `<div class="card"><b>📚 توزیع بین دروس</b><div class="row" style="margin-top:10px;align-items:center"><div class="donut" style="background:conic-gradient(${stops.join(',')})"><span>${fa(r1(totH))}</span></div>
+      <div class="grow">${subs.filter(s => s.hours > 0).map(s => `<div class="row" style="padding:2px 0;font-size:13px"><span class="dot" style="background:${s.color}"></span><span class="grow">${s.name}</span><span>${fa(r1(s.hours))}</span></div>`).join('')}</div></div></div>` : ''}`;
+}
+
+// ---------- تب گزارش (مشترک دانش‌آموز / مشاور) ----------
+function reportBody(stId, ro, logs, tabs){
+  const t = S.rtab;
+  const seg = `<div class="seg" role="group" style="margin-bottom:12px">${tabs.map(([k, l]) => `<button data-rtab="${k}" aria-pressed="${t === k}">${l}</button>`).join('')}</div>`;
+  if(t === 'daily') return seg + weekBar() + dayTabs(logs) + dayReportHtml(stId, S.rdate, ro, logs);
+  if(t === 'weekly') return seg + weekBar() + weekReportHtml(stId, wkOf(S.rdate), logs);
+  return seg + viewReport(stId, !ro || S.role === 'consultant');
+}
+function goalsBody(logs){
+  const day = logs[S.rdate] || {}, slots = day.slots || {};
+  return weekBar() + dayTabs(logs) + `<div class="card"><b>🎯 هدف‌گذاری ${dateFa(S.rdate)}</b>
+    ${SLOTS.map(([k, l]) => `<div class="slotc"><div class="chip">${l}</div><textarea data-ds="${k}" rows="3" placeholder="چه درسی می‌خوای بخونی؟ مثلاً: ژنتیک فصل ۳ + ۲۰ تست شیمی…" style="width:100%;margin-top:8px;padding:10px 12px;border-radius:12px;border:1.5px solid var(--line);background:var(--card)">${esc(slots[k] || '')}</textarea></div>`).join('')}</div>`;
+}
+
+// ---------- پیام و محتوا (دانش‌آموز) ----------
+function msgsBody(){
+  if(S.msgs === null){ S.msgs = 'loading'; api('getMessages').then(async d => { S.msgs = d.items; const ids = d.items.filter(m => !m.read).map(m => m.id);
+      render(); if(ids.length){ try{ await api('markRead', { ids }); S.unread = 0; render(); }catch(e){} } }).catch(e => { S.msgs = []; toast(errMsg(e)); render(); }); }
+  if(S.msgs === 'loading') return '<div class="empty">در حال بارگذاری…</div>';
+  return `<div class="card"><b>💬 پیام‌های مشاور (${fa(S.msgs.length)})</b>${S.msgs.length ? S.msgs.map(m => `<div class="msg ${m.read ? '' : 'unread'}"><div>${esc(m.text)}</div><div class="time">${new Date(m.createdAt).toLocaleDateString('fa-IR')}</div></div>`).join('') : '<div class="empty">پیامی دریافت نشده.</div>'}</div>`;
+}
+function contentBody(){
+  if(S.content === null){ S.content = 'loading'; api('getContent').then(d => { S.content = d.items; render(); }).catch(e => { S.content = []; toast(errMsg(e)); render(); }); }
+  if(S.content === 'loading') return '<div class="empty">در حال بارگذاری…</div>';
+  return `<div class="card"><b>📚 محتوای مشاور</b>${S.content.length ? S.content.map(c => `<div class="msg"><span class="chip">${CTYPES[c.type] || CTYPES.link}</span> <b>${esc(c.title)}</b>${c.description ? `<div class="sub" style="margin:4px 0">${esc(c.description)}</div>` : ''}<a class="btn sec sm" href="${esc(safeUrl(c.url))}" target="_blank" rel="noopener noreferrer" style="display:inline-block;margin-top:6px">باز کردن ↗</a></div>`).join('') : '<div class="empty">محتوایی ارسال نشده.</div>'}</div>`;
+}
+
+// ---------- صفحهٔ اصلی دانش‌آموز ----------
+function viewStudentHome(){
+  const st = me();
+  if(!st) return '<div class="empty">اطلاعات دانش‌آموز بارگذاری نشد.</div>';
+  const wk = curWeekKey(), d = stDef(st);
+  const head = `<div class="row"><p class="sub grow" style="margin:0">سلام ${esc(st.name)} 👋</p><button class="btn sec sm" id="refresh">به‌روزرسانی</button></div>`;
+  if(S.view === 'report') return `${head}<h2 style="margin-top:12px">گزارش مطالعه</h2>${reportBody(st.id, false, S.logs, [['daily', 'روزانه'], ['weekly', 'هفتگی'], ['timer', 'زمان‌سنج']])}`;
+  if(S.view === 'goals') return `${head}<h2 style="margin-top:12px">هدف‌گذاری</h2>${goalsBody(S.logs)}`;
+  if(S.view === 'content') return `${head}<h2 style="margin-top:12px">محتوا</h2>${contentBody()}`;
+  if(S.view === 'msgs') return `${head}<h2 style="margin-top:12px">پیام‌ها</h2>${msgsBody()}`;
+  if(S.view === 'cl') return `${head}<h2 style="margin-top:12px">چک‌لیست جامع کنکور</h2>${checklistBody(st, S.cl, false)}`;
+  const a = S.active && S.active.st === st.id ? S.active : null;
+  const timer = a ? `<div class="timer"><div class="sub" style="color:#fff;opacity:.75;margin:0">${subj(a.subject).name}${a.topic ? ' — ' + esc(a.topic) : ''}</div><div class="t" id="tick">${hms(elapsed(a))}</div>
+    <div class="row" style="margin-top:10px"><button class="btn grow" id="pause">${a.runSince ? 'مکث' : 'ادامه'}</button><button class="btn sec" style="color:#fff;border-color:#fff" id="finish">پایان</button></div></div>` : '';
+  const rank = S.rank && S.rank.total ? `<div class="card row"><span style="font-size:30px">${S.rank.rank === 1 ? '🥇' : S.rank.rank === 2 ? '🥈' : S.rank.rank === 3 ? '🥉' : '🏅'}</span><div class="grow"><b>رتبه ${fa(S.rank.rank)} از ${fa(S.rank.total)}</b><div class="sub" style="margin:0">با ${fa(S.rank.hours)} ساعت مطالعه این هفته</div></div></div>` : '';
+  const pl = S.plans[st.id] && S.plans[st.id][wk];
+  if(!pl || !pl.published) return `${head}${timer}${rank}<div class="empty" style="margin-top:20px">برنامهٔ هفتهٔ ${weekTitle(wk, d.endDay)} هنوز منتشر نشده. اگر مشاورت منتشر کرده، دکمهٔ «به‌روزرسانی» را بزن.</div>`;
+  if(S.day > d.endDay) S.day = 0;
+  const all = flatParts(pl), done = all.filter(p => p.done).length;
+  const bySubj = SUBJECTS.map(s => { const x = all.filter(p => p.subject === s.id); return x.length ? { s, n: x.length, d: x.filter(p => p.done).length } : null; }).filter(Boolean);
+  const tabs = Array.from({ length: d.endDay + 1 }, (_, i) => `<button data-day="${i}" aria-pressed="${S.day === i}">${DAYS[i]}<small>${dayShort(wk, i)}</small></button>`).join('');
+  const items = pl.days[S.day].map(p => { const s = subj(p.subject), its = itemsOfPart(pl, p.id);
+    return `<div class="part ${p.done ? 'done' : ''}" style="--c:${s.color}">${d.showTime ? `<span class="time">${fa(p.start)} تا ${fa(endOf(p))}</span>` : ''}<div class="ptitle">${s.name}</div>
+    ${its.map(it => `<div style="margin-top:4px">${esc(it.title)}${it.tasks.length ? `<div class="tags">${it.tasks.map((t, i) => `<span class="tag">${fa(i + 1)}. ${esc(t)}</span>`).join('')}</div>` : ''}</div>`).join('')}
+    <div class="row" style="margin-top:10px"><button class="btn sec sm grow" data-go="${p.id}">شروع مطالعه</button><button class="btn ${p.done ? 'sec' : ''} sm grow" data-done="${p.id}">${p.done ? 'برگردان' : 'انجام شد'}</button></div></div>`; }).join('');
+  const dk = dateOfIdx(S.day), rts = (st.routines || []).filter(r => routineOn(r, S.day));
+  st.rdone = st.rdone || {};
+  const rhtml = rts.length ? `<div class="card" style="margin-top:12px"><b>روتین امروز</b>${rts.map(r => { const k = dk + '|' + r.id; return `<label class="row" style="padding:7px 0;cursor:pointer"><input type="checkbox" data-rc="${k}" ${st.rdone[k] ? 'checked' : ''} style="width:20px;height:20px"><span class="grow" style="${st.rdone[k] ? 'text-decoration:line-through;opacity:.6' : ''}">${esc(r.title)}</span><span class="time">${fa(r.dur)} دقیقه</span></label>`; }).join('')}</div>` : '';
+  const exam = pl.exam && pl.exam.registered ? `<div class="card"><b>آزمون این هفته</b><p class="sub" style="margin:4px 0 0">${dayLabel(wk, pl.exam.day)} · ساعت ${fa(pl.exam.time)} · ${fa(totalQ(pl.exam))} سوال · سطح ${LEVELS[pl.exam.level]}</p></div>` : '';
+  const note = pl.advisorNote ? `<div class="card" style="background:var(--amber-bg);border-color:var(--amber)"><b>💬 توصیهٔ مشاور این هفته</b><div style="margin-top:6px">${esc(pl.advisorNote)}</div></div>` : '';
+  return `${head}${timer}<h2 style="margin-top:14px">برنامهٔ این هفته</h2>${rank}${note}
+    <div class="card"><div class="row"><b class="grow">پیشرفت کل</b><span>${fa(done)} از ${fa(all.length)} پارت</span></div><div class="bar" style="margin-top:8px"><i style="width:${all.length ? done / all.length * 100 : 0}%"></i></div>
+    ${bySubj.map(x => `<div class="row" style="margin-top:10px"><span style="width:92px;font-size:13px">${x.s.name}</span><div class="bar grow" style="--c:${x.s.color}"><i style="width:${x.d / x.n * 100}%"></i></div><span style="font-size:12px;width:44px;text-align:left">${fa(x.d)}/${fa(x.n)}</span></div>`).join('')}</div>
+    ${exam}<div class="days">${tabs}</div><div class="tl">${items || '<div class="empty">این روز پارتی نداری. استراحت کن.</div>'}</div>${rhtml}
+    <button class="btn sec block" id="printplan" style="margin-top:12px">📄 خروجی PDF برنامهٔ هفته</button>`;
+}
+
+// ---------- پنل مشاور: گزارش، پیام، محتوا ----------
+function loadClogs(id){ S.clogs[id] = 'loading'; api('getLogs', { studentId: id }).then(d => { S.clogs[id] = d.logs; render(); }).catch(e => { S.clogs[id] = {}; toast(errMsg(e)); render(); }); }
+function loadCmsgs(id){ S.cmsgs[id] = 'loading'; api('listMessages', { studentId: id }).then(d => { S.cmsgs[id] = d.items; render(); }).catch(e => { S.cmsgs[id] = []; toast(errMsg(e)); render(); }); }
+function loadCcontent(){ S.ccontent = 'loading'; api('listContent').then(d => { S.ccontent = d.items; render(); }).catch(e => { S.ccontent = []; toast(errMsg(e)); render(); }); }
+function viewConsultantReport(){
+  if(!S.students.length) return '<div class="empty">هنوز دانش‌آموزی اضافه نکرده‌ای.</div>';
+  const id = S.rep.st && stOf(S.rep.st) ? S.rep.st : S.students[0].id, today = iso(new Date());
+  const chips = S.students.map(s => { const t = S.sessions.filter(x => x.st === s.id && x.date === today).reduce((a, x) => a + x.useful, 0);
+    return `<button class="opt" data-rst="${s.id}" aria-pressed="${s.id === id}">${esc(s.name)} · ${hms(t)}</button>`; }).join('');
+  const tabs = [['daily', 'روزانه'], ['weekly', 'هفتگی'], ['timer', 'زمان‌سنج'], ['msg', 'پیام'], ['content', 'محتوا'], ['cl', 'چک‌لیست']];
+  const seg = `<div class="seg" role="group" style="margin-bottom:12px">${tabs.map(([k, l]) => `<button data-crtab="${k}" aria-pressed="${S.crtab === k}">${l}</button>`).join('')}</div>`;
+  let body = '';
+  if(S.crtab === 'daily' || S.crtab === 'weekly'){
+    if(S.clogs[id] === undefined) loadClogs(id);
+    const logs = S.clogs[id];
+    body = !logs || logs === 'loading' ? '<div class="empty">در حال بارگذاری…</div>' : (S.crtab === 'daily' ? weekBar() + dayTabs(logs) + dayReportHtml(id, S.rdate, true, logs) : weekBar() + weekReportHtml(id, wkOf(S.rdate), logs));
+  } else if(S.crtab === 'timer') body = viewReport(id, true);
+  else if(S.crtab === 'cl') body = consultantChecklist(id);
+  else if(S.crtab === 'msg'){
+    if(S.cmsgs[id] === undefined) loadCmsgs(id);
+    const list = S.cmsgs[id];
+    body = `<div class="card"><b>ارسال پیام</b><label class="f">گیرنده</label><select id="mto"><option value="${id}">${esc(stOf(id).name)}</option><option value="all">همهٔ دانش‌آموزها</option></select>
+      <label class="f">متن پیام</label><textarea id="mtext" rows="3" style="width:100%;padding:10px 12px;border-radius:12px;border:1.5px solid var(--line);background:var(--card)"></textarea>
+      <button class="btn block" id="msend" style="margin-top:10px">ارسال</button></div>
+      <div class="card"><b>پیام‌های ارسال‌شده به ${esc(stOf(id).name)}</b>${!list || list === 'loading' ? '<div class="empty">در حال بارگذاری…</div>' : list.length ? list.map(m => `<div class="msg"><div>${esc(m.text)}</div><div class="row"><span class="time grow">${new Date(m.createdAt).toLocaleDateString('fa-IR')} · ${m.read ? 'خوانده شد ✓' : 'خوانده نشده'}</span><button class="btn sm danger" data-mdel="${m.id}" aria-label="حذف پیام">🗑</button></div></div>`).join('') : '<div class="empty">پیامی ارسال نشده.</div>'}</div>`;
+  } else {
+    if(S.ccontent === undefined) loadCcontent();
+    const list = S.ccontent;
+    body = `<div class="card"><b>افزودن محتوا</b><label class="f">برای</label><select id="ct_to"><option value="all">همهٔ دانش‌آموزها</option>${S.students.map(s => `<option value="${s.id}" ${s.id === id ? 'selected' : ''}>${esc(s.name)}</option>`).join('')}</select>
+      <label class="f">نوع</label><select id="ct_type">${Object.entries(CTYPES).map(([k, v]) => `<option value="${k}">${v}</option>`).join('')}</select>
+      <label class="f">عنوان</label><input type="text" id="ct_title"><label class="f">توضیح (اختیاری)</label><input type="text" id="ct_desc">
+      <label class="f">لینک (https://…)</label><input type="text" id="ct_url" dir="ltr" autocapitalize="none"><button class="btn block" id="cadd2" style="margin-top:10px">افزودن</button></div>
+      <div class="card"><b>محتوای ارسال‌شده</b>${!list || list === 'loading' ? '<div class="empty">در حال بارگذاری…</div>' : list.length ? list.map(c => { const who = c.studentId === 'all' ? 'همه' : ((stOf(c.studentId) || {}).name || '—');
+        return `<div class="msg"><span class="chip">${CTYPES[c.type] || CTYPES.link}</span> <b>${esc(c.title)}</b> <span class="time">برای ${esc(who)}</span><div class="row" style="margin-top:6px"><a class="btn sec sm grow" href="${esc(safeUrl(c.url))}" target="_blank" rel="noopener noreferrer" style="text-align:center">باز کردن</a><button class="btn sm danger" data-cdel="${c.id}" aria-label="حذف">🗑</button></div></div>`; }).join('') : '<div class="empty">محتوایی نیست.</div>'}</div>`;
+  }
+  return `<div class="row"><h2 class="grow">گزارش کار</h2><button class="btn sec sm" id="refresh">به‌روزرسانی</button></div><p class="sub">دانش‌آموز را انتخاب کن.</p><div class="opts" style="margin-bottom:12px">${chips}</div>${seg}${body}`;
+}
+
+// ---------- مرحلهٔ ۳ برنامه‌ریز: توصیهٔ مشاور و خروجی چاپی ----------
+function viewStep3(st, pl){
+  const w = planWarnings(pl);
+  return `<h2 style="font-size:16px">پیش‌نمایش برنامه</h2>
+    ${w.length ? `<div class="warn">${w.map(x => '• ' + x).join('<br>')}</div>` : ''}
+    <div class="card"><b>💬 توصیهٔ مشاور این هفته</b><p class="sub" style="margin:2px 0 6px">در بالای برنامهٔ دانش‌آموز و روی جلد PDF نمایش داده می‌شود.</p>
+      <textarea id="anote" rows="3" style="width:100%;padding:10px 12px;border-radius:12px;border:1.5px solid var(--line);background:var(--card)">${esc(pl.advisorNote || '')}</textarea></div>
+    ${planPreviewHtml(st, S.week, pl)}<button class="btn sec block" id="printplan">📄 خروجی PDF (چاپ برنامه)</button>`;
+}
+
+// ---------- خروجی چاپی (برگرفته از نمونهٔ PDF) ----------
+function printPlanHtml(st, week, pl, consultantName){
+  const d = stDef(st), days = Array.from({ length: d.endDay + 1 }, (_, i) => i), parts = flatParts(pl), pages = [];
+  const rtOn = i => (st.routines || []).filter(r => routineOn(r, i));
+  const dotc = sid => `<span class="dt" style="background:${subj(sid).color}"></span>`;
+  // گروه‌بندی روزهای هم‌ساختار
+  const sig = i => pl.days[i].map(p => p.start + '|' + p.dur + '|' + p.subject).join(';');
+  const groups = []; days.forEach(i => { if(!pl.days[i].length) return; const g = groups[groups.length - 1]; if(g && g.sig === sig(i) && g.last === i - 1){ g.days.push(i); g.last = i; } else groups.push({ sig: sig(i), days: [i], last: i }); });
+  const overview = groups.map(g => { const ps = pl.days[g.days[0]], rt = rtOn(g.days[0]).filter(r => g.days.every(x => routineOn(r, x)));
+    return `<div class="gb"><div class="gd">${g.days.map(i => DAYS[i]).join('<br>')}</div><table class="tb"><tr>${ps.map(p => `<th>${d.showTime ? fa(p.start) + ' تا ' + fa(endOf(p)) : '&nbsp;'}</th>`).join('')}</tr><tr>${ps.map(p => `<td>${dotc(p.subject)}${subj(p.subject).name}</td>`).join('')}</tr></table>
+      <div class="rt"><b>مشق شب</b>${rt.map(r => `<div>${esc(r.title)}</div>`).join('') || '—'}</div></div>`; }).join('');
+  // پیشروی درس‌ها
+  const bySub = SUBJECTS.map(s => ({ s, its: pl.items.filter(it => it.subject === s.id && it.partIds.length) })).filter(x => x.its.length);
+  const prog = bySub.map(({ s, its }) => `<div class="pc" style="border-color:${s.color}"><div class="ph" style="color:${s.color}"><b>${s.name}</b><span>${fa(its.length)} مبحث، ${fa(its.reduce((a, it) => a + it.partIds.length, 0))} پارت</span></div>
+    <table class="tb2"><tr style="background:${s.color}22"><th>مبحث</th><th>مسیر مطالعه</th><th>تعداد پارت</th></tr>${its.map(it => `<tr><td>${esc(it.title)}</td><td>${esc(it.tasks.join(' + ')) || '—'}</td><td>${fa(it.partIds.length)}</td></tr>`).join('')}</table></div>`);
+  // صفحه‌ها
+  const cover = `<div class="cv"><div class="lg">${LANTERN}</div><h1>برنامه شخصی تو</h1><div class="pill">برنامه هفتگی</div>
+    <div class="dates"><div><span>تاریخ شروع برنامه</span><b>${dayLabel(week, 0)} ${fa(pparts(fromIso(week)).year)}</b></div><div><span>تاریخ پایان برنامه</span><b>${dayLabel(week, d.endDay)} ${fa(pparts(weekDate(week, d.endDay)).year)}</b></div></div>
+    <div class="ppl"><div><i>${esc((consultantName || 'م')[0])}</i><b>${esc(consultantName || 'مشاور')}</b><span>مشاور</span></div><div><i>${esc(st.name[0])}</i><b>${esc(st.name)}</b><span>${esc(st.grade)}</span></div></div>
+    <div class="qt">${esc(pl.advisorNote || 'همیشه سخت‌ترین مسیرها به زیباترین مقصدها می‌رسن …')}</div></div>`;
+  pages.push(cover);
+  pages.push(`<h2>برنامه زمانی شخصی تو</h2>${overview}`);
+  let buf = [], n = 0; prog.forEach(h => { const rows = (h.match(/<tr>/g) || []).length; if(n + rows > 11 && buf.length){ pages.push('<h2>پیشروی برنامه</h2>' + buf.join('')); buf = []; n = 0; } buf.push(h); n += rows + 2; });
+  if(buf.length) pages.push('<h2>پیشروی برنامه</h2>' + buf.join(''));
+  days.forEach(i => { if(!pl.days[i].length) return;
+    const rows = pl.days[i].map(p => { const its = itemsOfPart(pl, p.id);
+      return `<tr><td>${d.showTime ? fa(p.start) + ' تا ' + fa(endOf(p)) : ''}</td><td>${dotc(p.subject)}<b>${subj(p.subject).name}</b></td><td>${its.map(it => esc(it.title)).join('<br>') || ''}</td><td>${its.map(it => esc(it.tasks.join(' + '))).join('<br>')}</td><td></td><td></td><td></td></tr>`; }).join('');
+    const rts = rtOn(i).map(r => `<tr><td></td><td><b>${esc(r.title)}</b></td><td colspan="2" class="nt">توضیحات :</td><td></td><td></td><td></td></tr>`).join('');
+    pages.push(`<h2>برنامه روز ${DAYS[i]} · ${dayShort(week, i)}</h2><table class="dd"><tr><th>تایم</th><th>درس</th><th>مبحث</th><th>مسیر مطالعه</th><th>تعداد تست</th><th>تایم مفید</th><th>نمره کیفی</th></tr>${rows}${rts}</table>`); });
+  const total = pages.length;
+  const css = `@page{size:A4 landscape;margin:0}*{box-sizing:border-box}body{margin:0;font-family:Vazirmatn,Tahoma,"Segoe UI",sans-serif;direction:rtl;color:#1B1F3A;background:#ddd}
+.bar{position:sticky;top:0;background:#1D2350;color:#fff;padding:10px;text-align:center;z-index:9}.bar button{padding:8px 18px;border:0;border-radius:10px;background:#F0A32F;font:inherit;font-weight:700;cursor:pointer}
+.pg{width:297mm;height:210mm;margin:10px auto;background:#fff;position:relative;overflow:hidden;padding:12mm 12mm 22mm;page-break-after:always}
+h2{text-align:center;font-size:20px;margin:6px 0 12px;color:#1D2350}.ft{position:absolute;bottom:6mm;left:50%;transform:translateX(-50%);background:#E9ECFA;border-radius:99px;padding:5px 22px;font-size:12px;color:#1D2350;display:flex;gap:24px}
+.dt{display:inline-block;width:10px;height:10px;border-radius:50%;margin-left:6px}
+.cv{position:absolute;inset:0;padding:14mm 12mm;background:#1D2350;color:#fff;text-align:center}.cv~.ft{color:#1D2350}.cv .lg svg{width:70px;height:70px}.cv h1{font-size:34px;margin:8px 0}.pill{display:inline-block;background:#F0A32F;color:#2A1A00;padding:4px 18px;border-radius:12px;font-weight:700}
+.dates{display:flex;max-width:520px;margin:18px auto;background:#E9ECFA;color:#1D2350;border-radius:16px}.dates div{flex:1;padding:14px}.dates span{display:block;font-size:12px;opacity:.7}.dates div+div{border-right:1px solid #c5cbe6}
+.ppl{display:flex;justify-content:center;gap:60px;margin:14px 0}.ppl i{display:grid;place-items:center;width:70px;height:70px;border-radius:16px;background:#2B3470;font-style:normal;font-size:30px;margin:0 auto 6px}.ppl b{display:block}.ppl span{font-size:12px;opacity:.8}
+.qt{max-width:560px;margin:14px auto;border:1px solid rgba(255,255,255,.35);border-radius:14px;padding:12px;background:rgba(255,255,255,.08)}
+.gb{display:flex;gap:8px;margin-bottom:10px;align-items:stretch}.gd{width:78px;background:#E9ECFA;border-radius:12px;display:grid;place-items:center;text-align:center;font-weight:700;color:#1D2350;padding:6px;font-size:13px;line-height:1.7}
+.tb{flex:1;border-collapse:collapse;font-size:12px}.tb th{background:#E9ECFA;padding:6px;border:1px solid #d5daf0}.tb td{padding:7px;border:1px solid #d5daf0;text-align:center}
+.rt{width:120px;background:#E3F0FC;border-radius:12px;padding:6px;text-align:center;font-size:12px}.rt b{color:#2F78B5;display:block;margin-bottom:4px}
+.pc{border:1px solid;border-radius:14px;overflow:hidden;margin-bottom:12px}.ph{display:flex;justify-content:space-between;padding:8px 14px;font-size:15px}.ph span{color:#6A708F;font-size:12px}
+.tb2{width:100%;border-collapse:collapse;font-size:12px}.tb2 th,.tb2 td{padding:7px 12px;text-align:right;border-top:1px solid #e8eaf5}.tb2 td:last-child,.tb2 th:last-child{text-align:center;width:90px}
+.dd{width:100%;border-collapse:collapse;font-size:12px}.dd th{background:#E9ECFA;padding:8px;color:#1D2350}.dd td{padding:9px 8px;border-bottom:1px solid #e8eaf5;vertical-align:middle}.dd td:nth-child(n+5),.dd th:nth-child(n+5){width:80px;text-align:center}.dd tr:nth-child(even) td{background:#fafbff}.nt{color:#6A708F;font-weight:700}
+@media print{body{background:#fff}.bar{display:none}.pg{margin:0}}`;
+  return `<!DOCTYPE html><html lang="fa" dir="rtl"><head><meta charset="utf-8"><title>برنامه ${esc(st.name)}</title><style>${css}</style></head><body>
+  <div class="bar">برای ذخیره به‌صورت PDF، دکمه را بزن و «Save as PDF» را انتخاب کن. <button onclick="window.print()">چاپ / ذخیره PDF</button></div>
+  ${pages.map((p, i) => `<div class="pg">${p}<div class="ft"><span>فانوس مطالعاتی</span><span>صفحه ${fa(i + 1)} از ${fa(total)}</span></div></div>`).join('')}</body></html>`;
+}
+function openPrintPlan(stId, week){
+  const st = stOf(stId), pl = planRO(stId, week);
+  if(!flatParts(pl).length) return toast('هنوز پارتی برای چاپ نیست.');
+  const html = printPlanHtml(st, week, pl, S.role === 'consultant' ? S.user.name : S.cname);
+  const url = URL.createObjectURL(new Blob([html], { type: 'text/html;charset=utf-8' }));
+  if(!window.open(url, '_blank')) toast('پنجرهٔ جدید مسدود شد؛ اجازهٔ باز شدن پاپ‌آپ را بده.');
+}
+
+// ---------- قاب و رویدادها (نسخهٔ جدید) ----------
+function render(){
+  if(!S.user){
+    document.getElementById('app').innerHTML = `<header class="top"><div class="brand">${LANTERN}<div><b>فانوس مطالعاتی</b><small>ورود به برنامه</small></div></div></header><main>${viewAuth()}</main>`;
+    const g = id => document.getElementById(id);
+    document.querySelectorAll('[data-entry]').forEach(b => b.onclick = () => { S.entry = b.dataset.entry; LS.set(LSK + '-entry', S.entry); render(); });
+    if(g('chg')) g('chg').onclick = () => { S.entry = null; LS.del(LSK + '-entry'); render(); };
+    if(g('llogin')){ const go = () => doLogin('login', { username: g('luser').value, password: g('lpass').value }); g('llogin').onclick = go; g('lpass').onkeydown = e => { if(e.key === 'Enter') go(); }; }
+    if(g('lsetup')) g('lsetup').onclick = () => doLogin('setup', { name: g('lname').value, username: g('luser').value, password: g('lpass').value });
+    if(g('retry')) g('retry').onclick = () => { S.bootErr = ''; S.ready = false; render(); boot(); };
+    return;
+  }
+  const isC = S.role === 'consultant';
+  let body = '', tabs = '';
+  if(isC){
+    body = S.view === 'students' ? viewStudents() : S.view === 'planner' ? viewPlanner() : S.view === 'exam' ? viewExam() : S.view === 'report' ? viewConsultantReport() : viewBooks();
+    const t = [['students', '👥', 'دانش‌آموزان'], ['report', '⏱️', 'گزارش کار'], ['books', '📚', 'کتاب‌ها']];
+    const cur = S.view === 'planner' || S.view === 'exam' ? 'students' : S.view;
+    tabs = t.map(([k, i, l]) => `<button data-view="${k}" ${cur === k ? 'aria-current="page"' : ''}><span aria-hidden="true">${i}</span>${l}</button>`).join('');
+  } else {
+    if(!['mine', 'report', 'goals', 'cl', 'content', 'msgs'].includes(S.view)) S.view = 'mine';
+    body = viewStudentHome();
+    tabs = [['mine', '🏮', 'برنامه'], ['report', '📊', 'گزارش'], ['goals', '🎯', 'اهداف'], ['cl', '✅', 'چک‌لیست'], ['content', '📚', 'محتوا'], ['msgs', '💬', 'پیام' + (S.unread ? ' (' + fa(S.unread) + ')' : '')]]
+      .map(([k, i, l]) => `<button data-view="${k}" ${S.view === k ? 'aria-current="page"' : ''}><span aria-hidden="true">${i}</span>${l}</button>`).join('');
+  }
+  document.getElementById('app').innerHTML = `
+  <header class="top"><div class="brand">${LANTERN}
+    <div class="grow"><b>فانوس مطالعاتی</b><small>${isC ? 'پنل مشاور' : 'پنل دانش‌آموز'} · ${esc(S.user.name)}</small></div>
+    <button class="btn sec sm" id="logout" style="color:#fff;border-color:rgba(255,255,255,.4)">خروج</button></div>
+    <div id="syncst" class="sub" style="color:#fff;opacity:.8;margin:8px 0 0;font-size:12px;min-height:18px">${syncMsg}</div>${S.beVersion && S.beVersion < NEED_BE ? '<div class="warn" style="margin:8px 0 0">بک‌اندِ Deploy شده قدیمی است؛ Code.gs جدید را بگذار و Deploy ← New version بزن (روی وضعیت بزن).</div>' : ''}</header>
+  <main>${body}</main><nav class="tabs"><div>${tabs}</div></nav>`;
+  bind();
+}
+const bind1 = bind;
+bind = function(){
+  bind1();
+  const $ = (s, f) => document.querySelectorAll(s).forEach(f), g = id => document.getElementById(id);
+  // تب‌های گزارش و تاریخ
+  $('[data-rtab]', b => b.onclick = () => set(() => { S.rtab = b.dataset.rtab; }));
+  $('[data-crtab]', b => b.onclick = () => set(() => { S.crtab = b.dataset.crtab; }));
+  $('[data-rw]', b => b.onclick = () => set(() => { S.rdate = iso(addDays(fromIso(S.rdate), 7 * +b.dataset.rw)); }));
+  $('[data-rdate]', b => b.onclick = () => set(() => { S.rdate = b.dataset.rdate; }));
+  // ثبت گزارش روزانه (دانش‌آموز)
+  const sumUpdate = () => { let h = 0, t = 0; document.querySelectorAll('[data-df$="|hours"]').forEach(i => { h += num(i.value); }); document.querySelectorAll('[data-df$="|total"]').forEach(i => { t += num(i.value); });
+    if(g('sum-h')) g('sum-h').textContent = fa(r1(h)); if(g('sum-t')) g('sum-t').textContent = fa(Math.round(t)); };
+  if(S.role === 'student'){
+    $('[data-df]', i => { i.oninput = sumUpdate; i.onchange = () => { const [sid, f] = i.dataset.df.split('|'), d = dayRW(S.rdate); d.subjects = d.subjects || {};
+      const s = d.subjects[sid] = d.subjects[sid] || { topic: '', hours: 0, total: 0, skip: 0, wrong: 0 }; s[f] = f === 'topic' ? i.value : (f === 'hours' ? Math.min(24, num(i.value)) : Math.round(num(i.value))); save(); sumUpdate(); }; });
+    $('[data-dg]', i => i.onchange = () => { const d = dayRW(S.rdate); d.goals = d.goals || ['', '', '']; d.goals[+i.dataset.dg] = i.value; save(); });
+    $('[data-ds]', i => i.onchange = () => { const d = dayRW(S.rdate); d.slots = d.slots || {}; d.slots[i.dataset.ds] = i.value; save(); });
+    $('[data-dn]', i => i.onchange = () => { dayRW(S.rdate).note = i.value; save(); });
+    $('[data-q]', b => b.onclick = () => set(() => { const d = dayRW(S.rdate); d.quality = d.quality === b.dataset.q ? '' : b.dataset.q; }));
+    if(g('prefill')) g('prefill').onclick = () => { const by = {}; S.sessions.filter(x => x.st === me().id && x.date === S.rdate).forEach(x => { const b = by[x.subject] = by[x.subject] || { h: 0, t: 0 }; b.h += x.useful / 3600; b.t += x.tests; });
+      if(!Object.keys(by).length) return toast('برای این روز مطالعه‌ای با زمان‌سنج ثبت نشده.');
+      set(() => { const d = dayRW(S.rdate); d.subjects = d.subjects || {}; Object.entries(by).forEach(([sid, b]) => { const s = d.subjects[sid] = d.subjects[sid] || { topic: '', hours: 0, total: 0, skip: 0, wrong: 0 }; if(!s.hours) s.hours = Math.round(b.h * 4) / 4; if(!s.total) s.total = b.t; }); }); toast('پر شد؛ در صورت نیاز اصلاح کن.'); };
+  }
+  // چاپ
+  if(g('printplan')) g('printplan').onclick = () => openPrintPlan(S.role === 'consultant' ? S.studentId : me().id, S.role === 'consultant' ? S.week : curWeekKey());
+  if(g('anote')) g('anote').onchange = e => set(() => { planRW(S.studentId, S.week).advisorNote = e.target.value.slice(0, 600); });
+  // مشاور: پیام و محتوا
+  if(g('msend')) g('msend').onclick = async () => { const text = g('mtext').value.trim(), to = g('mto').value; if(!text) return toast('متن پیام خالی است.');
+    try{ const r = await api('sendMessage', { studentIds: to === 'all' ? 'all' : [to], text }); toast('برای ' + fa(r.sent) + ' نفر ارسال شد'); S.cmsgs = {}; render(); }catch(e){ toast(errMsg(e)); } };
+  $('[data-mdel]', b => b.onclick = async () => { if(!confirm('این پیام حذف شود؟')) return; try{ await api('deleteMessage', { id: b.dataset.mdel }); S.cmsgs = {}; render(); }catch(e){ toast(errMsg(e)); } });
+  if(g('cadd2')) g('cadd2').onclick = async () => { const p = { studentId: g('ct_to').value, type: g('ct_type').value, title: g('ct_title').value.trim(), description: g('ct_desc').value.trim(), url: g('ct_url').value.trim() };
+    if(!p.title || !/^https?:\/\//i.test(p.url)) return toast('عنوان و لینک معتبر (با https://) لازم است.');
+    try{ await api('addContent', p); toast('محتوا اضافه شد'); S.ccontent = undefined; render(); }catch(e){ toast(errMsg(e)); } };
+  $('[data-cdel]', b => b.onclick = async () => { if(!confirm('این محتوا حذف شود؟')) return; try{ await api('deleteContent', { id: b.dataset.cdel }); S.ccontent = undefined; render(); }catch(e){ toast(errMsg(e)); } });
+  $('[data-view]', b => { const old = b.onclick; b.onclick = () => { if(b.dataset.view === 'msgs') S.msgs = null; if(b.dataset.view === 'content') S.content = null; if(b.dataset.view === 'report' && S.role === 'consultant'){ S.clogs = {}; } old(); }; });
+};
+const refresh0 = refresh;
+refresh = async function(quiet){ if(S.role === 'consultant'){ S.clogs = {}; S.cmsgs = {}; S.ccontent = undefined; } else { S.msgs = null; S.content = null; } return refresh0(quiet); };
+
+// ================= چک‌لیست جامع کنکور (دهم، یازدهم، دوازدهم) =================
+const GEN_SUBJECT = { id: 'general', name: 'دروس عمومی', color: '#6A708F' };
+function CLB(id, subject, grade, title, text){
+  const sections = []; let n = 0;
+  text.trim().split('\n').map(s => s.trim()).filter(Boolean).forEach(line => {
+    if(line[0] === '#') sections.push({ chapter: line.slice(1).trim(), rows: [] });
+    else { const [label, ...rest] = line.split('|'); sections[sections.length - 1].rows.push({ id: id + '-' + (++n), label: label.trim(), text: rest.join('|').trim() }); }
+  });
+  return { id, subject, grade, title, sections };
+}
+const CHECKLIST = [
+  CLB('zist10', 'zist', 'دهم', 'زیست‌شناسی ۱', `
+# فصل ۱: زیست‌شناسی، دیروز، امروز و فردا
+گفتار ۱ و ۲ | زیست‌شناسی چیست؟ + گستره حیات (ویژگی‌های جانداران، سطوح سازمان‌یابی، بوم‌سازگان و زیست‌کره)
+گفتار ۳ | مولکول‌های زیستی (کربوهیدرات‌ها، لیپیدها، پروتئین‌ها و نوکلئیک اسیدها)
+# فصل ۲: گوارش و جذب مواد
+گفتار ۱ | یاخته و بافت جانوری (غشای یاخته، انتقال مواد، انواع بافت‌های اصلی؛ پوششی، پیوندی، ماهیچه‌ای و عصبی)
+گفتار ۲ | ساختار و عملکرد لوله گوارش (دهان، حلق، مری، معده، روده باریک و بزرگ، حرکات لوله گوارش)
+گفتار ۳ | جذب مواد و تنظیم فعالیت دستگاه گوارش (جذب کربوهیدرات، آمینواسید و چربی‌ها، تنظیم عصبی و هورمونی)
+گفتار ۴ | تنوع گوارش در جانداران (واکوئل گوارشی، حفره گوارشی، لوله گوارش در بی‌مهرگان و مهره‌داران)
+# فصل ۳: تبادلات گازی
+گفتار ۱ | سازوکار دستگاه تنفس در انسان (بخش هادی و مبادله‌ای، کیسه‌های حبابکی، سازوکار دم و بازدم، حجم‌های تنفسی)
+گفتار ۲ | تهویه ششی و انتقال گازها (انتقال اکسیژن و کربن‌دی‌اکسید در خون، تنظیم تنفس)
+گفتار ۳ | تنوع تبادلات گازی در جانداران (تنفس پوستی، نای‌دیسی، آبششی و ششی در جانوران)
+# فصل ۴: گردش مواد در بدن
+گفتار ۱ | قلب (ساختار و دریچه‌های قلب، بافت گره‌ای و هدایت الکتریکی، چرخه ضربان قلب، نوار قلب)
+گفتار ۲ | رگ‌ها (سرخرگ، سیاهرگ و مویرگ، تبادل مواد در مویرگ، فشار خون و تنظیم گردش خون)
+گفتار ۳ | خون (خوناب، گویچه‌های قرمز، سفید و گردها، انعقاد خون، دستگاه لنفی)
+گفتار ۴ | تنوع گردش مواد در جانداران (گردش آب، سامانه‌های گردش باز و بسته، گردش ساده و مضاعف)
+# فصل ۵: تنظیم اسمزی و دفع مواد زائد
+گفتار ۱ | همایستایی و کلیه‌ها (ساختار کلیه، گردیزه/نفرون، رگ‌های کلیه)
+گفتار ۲ | تشکیل ادرار و تخلیه آن (تراوش، بازجذب و ترشح، تنظیم آب و اسید-باز، تخلیه ادرار)
+گفتار ۳ | تنوع دفع و تنظیم اسمزی در جانداران (مواد زائد نیتروژن‌دار، دفع در بی‌مهرگان و مهره‌داران)
+# فصل ۶: از یاخته تا گیاه
+گفتار ۱ | ویژگی‌های یاخته گیاهی (دیواره یاخته‌ای، پلاسمودسم، واکوئل، دیسه‌ها و متابولیت‌های ثانویه)
+گفتار ۲ | سامانه بافتی (بافت‌های مریستمی و غیرمریستمی؛ روپوست، زمینه‌ای و آوندی)
+گفتار ۳ | ساختار گیاهان (ساختار نخستین و پسین ریشه، ساقه و برگ در تک‌لپه‌ای‌ها و دولپه‌ای‌ها)
+# فصل ۷: جذب و انتقال مواد در گیاهان
+گفتار ۱ | تغذیه گیاهی (عناصر ضروری، خاک و همزیستی با قارچ‌ها و باکتری‌های تثبیت‌کننده نیتروژن)
+گفتار ۲ | جانداران مؤثر در تغذیه گیاهی + انتقال شیره خام (مسیرهای عرضی ریشه، تعرق و کشش تعرقی، روزنه‌ها)
+گفتار ۳ | انتقال شیره پرورده (الگوی جریان توده‌ای مونش، بارگیری و باربرداری آبکش)`),
+  CLB('zist11', 'zist', 'یازدهم', 'زیست‌شناسی ۲', `
+# فصل ۱: تنظیم عصبی
+گفتار ۱ و ۲ | یاخته‌های بافت عصبی (پتانسیل عمل و سیناپس) + ساختار دستگاه عصبی (مغز، نخاع و دستگاه خودمختار)
+# فصل ۲: حواس
+گفتار ۱ تا ۳ | گیرنده‌های حسی + حواس ویژه (چشم، گوش، بویایی، چشایی) + گیرنده‌های حسی جانوران
+# فصل ۳: دستگاه حرکتی
+گفتار ۱ و ۲ | استخوان‌ها و اسکلت (مفاصل و بافت استخوانی) + ماهیچه و حرکت (سارکومر، انقباض و تارهای عضلانی)
+# فصل ۴: تنظیم شیمیایی
+گفتار ۱ و ۲ | ارتباط شیمیایی (گیرنده‌های هورمونی) + غده‌های درون‌ریز (هیپوفیز، تیروئید، فوق‌کلیه، پانکراس و...)
+# فصل ۵: ایمنی
+گفتار ۱ تا ۳ | نخستین خط دفاعی + دومین خط دفاعی (التهاب، مکمل) + سومین خط دفاعی (لنفوسیت‌های B و T، آلرژی)
+# فصل ۶: تقسیم یاخته
+گفتار ۱ تا ۳ | فامتن و چرخه یاخته‌ای + رشتمان (میتوز و سرطان) + کاستمان (میوز ۱ و ۲ و کراسینگ‌اور)
+# فصل ۷: تولیدمثل
+گفتار ۱ تا ۴ | دستگاه تولیدمثل مرد + دستگاه تولیدمثل زن (چرخه‌ها) + رشد و نمو جنین + تولیدمثل در جانوران
+# فصل ۸ و ۹: تولیدمثل نهاندانگان و پاسخ گیاهان
+فصل ۸ (۱ تا ۳) | تولیدمثل غیرجنسی + تولیدمثل جنسی (گل و لقاح مضاعف) + از یاخته تخم تا گیاه (دانه و میوه)
+فصل ۹ (۱ و ۲) | تنظیم‌کننده‌های رشد گیاهی (اکسین، جیبرلین و...) + پاسخ به محیط (گرایش‌ها و دفاع گیاهان)`),
+  CLB('zist12', 'zist', 'دوازدهم', 'زیست‌شناسی ۳', `
+# فصل ۱ و ۲: مولکول‌های اطلاعاتی و جریان اطلاعات در یاخته
+فصل ۱ (۱ تا ۳) | نوکلئیک اسیدها + همانندسازی دنا (نیمه‌حفاظتی و آنزیم‌ها) + پروتئین‌ها (سطوح ساختاری و آنزیم‌ها)
+فصل ۲ (۱ تا ۳) | رونویسی و پردازش mRNA + ترجمه و کدهای ژنتیکی + تنظیم بیان ژن در پروکاریوت و یوکاریوت
+# فصل ۳ و ۴: انتقال و تغییر در اطلاعات وراثتی
+فصل ۳ (۱ و ۲) | مفاهیم پایه وراثت (غالبیت ناقص، هم‌توانی، پیوستگی) + انواع صفات (گروه خونی، وابسته به جنس، دودمانه)
+فصل ۴ (۱ تا ۳) | جهش‌های نقطه‌ای و کروموزومی + تعادل هاردی-واینبرگ و تغییر جمعیت + گونه‌زایی
+# فصل ۵ و ۶: از ماده به انرژی و از انرژی به ماده
+فصل ۵ (۱ تا ۳) | تأمین انرژی و ATP + تنفس یاخته‌ای هوازی (قندکافت، کربس، زنجیره انتقال الکترون) + تخمیر
+فصل ۶ (۱ تا ۳) | فتوسنتز و واکنش‌های نوری + چرخه کالوین و تنفس نوری + گیاهان C3، C4 و CAM
+# فصل ۷ و ۸: فناوری‌های نوین زیستی و رفتارهای جانوران
+فصل ۷ (۱ و ۲) | مهندسی ژنتیک و کلون‌سازی ژن + کاربردهای زیست‌فناوری در پزشکی و کشاورزی
+فصل ۸ (۱ تا ۳) | اساس رفتار (غریزی و یادگیری) + انتخاب طبیعی و رفتار + ارتباط و زندگی گروهی`),
+  CLB('shimi10', 'shimi', 'دهم', 'شیمی ۱', `
+# فصل‌های شیمی ۱
+فصل ۱ | کیهان زادگاه الفبای هستی (ایزوتوپ‌ها، جرم اتمی میانگین، مول و عدد آووگادرو، نور و طیف نشری خطی، آرایش الکترونی)
+فصل ۲ | ردپای گازها در زندگی (هواکره، ساختار لوویس، نام‌گذاری و فرمول‌نویسی ترکیبات یونی و مولکولی، موازنه و استوکیومتری گازها)
+فصل ۳ | آب، آهنگ زندگی (انحلال‌پذیری و نمودارها، غلظت مولی و درصدی، پیوند هیدروژنی، خواص غیرعادی آب، اسمز)`),
+  CLB('shimi11', 'shimi', 'یازدهم', 'شیمی ۲', `
+# فصل‌های شیمی ۲
+فصل ۱ | قدر هدایای زمینی را بدانیم (روندهای جدول تناوبی، استوکیومتری خلوص و بازده، آلکان، آلکن، آلکین و هیدروکربن‌های حلقوی)
+فصل ۲ | در پی غذای سالم (گرما و ظرفیت گرمایی، آنتالپی واکنش، آنتالپی پیوند، قانون هس، سرعت واکنش و عوامل مؤثر بر آن)
+فصل ۳ | پوشاک نیازی پایان‌ناپذیر (بسپارها و مونومرها، گروه‌های عاملی آلی؛ الکل، اتر، آلدهید، کتون، کربوکسیلیک اسید، استر و پلی‌آمید)`),
+  CLB('shimi12', 'shimi', 'دوازدهم', 'شیمی ۳', `
+# فصل‌های شیمی ۳
+فصل ۱ | مولکول‌ها در خدمت تندرستی (پاک‌کننده‌های صابونی و غیرصابونی، اسید و باز آرنیوس، درجه و ثابت یونش، محاسبات pH)
+فصل ۲ | آسایش و رفاه در سایه شیمی (اکسایش و کاهش، عدد اکسایش، سلول‌های گالوانی، پتانسیل استاندارد، خوردگی و برقکافت)
+فصل ۳ | شیمی جلوه‌ای از هنر و ماندگاری (انواع جامدهای کووالانسی، مولکولی، یونی و فلزی و مقایسه خواص آن‌ها)
+فصل ۴ | شیمی، راهی به سوی آینده‌ای روشن‌تر (انرژی فعال‌سازی و کاتالیزگر، تعادل شیمیایی و ثابت K، اصل لوشاتلیه، هابر و PET)`),
+  CLB('fizik10', 'fizik', 'دهم', 'فیزیک ۱', `
+# فصل‌های فیزیک ۱
+فصل ۱ | فیزیک و اندازه‌گیری (یکاهای SI، تبدیل یکا، دقت اندازه‌گیری و ارقام بامعنا، چگالی و چگالی مخلوط)
+فصل ۲ | ویژگی‌های فیزیکی مواد (حالت‌های ماده، نیروهای بین‌مولکولی، کشش سطحی و مویینگی، فشار در شاره‌ها، اصل برنولی)
+فصل ۳ | کار، انرژی و توان (کار نیروهای ثابت، قضیه کار و انرژی جنبشی، انرژی پتانسیل گرانشی و کشسانی، پایستگی انرژی، توان و بازده)
+فصل ۴ | دما و گرما (دماسنجی، انبساط گرمایی جامدات و مایعات، گرما و تغییر حالت، تعادل گرمایی، روش‌های انتقال گرما)`),
+  CLB('fizik11', 'fizik', 'یازدهم', 'فیزیک ۲', `
+# فصل‌های فیزیک ۲
+فصل ۱ | الکتریسیته ساکن (قانون کولن، میدان الکتریکی و خطوط میدان، پتانسیل و انرژی پتانسیل الکتریکی، خازن‌ها و ترکیب آن‌ها)
+فصل ۲ | جریان الکتریکی و مدارهای جریان مستقیم (قانون اهم، مقاومت ویژه، نیروی محرکه مولد، توان در مدار، ترکیب مقاومت‌ها و مدار چندحلقه)
+فصل ۳ | مغناطیس و القای الکترومغناطیسی (میدان و نیروی مغناطیسی، میدان سیم راست، حلقه و سیملوله، قانون فارادی و لنز، القاگرها)`),
+  CLB('fizik12', 'fizik', 'دوازدهم', 'فیزیک ۳', `
+# فصل‌های فیزیک ۳
+فصل ۱ | حرکت بر خط راست (مکان، جابه‌جایی، سرعت و شتاب، نمودارهای x-t و v-t، حرکت با شتاب ثابت و سقوط آزاد)
+فصل ۲ | دینامیک و حرکت دایره‌ای (قوانین نیوتن، تکانه، نیروهای اصطکاک، کشش فنر و مقاومت شاره، حرکت دایره‌ای یکنواخت)
+فصل ۳ | نوسان و موج (حرکت هماهنگ ساده SHM، انرژی نوسانگر، امواج مکانیکی و الکترومغناطیسی، بازتاب، شکست، پراش و صوت)
+فصل ۴ | آشنایی با فیزیک اتمی و هسته‌ای (اثر فوتوالکتریک، فوتون، طیف اتمی، مدل بور، لیزر، ساختار هسته، واپاشی و نیمه‌عمر)`),
+  CLB('riazi10', 'riazi', 'دهم', 'ریاضی ۱', `
+# فصل‌های ریاضی ۱
+فصل ۱ و ۲ | مجموعه، الگو و دنباله (متناهی و نامتناهی، دنباله حسابی و هندسی) + مثلثات (نسبت‌های مثلثاتی، اتحادها، دایره مثلثاتی)
+فصل ۳ و ۴ | توان‌های گویا و عبارت‌های جبری (اتحادها، تجزیه، رادیکال و گویا کردن) + معادله و نامعادله (درجه ۲، تعیین علامت)
+فصل ۵ تا ۷ | تابع (مفهوم تابع، دامنه و برد، رسم نمودار) + شمارش بدون شمردن (اصل جمع و ضرب، جایگشت، ترکیب) + آمار و احتمال`),
+  CLB('riazi11', 'riazi', 'یازدهم', 'ریاضی ۲', `
+# فصل‌های ریاضی ۲
+فصل ۱ و ۲ | هندسه تحلیلی و جبر (خط، معادله گویا و رادیکالی) + هندسه (ترسیم‌های هندسی، قضیه تالس و تشابه مثلث‌ها)
+فصل ۳ و ۴ | تابع (قدرمطلق، جزء صحیح، تابع وارون و اعمال روی توابع) + مثلثات (رادیان، زاویه‌های دلخواه، نمودارهای مثلثاتی)
+فصل ۵ تا ۷ | توابع نمایی و لگاریتمی (قوانین و معادلات) + حد و پیوستگی (محاسبه حد، رفع ابهام، پیوستگی) + احتمال شرطی و آمار`),
+  CLB('riazi12', 'riazi', 'دوازدهم', 'ریاضی ۳', `
+# فصل‌های ریاضی ۳
+فصل ۱ و ۲ | تابع (توابع چندجمله‌ای، صعودی/نزولی، ترکیب توابع و وارون) + مثلثات (تناوب، تانژانت و معادلات مثلثاتی)
+فصل ۳ تا ۵ | حد بی‌نهایت و در بی‌نهایت (مجانب‌ها) + مشتق (مفهوم مشتق، دستورها، قاعده زنجیره‌ای) + کاربرد مشتق (اکسترمم و بهینه‌سازی)
+فصل ۶ و ۷ | هندسه (مقاطع مخروطی: دایره و بیضی) + احتمال (قانون احتمال کل و افراز فضای نمونه)`),
+  CLB('zamin11', 'zamin', 'یازدهم', 'زمین‌شناسی (ضریب مستقل در کنکور تجربی)', `
+# فصل‌های زمین‌شناسی
+فصل ۱ تا ۴ | فصل ۱ (پیدایش زمین و منشأ منابع) + فصل ۲ (منابع معدنی) + فصل ۳ (منابع آب) + فصل ۴ (زمین‌ساخت ورقه‌ای)
+فصل ۵ تا ۷ | فصل ۵ (پویایی زمین و زمین‌لرزه) + فصل ۶ (زمان‌سنجی و تاریخچه زمین) + فصل ۷ (زمین‌شناسی و سلامت)`),
+  CLB('gen11', 'general', 'یازدهم', 'دروس عمومی نهایی (تأثیر قطعی در تراز سوابق)', `
+# دروس عمومی یازدهم
+فارسی و عربی ۲ | فارسی ۲: دروس ۱ تا ۱۸ (قلمرو زبانی، ادبی و فکری) | عربی ۲: دروس ۱ تا ۷ (ترجمه، واژگان و قواعد)
+دینی و انگلیسی ۲ | دین و زندگی ۲: دروس ۱ تا ۱۲ (نبوت، امامت و ولایت) | انگلیسی ۲: Lessons 1, 2 & 3 (واژگان، گرامر و رایتینگ)`),
+  CLB('gen12', 'general', 'دوازدهم', 'دروس عمومی نهایی (تأثیر قطعی در تراز سوابق)', `
+# دروس عمومی دوازدهم
+فارسی ۳ | دروس ۱ تا ۹ (فصل‌های ۱ تا ۴) + دروس ۱۰ تا ۱۸ (فصل‌های ۵ تا ۸) — لغت، املا، تاریخ ادبیات، آرایه و دستور
+عربی ۳ | درس ۱ (حروف مشبهة و لای نفی جنس) + درس ۲ (حال) + درس ۳ (استثنا) + درس ۴ (مفعول مطلق) + ترجمه و لغت
+دین و زندگی ۳ | درس ۱ تا ۵ (توحید، اخلاص و سنت‌های الهی) + درس ۶ تا ۱۰ (معاد، احکام، خانواده و تمدن جدید)
+انگلیسی ۳ | Lesson 1 (Sense of Appreciation) + Lesson 2 (Look it Up!) + Lesson 3 (Renewable Energy) — لغت، گرامر و رایتینگ`)
+];
+const CL_GRADES = ['دهم', 'یازدهم', 'دوازدهم'];
+const clSubject = id => id === 'general' ? GEN_SUBJECT : subj(id);
+
+// پایه‌های قابل‌دیدن: دهمی ← دهم، یازدهمی ← یازدهم، دوازدهمی و فارغ‌التحصیل (کنکوری) ← هر سه پایه؛ مشاور می‌تواند عوض کند
+function clGradesFor(st){
+  if(st && Array.isArray(st.clGrades) && st.clGrades.length) return CL_GRADES.filter(g => st.clGrades.includes(g));
+  return st && st.grade === 'دهم' ? ['دهم'] : st && st.grade === 'یازدهم' ? ['یازدهم'] : CL_GRADES.slice();
+}
+const clRows = b => b.sections.flatMap(s => s.rows);
+function clStats(items, books){
+  let total = 0, done = 0;
+  books.forEach(b => clRows(b).forEach(r => { total += 2; const it = items[r.id] || {}; done += (it.v ? 1 : 0) + (it.t ? 1 : 0); }));
+  return { total, done, pct: total ? Math.round(done / total * 100) : 0 };
+}
+function clRowHtml(r, it, ro){
+  const dis = ro ? 'disabled' : '';
+  return `<div class="clrow ${it.v && it.t ? 'okrow' : ''}"><div class="row" style="align-items:flex-start"><span class="chip">${esc(r.label)}</span><span class="grow">${esc(r.text)}</span></div>
+    <div class="row" style="margin-top:8px;gap:8px"><label class="ck2 ${it.v ? 'on' : ''}"><input type="checkbox" data-clv="${r.id}" ${it.v ? 'checked' : ''} ${dis}> فیلم / درسنامه</label>
+      <label class="ck2 ${it.t ? 'on' : ''}"><input type="checkbox" data-clt="${r.id}" ${it.t ? 'checked' : ''} ${dis}> تست‌های مبحث</label></div>
+    <input type="text" data-cln="${r.id}" value="${esc(it.n || '')}" placeholder="توضیحات / منبع و مرور" ${dis} style="margin-top:8px;font-size:13px"></div>`;
+}
+function checklistBody(st, items, ro){
+  const grades = clGradesFor(st);
+  if(!S.clGrade || !grades.includes(S.clGrade)) S.clGrade = grades[grades.length - 1];
+  const all = clStats(items, CHECKLIST.filter(b => grades.includes(b.grade))), gb = CHECKLIST.filter(b => b.grade === S.clGrade);
+  const gst = clStats(items, gb);
+  const subjOrder = ['zist', 'shimi', 'fizik', 'riazi', 'zamin', 'general'];
+  const books = subjOrder.flatMap(sid => gb.filter(b => b.subject === sid));
+  return `<div class="card"><div class="row"><b class="grow">✅ پیشرفت کل چک‌لیست</b><span id="cl-all-t">${fa(all.pct)}٪</span></div><div class="bar" style="margin-top:8px"><i id="cl-all-b" style="width:${all.pct}%"></i></div>
+      <div class="sub" style="margin:6px 0 0"><span id="cl-all-n">${fa(all.done)}</span> از ${fa(all.total)} تیک (هر مبحث: یک تیک برای یادگیری و یک تیک برای تست)</div></div>
+    ${grades.length > 1 ? `<div class="seg" role="group" style="margin-bottom:12px">${grades.map(g => `<button data-clg-tab="${g}" aria-pressed="${S.clGrade === g}">پایه ${g}</button>`).join('')}</div>` : `<p class="sub">چک‌لیست پایه ${grades[0]}</p>`}
+    <div class="card"><div class="row"><b class="grow">پایه ${S.clGrade}</b><span id="cl-g-t">${fa(gst.pct)}٪</span></div><div class="bar" style="margin-top:8px"><i id="cl-g-b" style="width:${gst.pct}%"></i></div></div>
+    ${books.map(b => { const s = clSubject(b.subject), bs = clStats(items, [b]);
+      return `<details class="card clbook" style="border-right:5px solid ${s.color}"><summary class="row" style="cursor:pointer"><b class="grow">${s.name} · ${esc(b.title)}</b><span class="badge" data-clb="${b.id}" style="--c:${s.color}">${fa(bs.done)}/${fa(bs.total)}</span></summary>
+        ${b.sections.map(sec => `<div class="subsec">${esc(sec.chapter)}</div>${sec.rows.map(r => clRowHtml(r, items[r.id] || {}, ro)).join('')}`).join('')}</details>`; }).join('')}`;
+}
+function clUpdateUi(items, st){
+  const grades = clGradesFor(st), all = clStats(items, CHECKLIST.filter(b => grades.includes(b.grade))), g = clStats(items, CHECKLIST.filter(b => b.grade === S.clGrade));
+  const set1 = (id, fn) => { const e = document.getElementById(id); if(e) fn(e); };
+  set1('cl-all-t', e => { e.textContent = fa(all.pct) + '٪'; }); set1('cl-all-b', e => { e.style.width = all.pct + '%'; }); set1('cl-all-n', e => { e.textContent = fa(all.done); });
+  set1('cl-g-t', e => { e.textContent = fa(g.pct) + '٪'; }); set1('cl-g-b', e => { e.style.width = g.pct + '%'; });
+  document.querySelectorAll('[data-clb]').forEach(e => { const b = CHECKLIST.find(x => x.id === e.dataset.clb), s = clStats(items, [b]); e.textContent = fa(s.done) + '/' + fa(s.total); });
+}
+function clSet(id, patch){
+  const cur = S.cl[id] || { v: false, t: false, n: '' }, nx = { ...cur, ...patch };
+  if(!nx.v && !nx.t && !nx.n) delete S.cl[id]; else S.cl[id] = nx;
+  save();
+}
+// بخش مشاور: مشاهدهٔ چک‌لیست دانش‌آموز و تعیین پایه‌ها
+function consultantChecklist(id){
+  const st = stOf(id), items = S.cls[id] || {}, cur = clGradesFor(st);
+  return `<div class="card"><b>پایه‌هایی که ${esc(st.name)} در چک‌لیست می‌بیند</b><div class="opts" style="margin-top:8px">${CL_GRADES.map(g => `<label class="opt" style="display:flex;gap:6px;align-items:center"><input type="checkbox" data-clg="${g}" ${cur.includes(g) ? 'checked' : ''}> ${g}</label>`).join('')}</div>
+    <p class="sub" style="margin:6px 0 0">پیش‌فرض: دهمی فقط دهم، یازدهمی فقط یازدهم، دوازدهمی و کنکوری هر سه پایه.</p></div>${checklistBody(st, items, true)}`;
+}
+const bindCl0 = bind;
+bind = function(){
+  bindCl0();
+  const $ = (s, f) => document.querySelectorAll(s).forEach(f);
+  $('[data-clg-tab]', b => b.onclick = () => set(() => { S.clGrade = b.dataset.clgTab; }));
+  if(S.role === 'student'){
+    const st = me(), upd = () => clUpdateUi(S.cl, st);
+    $('[data-clv]', i => i.onchange = () => { clSet(i.dataset.clv, { v: i.checked }); i.parentElement.classList.toggle('on', i.checked); upd(); const w = i.closest('.clrow'); const x = S.cl[i.dataset.clv] || {}; w.classList.toggle('okrow', !!(x.v && x.t)); });
+    $('[data-clt]', i => i.onchange = () => { clSet(i.dataset.clt, { t: i.checked }); i.parentElement.classList.toggle('on', i.checked); upd(); const w = i.closest('.clrow'); const x = S.cl[i.dataset.clt] || {}; w.classList.toggle('okrow', !!(x.v && x.t)); });
+    $('[data-cln]', i => i.onchange = () => { clSet(i.dataset.cln, { n: i.value.slice(0, 300) }); });
+  } else {
+    $('[data-clg]', c => c.onchange = () => { const id = S.rep.st && stOf(S.rep.st) ? S.rep.st : S.students[0].id, st = stOf(id), sel = [...document.querySelectorAll('[data-clg]:checked')].map(x => x.dataset.clg);
+      if(!sel.length){ c.checked = true; return toast('حداقل یک پایه لازم است.'); } set(() => { st.clGrades = sel; }); });
+  }
+};
+
+// ================= همگام‌سازی مقاوم با شیت + تشخیص مشکل =================
+const NEED_BE = 6;
+let lastErr = null, retryN = 0, retryTimer = null;
+Object.assign(ERR, {
+  timeout: 'پاسخ سرور خیلی دیر رسید؛ اینترنت را بررسی کن و دوباره امتحان کن.',
+  bad_response: 'پاسخ سرور درست نبود. معمولاً یعنی Deploy انجام نشده یا «Who has access» روی Anyone نیست.',
+  bad_action: 'این عملیات در بک‌اندِ Deploy شده نیست: Code.gs را جایگزین کن و Deploy ← Manage deployments ← New version بزن.',
+  server_error: 'خطای داخلی در Apps Script؛ در ویرایشگر منوی Executions را ببین.',
+  sheet_access: 'اسکریپت به شیت دسترسی ندارد.'
+});
+async function api(action, payload){
+  if(API_URL.includes('PASTE_')) throw new Error('no_url');
+  const ctl = typeof AbortController !== 'undefined' ? new AbortController() : null, tm = ctl ? setTimeout(() => ctl.abort(), 60000) : null;
+  let res;
+  try{ res = await fetch(API_URL, { method: 'POST', body: JSON.stringify({ action, token: S.token, ...payload }), signal: ctl ? ctl.signal : undefined }); }
+  catch(e){ throw new Error(e && e.name === 'AbortError' ? 'timeout' : 'network'); }
+  finally{ if(tm) clearTimeout(tm); }
+  let j; try{ j = await res.json(); }catch(e){ throw new Error('bad_response'); }
+  if(!j.ok){ if(j.error === 'unauth' && action !== 'login') doLogout(); throw new Error(j.error || 'server_error'); }
+  return j.data;
+}
+const dirtyKeys = () => { const m = sections(); return Object.keys(m).filter(k => synced[k] !== JSON.stringify(m[k].payload)); };
+const pending = () => (S.outbox ? S.outbox.length : 0) + dirtyKeys().length;
+function setSync(msg, err){
+  syncMsg = msg; syncErr = !!err;
+  const el = document.getElementById('syncst'); if(el){ el.textContent = msg; el.style.color = err ? '#FFB4B4' : ''; }
+}
+function save(){ persistLocal(); clearTimeout(syncTimer); syncTimer = setTimeout(flush, 300); }
+async function flush(){
+  if(syncing || !S.user) return;
+  syncing = true; setSync('در حال ذخیره…');
+  let failed = 0; lastErr = null;
+  try{
+    while(S.outbox.length && S.user){
+      const o = S.outbox[0];
+      try{ await api(o.action, o.payload); S.outbox.shift(); persistLocal(); }
+      catch(e){ if(e.message === 'bad_input'){ S.outbox.shift(); persistLocal(); continue; } failed++; lastErr = { action: o.action, code: e.message }; break; }
+    }
+    const m = S.user ? sections() : {};
+    for(const k in m){
+      if(!S.user) break;
+      const str = JSON.stringify(m[k].payload);
+      if(synced[k] === str) continue;
+      try{ await api(m[k].action, m[k].payload); synced[k] = str; }
+      catch(e){ failed++; if(!lastErr) lastErr = { action: m[k].action, code: e.message }; }   // خطا در یک بخش، بخش‌های دیگر را متوقف نمی‌کند
+    }
+  }catch(e){ failed++; lastErr = { action: '?', code: e.message }; }
+  syncing = false;
+  if(!S.user) return;
+  if(failed){
+    retryN++;
+    setSync('ذخیره نشد (' + fa(pending()) + ' تغییر) · ' + errMsg({ message: lastErr.code }).slice(0, 60) + ' · برای جزئیات بزن', true);
+    clearTimeout(retryTimer); retryTimer = setTimeout(flush, [4000, 10000, 30000][Math.min(retryN - 1, 2)]);
+  } else {
+    retryN = 0; setSync('ذخیره شد ✓');
+    if(S.outbox.length || isDirty()) syncTimer = setTimeout(flush, 200);
+  }
+}
+async function flushNow(){
+  clearTimeout(syncTimer);
+  for(let i = 0; i < 90 && syncing; i++) await new Promise(r => setTimeout(r, 500));
+  await flush();
+  for(let i = 0; i < 90 && syncing; i++) await new Promise(r => setTimeout(r, 500));
+  return !(S.outbox.length || isDirty());
+}
+function diagSheet(){
+  const be = S.beVersion || 0;
+  openSheet(`<h3>وضعیت ذخیره‌سازی</h3>
+    <div class="card"><div class="row"><b class="grow">نسخهٔ بک‌اندِ Deploy شده</b><span>${be ? fa(be) : 'نامشخص'} (لازم: ${fa(NEED_BE)})</span></div>
+      <div class="row" style="margin-top:6px"><b class="grow">تغییرات ذخیره‌نشده</b><span>${fa(pending())}</span></div>
+      ${be && be < NEED_BE ? '<div class="warn" style="margin-top:8px">بک‌اند قدیمی است. Code.gs جدید را جایگزین کن و Deploy ← Manage deployments ← New version بزن.</div>' : ''}
+      ${lastErr ? `<div class="warn" style="margin-top:8px">آخرین خطا: <b dir="ltr">${esc(lastErr.action)}</b> ← <b dir="ltr">${esc(lastErr.code)}</b><br>${esc(errMsg({ message: lastErr.code }))}</div>` : '<div class="sub" style="margin:8px 0 0">خطایی ثبت نشده.</div>'}</div>
+    <button class="btn block" id="dresend">ارسال دوبارهٔ همهٔ اطلاعات</button>
+    ${S.role === 'consultant' ? '<button class="btn sec block" id="dtest" style="margin-top:8px">تست اتصال به شیت</button>' : ''}
+    <div id="dres"></div><button class="btn sec block" id="dclose" style="margin-top:8px">بستن</button>`, el => {
+    el.querySelector('#dclose').onclick = closeSheet;
+    el.querySelector('#dresend').onclick = () => { Object.keys(synced).forEach(k => delete synced[k]); closeSheet(); toast('در حال ارسال…'); flushNow().then(ok => toast(ok ? 'همه‌چیز روی سرور ذخیره شد ✓' : 'هنوز ذخیره نشد؛ وضعیت بالای صفحه را ببین.')); };
+    const t = el.querySelector('#dtest');
+    if(t) t.onclick = async () => { const box = el.querySelector('#dres'); box.innerHTML = '<div class="sub">در حال تست…</div>';
+      try{ const r = await api('selfTest'); box.innerHTML = `<div class="card" style="margin-top:8px"><b>${r.readWrite ? '✅ خواندن و نوشتن در شیت درست است' : '⚠️ خواندن بعد از نوشتن ناموفق بود'}</b><div class="sub" style="margin:6px 0 0">شیت: <span dir="ltr">${esc(r.sheet)}</span> · ${fa(r.ms)} میلی‌ثانیه · برگه‌ها: <span dir="ltr">${esc((r.sheets || []).join(', '))}</span></div></div>`; }
+      catch(e){ box.innerHTML = `<div class="warn" style="margin-top:8px">${esc(e.message)}: ${esc(errMsg(e))}</div>`; } };
+  });
+}
+const bindSync0 = bind;
+bind = function(){
+  bindSync0();
+  const e = document.getElementById('syncst'); if(e){ e.style.cursor = 'pointer'; e.onclick = diagSheet; }
+};
+window.addEventListener('beforeunload', ev => { if(S.user && (S.outbox.length || isDirty())){ ev.preventDefault(); ev.returnValue = ''; } });
+window.addEventListener('pagehide', () => {
+  if(!S.user || API_URL.indexOf('http') !== 0 || !navigator.sendBeacon) return;
+  try{
+    const m = sections();
+    (S.outbox || []).forEach(o => navigator.sendBeacon(API_URL, JSON.stringify({ action: o.action, token: S.token, ...o.payload })));
+    Object.keys(m).forEach(k => { if(synced[k] !== JSON.stringify(m[k].payload)) navigator.sendBeacon(API_URL, JSON.stringify({ action: m[k].action, token: S.token, ...m[k].payload })); });
+  }catch(e){}
+});
+
+
+boot();
+
+</script>
+</body>
+</html>
